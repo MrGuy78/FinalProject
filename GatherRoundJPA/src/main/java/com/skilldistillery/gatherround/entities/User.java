@@ -9,17 +9,17 @@ import jakarta.persistence.Id;
 
 @Entity
 public class User {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
 	private String username;
-
+	
 	private String password;
-
+	
 	private boolean enabled;
-
+	
 	private String role;
 
 	public User() {
@@ -88,5 +88,6 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
 				+ ", role=" + role + "]";
 	}
-
+	
 }
+
