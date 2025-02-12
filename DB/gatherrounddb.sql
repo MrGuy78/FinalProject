@@ -116,7 +116,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gatherrounddb`;
-INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `profile_image_url`, `bio`, `role`, `enabled`, `created_date`, `last_update`) VALUES (1, 'pickleballPlaya', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS\n$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS\n$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Ben', 'Johnstun', 'ben@email.com', NULL, NULL, NULL, NULL, 1, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `profile_image_url`, `bio`, `role`, `enabled`, `created_date`, `last_update`) VALUES (1, 'pickleballPlaya', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Ben', 'Johnstun', 'ben@email.com', NULL, NULL, NULL, NULL, 1, NULL, NULL);
 
 COMMIT;
 

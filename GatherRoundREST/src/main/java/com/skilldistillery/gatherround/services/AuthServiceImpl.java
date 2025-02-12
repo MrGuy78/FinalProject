@@ -11,25 +11,25 @@ import com.skilldistillery.gatherround.repositories.UserRepository;
 public class AuthServiceImpl implements AuthService {
 	
 	@Autowired
-	private UserRepository userRepo;
+	private UserRepository userRepository;
 
 	@Autowired
 	private PasswordEncoder encoder;
 	
 	@Override
 	public User register(User user) {
-//	    String encodedPW = encoder.encode(user.getPassword());
-//	    user.setPassword(encodedPW); // only persist encoded password
-//
-//	    user.setEnabled(true);
-//	    user.setRole("standard");
+	    String encodedPassword = encoder.encode(user.getPassword());
+	    user.setPassword(encodedPassword); // only persist encoded password
 
-	    userRepo.saveAndFlush(user);
+	    user.setEnabled(true);
+	    user.setRole("standard");
+
+	    userRepository.saveAndFlush(user);
 	    return user;
 	}
 
 	@Override
 	public User getUserByUsername(String username) {
-		return userRepo.findByUsername(username);
+		return userRepository.findByUsername(username);
 	}
 }
