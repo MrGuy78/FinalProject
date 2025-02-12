@@ -1,0 +1,3 @@
+rootProject.name = 'GatherRoundREST'
+
+includeFlat 'GatherRoundJPA'
