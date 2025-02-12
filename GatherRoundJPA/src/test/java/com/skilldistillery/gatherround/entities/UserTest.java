@@ -15,35 +15,38 @@ import jakarta.persistence.Persistence;
 
 class UserTest {
 
-	private static EntityManagerFactory emf;
-	private EntityManager em;
+
+	private static EntityManagerFactory factory;
+	private EntityManager manager;
 	private User user;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("GatherRoundJPA");
+		factory = Persistence.createEntityManagerFactory("GatherRoundJPA");
 	}
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
-		emf.close();
+
+		factory.close();
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
-		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+
+		manager = factory.createEntityManager();
+		user = manager.find(User.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		em.close();
 		user = null;
+		manager.close();
 	}
 
 	@Test
-	void test_user_basic_mappings() {
-		assertEquals("test", user.getUsername());
+	void test_User_Entity_Mapping() {
+		assertEquals("pickleballPlaya", user.getUsername());
 		assertTrue(user.isEnabled());
 	}
 

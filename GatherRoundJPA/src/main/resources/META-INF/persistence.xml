@@ -11,10 +11,10 @@
 		
 		<properties>
 			<property name="jakarta.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/tododb" /> 
-			<property name="jakarta.persistence.jdbc.user" value="todos" />
+				value="jdbc:mysql://localhost:3306/gatherrounddb" /> 
+			<property name="jakarta.persistence.jdbc.user" value="activitygroupie" />
 			<property name="jakarta.persistence.jdbc.password"
-				value="todos" />
+				value="activitygroupie" />
 			<property name="jakarta.persistence.jdbc.driver"
 				value="com.mysql.cj.jdbc.Driver" />
 
