@@ -15,7 +15,6 @@ import jakarta.persistence.Persistence;
 
 class UserTest {
 
-
 	private static EntityManagerFactory factory;
 	private EntityManager manager;
 	private User user;
@@ -27,13 +26,11 @@ class UserTest {
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
-
 		factory.close();
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
-
 		manager = factory.createEntityManager();
 		user = manager.find(User.class, 1);
 	}
@@ -49,5 +46,4 @@ class UserTest {
 		assertEquals("pickleballPlaya", user.getUsername());
 		assertTrue(user.isEnabled());
 	}
-
 }

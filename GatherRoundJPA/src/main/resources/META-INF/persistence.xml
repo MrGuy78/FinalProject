@@ -10,19 +10,15 @@
 		<class>com.skilldistillery.gatherround.entities.User</class>
 		
 		<properties>
-			<property name="jakarta.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/gatherrounddb" /> 
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gatherrounddb" /> 
 			<property name="jakarta.persistence.jdbc.user" value="activitygroupie" />
-			<property name="jakarta.persistence.jdbc.password"
-				value="activitygroupie" />
-			<property name="jakarta.persistence.jdbc.driver"
-				value="com.mysql.cj.jdbc.Driver" />
+			<property name="jakarta.persistence.jdbc.password" value="activitygroupie" />
+			<property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />
 
-			<property name="hibernate.connection.provider_class"
-				value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
 			<property name="hibernate.c3p0.max_size" value="5" />
 			<property name="hibernate.c3p0.min_size" value="0" />
 			<property name="hibernate.c3p0.acquire_increment" value="1" />
