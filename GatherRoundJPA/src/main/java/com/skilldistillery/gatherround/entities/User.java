@@ -53,8 +53,6 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
-	
-	
 
 	public String getFirstName() {
 		return firstName;
