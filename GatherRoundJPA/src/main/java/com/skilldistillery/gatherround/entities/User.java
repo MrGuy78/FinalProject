@@ -1,11 +1,17 @@
 package com.skilldistillery.gatherround.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class User {
@@ -21,6 +27,106 @@ public class User {
 	private boolean enabled;
 
 	private String role;
+	
+	@Column(name = "first_name") 
+	private String firstName;
+	
+	@Column(name = "last_name") 
+	private String lastName;
+	
+	private String email;
+	
+	private String phone;
+	
+	private String imageUrl;
+	
+	private String biography;
+	
+	@CreationTimestamp
+	@Column(name = "create_date") 
+	private LocalDateTime createDate;
+	
+	@UpdateTimestamp
+	@Column(name = "last_update")
+	private LocalDateTime lastUpdate;
+	
+	@JoinColumn(name = "address_id")
+	private Address address;
+	
+	
+	
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getBiography() {
+		return biography;
+	}
+
+	public void setBiography(String biography) {
+		this.biography = biography;
+	}
+
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDateTime getLastUpdate() {
+		return lastUpdate;
+	}
+
+	public void setLastUpdate(LocalDateTime lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	public User() {
 		super();
@@ -68,7 +174,8 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(biography, createDate, email, enabled, firstName, id, imageUrl, lastName, lastUpdate,
+				password, phone, role, username);
 	}
 
 	@Override
@@ -80,13 +187,21 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return id == other.id;
+		return Objects.equals(biography, other.biography) && Objects.equals(createDate, other.createDate)
+				&& Objects.equals(email, other.email) && enabled == other.enabled
+				&& Objects.equals(firstName, other.firstName) && id == other.id
+				&& Objects.equals(imageUrl, other.imageUrl) && Objects.equals(lastName, other.lastName)
+				&& Objects.equals(lastUpdate, other.lastUpdate) && Objects.equals(password, other.password)
+				&& Objects.equals(phone, other.phone) && Objects.equals(role, other.role)
+				&& Objects.equals(username, other.username);
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + "]";
+				+ ", role=" + role + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", phone=" + phone + ", imageUrl=" + imageUrl + ", biography=" + biography + ", createDate="
+				+ createDate + ", lastUpdate=" + lastUpdate + "]";
 	}
 
 }
