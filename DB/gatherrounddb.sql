@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `last_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `phone` VARCHAR(20) NULL,
-  `profile_image_url` VARCHAR(2000) NULL,
+  `image_url` VARCHAR(2000) NULL,
   `biography` TEXT NULL,
   `role` VARCHAR(45) NULL,
   `enabled` TINYINT NOT NULL,
@@ -365,8 +365,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gatherrounddb`;
-INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `profile_image_url`, `biography`, `role`, `enabled`, `create_date`, `last_update`, `address_id`) VALUES (1, 'pickleballPat', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Ben', 'Johnstun', 'ben@email.com', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `profile_image_url`, `biography`, `role`, `enabled`, `create_date`, `last_update`, `address_id`) VALUES (2, 'discoDeb', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Debra', 'Kramer', 'deb@email.com', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `image_url`, `biography`, `role`, `enabled`, `create_date`, `last_update`, `address_id`) VALUES (1, 'pickleballPat', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Ben', 'Johnstun', 'ben@email.com', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `image_url`, `biography`, `role`, `enabled`, `create_date`, `last_update`, `address_id`) VALUES (2, 'discoDeb', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Debra', 'Kramer', 'deb@email.com', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -386,7 +386,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gatherrounddb`;
-INSERT INTO `social_group` (`id`, `name`, `description`, `image_url`, `create_date`, `last_update`, `enabled`, `owner_id`, `group_category_id`) VALUES (1, 'Pickleball', NULL, NULL, NULL, NULL, NULL, 1, 1);
+INSERT INTO `social_group` (`id`, `name`, `description`, `image_url`, `create_date`, `last_update`, `enabled`, `owner_id`, `group_category_id`) VALUES (1, 'Pickleball', NULL, NULL, NULL, NULL, 1, 1, 1);
 
 COMMIT;
 
