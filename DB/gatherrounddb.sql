@@ -396,7 +396,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gatherrounddb`;
-INSERT INTO `social_event` (`id`, `title`, `description`, `event_date`, `start_time`, `end_time`, `image_url`, `create_date`, `last_update`, `cost`, `enabled`, `member_only`, `meet_address_id`, `event_address_id`, `social_group_id`, `user_id`) VALUES (1, '2x2 Pickleball', 'Come and play', '2025-2-25 10:30:00', '10:00:10', NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 1, 1, 1);
+INSERT INTO `social_event` (`id`, `title`, `description`, `event_date`, `start_time`, `end_time`, `image_url`, `create_date`, `last_update`, `cost`, `enabled`, `member_only`, `meet_address_id`, `event_address_id`, `social_group_id`, `user_id`) VALUES (1, '2x2 Pickleball', 'Come and play', '2025-2-25 10:30:00', '10:00:10', NULL, NULL, NULL, NULL, 0.00, 1, NULL, 1, 1, 1, 1);
 
 COMMIT;
 
