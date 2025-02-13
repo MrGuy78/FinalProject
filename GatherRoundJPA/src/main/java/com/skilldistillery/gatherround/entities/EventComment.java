@@ -8,6 +8,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
@@ -15,6 +18,8 @@ import jakarta.persistence.Table;
 @Table(name = "event_comment")
 public class EventComment {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String comment;
@@ -29,9 +34,9 @@ public class EventComment {
 	
 	private boolean enabled;
 	
-	@JoinColumn(name = "in_reply_to_id")
-	private EventComment commentRepliedTo;
-	
+//	@JoinColumn(name = "in_reply_to_id")
+//	private EventComment commentRepliedTo;
+//	
 
 	public EventComment() {
 		super();
@@ -77,17 +82,9 @@ public class EventComment {
 		this.enabled = enabled;
 	}
 
-	public EventComment getCommentRepliedTo() {
-		return commentRepliedTo;
-	}
-
-	public void setCommentRepliedTo(EventComment commentRepliedTo) {
-		this.commentRepliedTo = commentRepliedTo;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(comment, commentRepliedTo, createDate, enabled, id, lastUpdate);
+		return Objects.hash(comment, createDate, enabled, id, lastUpdate);
 	}
 
 	@Override
@@ -99,16 +96,19 @@ public class EventComment {
 		if (getClass() != obj.getClass())
 			return false;
 		EventComment other = (EventComment) obj;
-		return Objects.equals(comment, other.comment) && Objects.equals(commentRepliedTo, other.commentRepliedTo)
-				&& Objects.equals(createDate, other.createDate) && enabled == other.enabled && id == other.id
-				&& Objects.equals(lastUpdate, other.lastUpdate);
+		return Objects.equals(comment, other.comment) && Objects.equals(createDate, other.createDate)
+				&& enabled == other.enabled && id == other.id && Objects.equals(lastUpdate, other.lastUpdate);
 	}
 
 	@Override
 	public String toString() {
 		return "EventComment [id=" + id + ", comment=" + comment + ", createDate=" + createDate + ", lastUpdate="
-				+ lastUpdate + ", enabled=" + enabled + ", commentRepliedTo=" + commentRepliedTo + "]";
-	}	
+				+ lastUpdate + ", enabled=" + enabled + "]";
+	}
+
+
+
+	
 	
 	
 }

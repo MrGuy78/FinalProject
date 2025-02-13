@@ -7,6 +7,18 @@
 
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
+		<class>com.skilldistillery.gatherround.entities.Address</class>	
+		<class>com.skilldistillery.gatherround.entities.DirectMessage</class>
+		<class>com.skilldistillery.gatherround.entities.EventComment</class>
+		<class>com.skilldistillery.gatherround.entities.EventImage</class>
+		<class>com.skilldistillery.gatherround.entities.EventUser</class>
+		<class>com.skilldistillery.gatherround.entities.EventUserId</class>
+		<class>com.skilldistillery.gatherround.entities.GroupCategory</class>
+		<class>com.skilldistillery.gatherround.entities.GroupComment</class>
+		<class>com.skilldistillery.gatherround.entities.GroupUser</class>
+		<class>com.skilldistillery.gatherround.entities.GroupUserId</class>
+		<class>com.skilldistillery.gatherround.entities.SocialEvent</class>
+		<class>com.skilldistillery.gatherround.entities.SocialGroup</class>
 		<class>com.skilldistillery.gatherround.entities.User</class>
 		
 		<properties>

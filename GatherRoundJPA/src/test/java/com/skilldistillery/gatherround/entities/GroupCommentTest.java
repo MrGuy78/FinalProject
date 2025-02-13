@@ -13,11 +13,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class UserTest {
+class GroupCommentTest {
 
 	private static EntityManagerFactory factory;
 	private EntityManager manager;
-	private User user;
+	private GroupComment groupComment;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,18 +32,18 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		manager = factory.createEntityManager();
-		user = manager.find(User.class, 1);
+		groupComment = manager.find(GroupComment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		user = null;
+		groupComment = null;
 		manager.close();
 	}
 
 	@Test
-	void test_User_Entity_Mapping() {
-		assertEquals("pickleballPat", user.getUsername());
-		assertTrue(user.isEnabled());
+	void test_GroupComment_Entity_Mapping() {
+		assertEquals("Hey group", groupComment.getComment());
+		
 	}
 }

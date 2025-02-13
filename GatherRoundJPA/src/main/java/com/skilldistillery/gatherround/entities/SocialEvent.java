@@ -55,9 +55,9 @@ public class SocialEvent {
 	@Column(name = "member_only")
 	private boolean memberOnly;
 
-	@JoinColumn(name = "event_address_id")
-	private Address eventAddress;
-	
+//	@JoinColumn(name = "event_address_id")
+//	private Address eventAddress;
+//	
 
 	public SocialEvent() {
 		super();
@@ -159,18 +159,10 @@ public class SocialEvent {
 		this.memberOnly = memberOnly;
 	}
 
-	public Address getEventAddress() {
-		return eventAddress;
-	}
-
-	public void setEventAddress(Address eventAddress) {
-		this.eventAddress = eventAddress;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(cost, createDate, description, enabled, endTime, eventAddress, eventDate, id, imageUrl,
-				lastUpdate, memberOnly, startTime, title);
+		return Objects.hash(cost, createDate, description, enabled, endTime, eventDate, id, imageUrl, lastUpdate,
+				memberOnly, startTime, title);
 	}
 
 	@Override
@@ -185,10 +177,10 @@ public class SocialEvent {
 		return Double.doubleToLongBits(cost) == Double.doubleToLongBits(other.cost)
 				&& Objects.equals(createDate, other.createDate) && Objects.equals(description, other.description)
 				&& enabled == other.enabled && Objects.equals(endTime, other.endTime)
-				&& Objects.equals(eventAddress, other.eventAddress) && Objects.equals(eventDate, other.eventDate)
-				&& id == other.id && Objects.equals(imageUrl, other.imageUrl)
-				&& Objects.equals(lastUpdate, other.lastUpdate) && memberOnly == other.memberOnly
-				&& Objects.equals(startTime, other.startTime) && Objects.equals(title, other.title);
+				&& Objects.equals(eventDate, other.eventDate) && id == other.id
+				&& Objects.equals(imageUrl, other.imageUrl) && Objects.equals(lastUpdate, other.lastUpdate)
+				&& memberOnly == other.memberOnly && Objects.equals(startTime, other.startTime)
+				&& Objects.equals(title, other.title);
 	}
 
 	@Override
@@ -196,9 +188,8 @@ public class SocialEvent {
 		return "SocialEvent [id=" + id + ", title=" + title + ", description=" + description + ", eventDate="
 				+ eventDate + ", startTime=" + startTime + ", endTime=" + endTime + ", imageUrl=" + imageUrl
 				+ ", createDate=" + createDate + ", lastUpdate=" + lastUpdate + ", cost=" + cost + ", enabled="
-				+ enabled + ", memberOnly=" + memberOnly + ", eventAddress=" + eventAddress + "]";
+				+ enabled + ", memberOnly=" + memberOnly + "]";
 	}
-	
-	
+
 
 }

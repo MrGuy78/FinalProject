@@ -38,7 +38,7 @@ public class User {
 	
 	private String phone;
 	
-	@Column(name = "image_url")
+	@Column(name = "profile_image_url")
 	private String imageUrl;
 	
 	private String biography;
@@ -51,9 +51,9 @@ public class User {
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	
-	@JoinColumn(name = "address_id")
-	private Address address;
-	
+//	@JoinColumn(name = "address_id")
+//	private Address address;
+//	
 	
 	public User() {
 		super();
@@ -123,13 +123,6 @@ public class User {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 
 
 	public int getId() {
@@ -204,4 +197,5 @@ public class User {
 				+ createDate + ", lastUpdate=" + lastUpdate + "]";
 	}
 
+	
 }

@@ -17,7 +17,6 @@ import jakarta.persistence.Table;
 @Table(name = "social_group")
 public class SocialGroup {
 	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

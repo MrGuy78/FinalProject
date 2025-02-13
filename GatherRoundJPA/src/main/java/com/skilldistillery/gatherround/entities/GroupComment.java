@@ -8,6 +8,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
@@ -15,8 +18,11 @@ import jakarta.persistence.Table;
 @Table(name = "group_comment")
 public class GroupComment {
 
-	private String comment;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	
+	private String comment;
 	
 	@CreationTimestamp
 	@Column(name = "create_date") 
@@ -28,8 +34,8 @@ public class GroupComment {
 	
 	private boolean enabled;
 	
-	@JoinColumn(name = "in_reply_to_id")
-	private GroupComment commentRepliedTo;
+//	@JoinColumn(name = "in_reply_to_id")
+//	private GroupComment commentRepliedTo;
 
 	public GroupComment() {
 		super();
@@ -67,17 +73,9 @@ public class GroupComment {
 		this.enabled = enabled;
 	}
 
-	public GroupComment getCommentRepliedTo() {
-		return commentRepliedTo;
-	}
-
-	public void setCommentRepliedTo(GroupComment commentRepliedTo) {
-		this.commentRepliedTo = commentRepliedTo;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(comment, commentRepliedTo, createDate, enabled, lastUpdate);
+		return Objects.hash(comment, createDate, enabled, id, lastUpdate);
 	}
 
 	@Override
@@ -89,16 +87,16 @@ public class GroupComment {
 		if (getClass() != obj.getClass())
 			return false;
 		GroupComment other = (GroupComment) obj;
-		return Objects.equals(comment, other.comment) && Objects.equals(commentRepliedTo, other.commentRepliedTo)
-				&& Objects.equals(createDate, other.createDate) && enabled == other.enabled
-				&& Objects.equals(lastUpdate, other.lastUpdate);
+		return Objects.equals(comment, other.comment) && Objects.equals(createDate, other.createDate)
+				&& enabled == other.enabled && id == other.id && Objects.equals(lastUpdate, other.lastUpdate);
 	}
 
 	@Override
 	public String toString() {
-		return "GroupComment [comment=" + comment + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
-				+ ", enabled=" + enabled + ", commentRepliedTo=" + commentRepliedTo + "]";
+		return "GroupComment [id=" + id + ", comment=" + comment + ", createDate=" + createDate + ", lastUpdate="
+				+ lastUpdate + ", enabled=" + enabled + "]";
 	}
+
 	
 	
 }
