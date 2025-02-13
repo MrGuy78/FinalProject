@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `image_url` VARCHAR(2000) NULL,
   `biography` TEXT NULL,
   `role` VARCHAR(45) NULL,
-  `enabled` TINYINT NOT NULL,
+  `enabled` TINYINT NULL,
   `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
   `address_id` INT NULL,
@@ -396,7 +396,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gatherrounddb`;
-INSERT INTO `social_event` (`id`, `title`, `description`, `event_date`, `start_time`, `end_time`, `image_url`, `create_date`, `last_update`, `cost`, `enabled`, `member_only`, `meet_address_id`, `event_address_id`, `social_group_id`, `user_id`) VALUES (1, '2x2 Pickleball', 'Come and play', '2025-2-25 10:30:00', '10:00:10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1);
+INSERT INTO `social_event` (`id`, `title`, `description`, `event_date`, `start_time`, `end_time`, `image_url`, `create_date`, `last_update`, `cost`, `enabled`, `member_only`, `meet_address_id`, `event_address_id`, `social_group_id`, `user_id`) VALUES (1, '2x2 Pickleball', 'Come and play', '2025-2-25 10:30:00', '10:00:10', NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 1, 1, 1);
 
 COMMIT;
 
@@ -416,7 +416,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gatherrounddb`;
-INSERT INTO `event_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `user_id`, `event_id`, `in_reply_to_id`) VALUES (DEFAULT, 'Great courts and we had a lot of fun!', NULL, NULL, NULL, 1, 1, NULL);
+INSERT INTO `event_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `user_id`, `event_id`, `in_reply_to_id`) VALUES (DEFAULT, 'Great courts and we had a lot of fun!', NULL, NULL, 1, 1, 1, NULL);
 
 COMMIT;
 
@@ -426,7 +426,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gatherrounddb`;
-INSERT INTO `group_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `user_id`, `group_id`, `in_reply_to_id`) VALUES (1, 'Hey group', NULL, NULL, NULL, 1, 1, NULL);
+INSERT INTO `group_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `user_id`, `group_id`, `in_reply_to_id`) VALUES (1, 'Hey group', NULL, NULL, 1, 1, 1, NULL);
 
 COMMIT;
 
