@@ -38,6 +38,7 @@ public class User {
 	
 	private String phone;
 	
+	@Column(name = "image_url")
 	private String imageUrl;
 	
 	private String biography;
@@ -53,6 +54,10 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
+	
+	public User() {
+		super();
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -126,9 +131,6 @@ public class User {
 		this.address = address;
 	}
 
-	public User() {
-		super();
-	}
 
 	public int getId() {
 		return id;
