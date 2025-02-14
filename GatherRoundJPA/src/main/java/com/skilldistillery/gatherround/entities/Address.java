@@ -29,8 +29,9 @@ public class Address {
 	private String zip;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "address")
+	@OneToMany(mappedBy = "meetAddress")
 	private List<SocialEvent> events;
+	
 
 	public Address() {
 		super();
@@ -92,6 +93,7 @@ public class Address {
 	public void setEvents(List<SocialEvent> events) {
 		this.events = events;
 	}
+	
 
 	@Override
 	public int hashCode() {

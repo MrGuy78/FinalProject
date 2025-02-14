@@ -52,8 +52,8 @@ class SocialEventTest {
 	}
 	
 	@Test
-	void test_SocialEvent_ManyToOne_Address_Mapping() {
-		assertEquals("Utah", socialEvent.getAddress().getState());
+	void test_SocialEvent_ManyToOne_MeetAddress_Mapping() {
+		assertEquals("Utah", socialEvent.getMeetAddress().getState());
 	}
 	
 	@Test
@@ -76,5 +76,11 @@ class SocialEventTest {
 	void test_SocialEvent_OneToMany_EventComment_Mapping() {
 		assertTrue(socialEvent.getComments().size()>0);
 	}
+	
+	@Test
+	void test_SocialEvent_ManyToOne_EventAddress_Mapping() {
+		assertEquals("Utah", socialEvent.getEventAddress().getState());
+	}
+	
 	
 }

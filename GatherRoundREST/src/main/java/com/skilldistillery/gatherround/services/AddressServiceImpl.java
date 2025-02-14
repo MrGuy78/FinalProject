@@ -14,7 +14,7 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public Address show(int addressId) {
-		return addressRepo.findById(addressId);
+		return null;
 	}
 
 	@Override

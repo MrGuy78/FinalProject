@@ -417,7 +417,7 @@ COMMIT;
 START TRANSACTION;
 USE `gatherrounddb`;
 INSERT INTO `event_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `user_id`, `event_id`, `in_reply_to_id`) VALUES (1, 'Great courts and we had a lot of fun!', NULL, NULL, 1, 1, 1, NULL);
-INSERT INTO `event_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `user_id`, `event_id`, `in_reply_to_id`) VALUES (2, 'Great to meet you ', NULL, NULL, 1, 2, 1, NULL);
+INSERT INTO `event_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `user_id`, `event_id`, `in_reply_to_id`) VALUES (2, 'Great to meet you ', NULL, NULL, 1, 2, 1, 1);
 
 COMMIT;
 
@@ -428,7 +428,7 @@ COMMIT;
 START TRANSACTION;
 USE `gatherrounddb`;
 INSERT INTO `group_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `user_id`, `group_id`, `in_reply_to_id`) VALUES (1, 'Hey group', NULL, NULL, 1, 1, 1, NULL);
-INSERT INTO `group_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `user_id`, `group_id`, `in_reply_to_id`) VALUES (2, 'Welcome', NULL, NULL, 1, 2, 1, NULL);
+INSERT INTO `group_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `user_id`, `group_id`, `in_reply_to_id`) VALUES (2, 'Welcome', NULL, NULL, 1, 2, 1, 1);
 
 COMMIT;
 
@@ -459,7 +459,7 @@ COMMIT;
 START TRANSACTION;
 USE `gatherrounddb`;
 INSERT INTO `direct_message` (`id`, `comment`, `create_date`, `sender_id`, `recipient_id`) VALUES (1, NULL, NULL, 1, 2);
-INSERT INTO `direct_message` (`id`, `comment`, `create_date`, `sender_id`, `recipient_id`) VALUES (2, NULL, NULL, 1, 2);
+INSERT INTO `direct_message` (`id`, `comment`, `create_date`, `sender_id`, `recipient_id`) VALUES (2, NULL, NULL, 2, 1);
 
 COMMIT;
 

@@ -1,7 +1,6 @@
 package com.skilldistillery.gatherround.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -98,8 +97,9 @@ class UserTest {
 		assertTrue(user.getGroupComments().size()>0);
 	}
 	
-	void test_User_Address_OneToOne_Mapping() {
-		assertNull(user.getAddress().getName());
+	@Test
+	void test_User_Address_ManyToOne_Mapping() {
+		assertNull(user.getAddress());
 	}
 	
 }

@@ -15,9 +15,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -33,34 +32,34 @@ public class User {
 	private boolean enabled;
 
 	private String role;
-	
-	@Column(name = "first_name") 
+
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name = "last_name") 
+
+	@Column(name = "last_name")
 	private String lastName;
 
 	private String email;
-	
+
 	private String phone;
-	
+
 	@Column(name = "image_url")
 	private String imageUrl;
-	
+
 	private String biography;
-	
+
 	@CreationTimestamp
-	@Column(name = "create_date") 
+	@Column(name = "create_date")
 	private LocalDateTime createDate;
-	
+
 	@UpdateTimestamp
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "sender")
 	private List<DirectMessage> sentMessages;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "recipient")
 	private List<DirectMessage> receivedMessages;
@@ -68,35 +67,34 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<EventComment> comments;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<EventImage> images;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<EventUser> eventUsers;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<SocialEvent> events;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<GroupUser> groupUsers;
-	
+
 	@OneToMany(mappedBy = "owner")
 	private List<SocialGroup> socialGroups;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<GroupComment> groupComments;
-	
-	@OneToOne(optional = true)
+
+	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
-	
+
 	public User() {
 		super();
 	}
-	
+
 	public List<EventUser> getEventUsers() {
 		return eventUsers;
 	}
@@ -104,8 +102,7 @@ public class User {
 	public void setEventUsers(List<EventUser> eventUsers) {
 		this.eventUsers = eventUsers;
 	}
-	
-	
+
 	public List<EventComment> getComments() {
 		return comments;
 	}
@@ -113,7 +110,7 @@ public class User {
 	public void setComments(List<EventComment> comments) {
 		this.comments = comments;
 	}
-	
+
 	public List<EventImage> getImages() {
 		return images;
 	}
@@ -250,7 +247,6 @@ public class User {
 		this.events = events;
 	}
 
-	
 	public List<GroupUser> getGroupUsers() {
 		return groupUsers;
 	}
@@ -258,7 +254,6 @@ public class User {
 	public void setGroupUsers(List<GroupUser> groupUsers) {
 		this.groupUsers = groupUsers;
 	}
-	
 
 	public List<SocialGroup> getSocialGroups() {
 		return socialGroups;
@@ -267,8 +262,6 @@ public class User {
 	public void setSocialGroups(List<SocialGroup> socialGroups) {
 		this.socialGroups = socialGroups;
 	}
-	
-
 
 	public List<GroupComment> getGroupComments() {
 		return groupComments;
@@ -277,8 +270,6 @@ public class User {
 	public void setGroupComments(List<GroupComment> groupComments) {
 		this.groupComments = groupComments;
 	}
-	
-	
 
 	public Address getAddress() {
 		return address;
@@ -290,8 +281,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(biography, createDate, email, enabled, firstName, id, imageUrl, lastName, lastUpdate,
-				password, phone, role, username);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -303,13 +293,7 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(biography, other.biography) && Objects.equals(createDate, other.createDate)
-				&& Objects.equals(email, other.email) && enabled == other.enabled
-				&& Objects.equals(firstName, other.firstName) && id == other.id
-				&& Objects.equals(imageUrl, other.imageUrl) && Objects.equals(lastName, other.lastName)
-				&& Objects.equals(lastUpdate, other.lastUpdate) && Objects.equals(password, other.password)
-				&& Objects.equals(phone, other.phone) && Objects.equals(role, other.role)
-				&& Objects.equals(username, other.username);
+		return id == other.id;
 	}
 
 	@Override
@@ -320,5 +304,4 @@ public class User {
 				+ createDate + ", lastUpdate=" + lastUpdate + "]";
 	}
 
-	
 }
