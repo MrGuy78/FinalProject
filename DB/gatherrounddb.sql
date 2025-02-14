@@ -459,7 +459,7 @@ COMMIT;
 START TRANSACTION;
 USE `gatherrounddb`;
 INSERT INTO `direct_message` (`id`, `comment`, `create_date`, `sender_id`, `recipient_id`) VALUES (1, NULL, NULL, 1, 2);
-INSERT INTO `direct_message` (`id`, `comment`, `create_date`, `sender_id`, `recipient_id`) VALUES (2, NULL, NULL, 1, 2);
+INSERT INTO `direct_message` (`id`, `comment`, `create_date`, `sender_id`, `recipient_id`) VALUES (2, NULL, NULL, 2, 1);
 
 COMMIT;
 
