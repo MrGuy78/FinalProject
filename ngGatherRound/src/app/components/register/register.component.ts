@@ -33,7 +33,7 @@ username: any;
       next: (registeredUser) => {
         this.auth.login(user.username, user.password).subscribe({
           next: (loggedInUser) => {
-            this.router.navigateByUrl('/todo');
+            this.router.navigateByUrl('/account');
           },
           error: (error) => {
             console.error('RegisterComponent.register(): Error Logging in User:');
@@ -44,12 +44,11 @@ username: any;
       error: (error) => {
         console.error('RegisterComponent.register(): Error Registering Account');
         console.error(error);
+        alert('Username ' + user.username +  ' Already Taken');
       }
     });
   }
 
-  // hasError() {
-  //   console.log('Username Already Taken')
-  // } ADJUST LATER FOR CUSTOM ERROR MESSAGE
+
 
 }
