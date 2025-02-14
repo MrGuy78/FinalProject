@@ -30,7 +30,8 @@ public class UserController {
 	}
 	
 	@PostMapping({ "users", "/users" })
-	public User addNewUser(@RequestBody User user, HttpServletRequest request, 
+	public User addNewUser(@RequestBody User user, 
+			HttpServletRequest request, 
 			HttpServletResponse response) {
 		User createdUser = null;
 		try {

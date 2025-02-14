@@ -376,7 +376,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gatherrounddb`;
-INSERT INTO `group_category` (`id`, `name`, `description`, `image_url`) VALUES (DEFAULT, 'Sports', NULL, NULL);
+INSERT INTO `group_category` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Sports', NULL, NULL);
 
 COMMIT;
 

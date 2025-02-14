@@ -18,7 +18,7 @@ export class RegisterComponent {
 
   // FIELDS
   newUser: User = new User();
-username: any;
+  username: any;
 
   constructor(
     private auth: AuthService,

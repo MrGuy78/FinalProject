@@ -3,6 +3,8 @@ package com.skilldistillery.gatherround.entities;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,7 @@ public class GroupCategory {
 	@Column(name = "image_url")
 	private String imageUrl;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "category")
 	private List<SocialGroup> socialGroups;
 
