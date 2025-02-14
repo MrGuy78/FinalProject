@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { NavigationComponent } from './components/navigation/navigation.component';
 
-
 @Component({
   selector: 'app-root',
   imports: [
@@ -38,4 +37,5 @@ tempTestDeleteMeLater() {
     }
   });
 }
+
 }

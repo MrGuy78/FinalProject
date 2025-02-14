@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
@@ -6,7 +6,10 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-account',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterLink
+  ],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
