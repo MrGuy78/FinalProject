@@ -64,7 +64,11 @@ public class SocialEvent {
 	
 	@ManyToOne
 	@JoinColumn(name = "meet_address_id")
-	private Address address;
+	private Address meetAddress;
+	
+	@ManyToOne
+	@JoinColumn(name = "event_address_id")
+	private Address eventAddress;
 	
 	@ManyToOne
 	@JoinColumn(name = "social_group_id")
@@ -188,12 +192,12 @@ public class SocialEvent {
 	}
 
 	
-	public Address getAddress() {
-		return address;
+	public Address getMeetAddress() {
+		return meetAddress;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setMeetAddress(Address address) {
+		this.meetAddress = address;
 	}
 	
 
@@ -232,6 +236,16 @@ public class SocialEvent {
 
 	public void setComments(List<EventComment> comments) {
 		this.comments = comments;
+	}
+	
+	
+
+	public Address getEventAddress() {
+		return eventAddress;
+	}
+
+	public void setEventAddress(Address eventAddress) {
+		this.eventAddress = eventAddress;
 	}
 
 	@Override

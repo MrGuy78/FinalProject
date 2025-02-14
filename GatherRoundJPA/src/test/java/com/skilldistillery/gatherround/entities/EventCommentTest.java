@@ -69,7 +69,7 @@ class EventCommentTest {
 	
 	// ******* Add 2nd comment to reply to 1st comment ********
 	@Test
-	void test_MealComment_SubComments_OneToMany_mapping() {
+	void test_EventComment_SubComments_OneToMany_mapping() {
 		assertNotNull(eventComment.getSubComments());
 		assertTrue(eventComment.getSubComments().size()>0);
 	}

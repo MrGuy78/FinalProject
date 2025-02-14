@@ -50,4 +50,6 @@ class AddressTest {
 	void test_Address_SocialEvent_OneToMany_Mapping() {
 		assertTrue(address.getEvents().size()>0);
 	}
+	
+
 }
