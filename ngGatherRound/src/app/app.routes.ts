@@ -4,6 +4,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AccountComponent } from './components/account/account.component';
+import { SocialGroupComponent } from './components/social-group/social-group.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
   { path: 'account', component: AccountComponent},
+  { path: 'social-group', component: SocialGroupComponent},
   { path: '**', component: NotFoundComponent},
 
 ];
