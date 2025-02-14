@@ -13,28 +13,15 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 	
 	@Override
-	public User show(String user) {
-		// TODO Auto-generated method stub
-				return null;
+	public User show(int userId) {
+		return userRepository.findById(userId).orElse(null);
 	}
 
 	@Override
-	public User create(String user) {
-		// TODO Auto-generated method stub
-		return null;
+	public User create(User user) {
+		return userRepository.saveAndFlush(user);
 	}
 
-	@Override
-	public User update(String user, int userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public boolean destroy(int userId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 	
 }

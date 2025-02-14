@@ -6,8 +6,7 @@ import com.skilldistillery.gatherround.entities.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	User findAllUsersByUsername(String user);
-	
-	
+
 	
 
 }

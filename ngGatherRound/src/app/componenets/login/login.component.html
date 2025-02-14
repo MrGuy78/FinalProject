@@ -1,1 +1,14 @@
-<p>login works!</p>
+<br><br>
+<div style="text-align: center;"><br>
+  <h1>Log In</h1><br>
+  <form class="form-control form-label form-group form-check form-inline"><br>
+
+  <label for="username">Username:</label><br>
+  <input type="text" name="username" [(ngModel)]="loginUser.username"><br><br>
+
+  <label for="password">Password:</label><br>
+  <input type="password" name="password" [(ngModel)]="loginUser.password"><br><br>
+
+  <button class="btn btn-success" (click)="login(loginUser)">Log In</button><br><br>
+</form>
+</div>

@@ -72,18 +72,23 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<EventImage> images;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<EventUser> eventUsers;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<SocialEvent> events;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<GroupUser> groupUsers;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "owner")
 	private List<SocialGroup> socialGroups;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<GroupComment> groupComments;
 

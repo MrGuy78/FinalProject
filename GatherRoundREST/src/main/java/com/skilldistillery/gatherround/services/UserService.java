@@ -4,12 +4,10 @@ import com.skilldistillery.gatherround.entities.User;
 
 public interface UserService {
 	
-	public User show(String user);
+	public User show(int userId);
 
-	public User create(String username);
+	public User create(User user);
 
-	public User update(String username, int userId);
-
-	public boolean destroy(int userId);
+	
 
 }
