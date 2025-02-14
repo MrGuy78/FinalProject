@@ -1,6 +1,7 @@
 package com.skilldistillery.gatherround.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -38,6 +40,18 @@ public class EventComment {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name="event_id")
+	private SocialEvent event;
+	
+	@ManyToOne
+	@JoinColumn(name = "in_reply_to_id")
+	private EventComment parentComment;
+	
+	@OneToMany(mappedBy = "parentComment")
+	private List<EventComment> subComments;
+	
 	
 //	@JoinColumn(name = "in_reply_to_id")
 //	private EventComment commentRepliedTo;
@@ -93,6 +107,32 @@ public class EventComment {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	public SocialEvent getEvent() {
+		return event;
+	}
+
+	public void setEvent(SocialEvent event) {
+		this.event = event;
+	}
+	
+	
+
+	public EventComment getParentComment() {
+		return parentComment;
+	}
+
+	public void setParentComment(EventComment parentComment) {
+		this.parentComment = parentComment;
+	}
+
+	public List<EventComment> getSubComments() {
+		return subComments;
+	}
+
+	public void setSubComments(List<EventComment> subComments) {
+		this.subComments = subComments;
 	}
 
 	@Override

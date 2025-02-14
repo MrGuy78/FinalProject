@@ -44,6 +44,10 @@ class AddressTest {
 	@Test
 	void test_Address_Entity_Mapping() {
 		assertEquals("Spanish Fork Pickleball Courts", address.getName());
-		
+	}
+	
+	@Test
+	void test_Address_SocialEvent_OneToMany_Mapping() {
+		assertTrue(address.getEvents().size()>0);
 	}
 }

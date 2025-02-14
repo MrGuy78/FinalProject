@@ -1,6 +1,8 @@
 package com.skilldistillery.gatherround.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -50,4 +52,21 @@ class GroupCommentTest {
 	void test_GroupComment_User_ManyToOne_Mapping() {
 		assertEquals("Ben", groupComment.getUser().getFirstName());
 	}
+	
+	// ******* Add 2nd comment to reply to 1st comment ********
+	@Test
+	void test_ParentComment_to_SubComments_ManyToOne_mapping() {
+		groupComment = manager.find(GroupComment.class, 2);
+		assertNotNull(groupComment);
+		assertNotNull(groupComment.getParentComment());
+		assertEquals(1,groupComment.getParentComment().getId()); 
+	}
+	
+	// ******* Add 2nd comment to reply to 1st comment ********
+	@Test
+	void test_MealComment_SubComments_OneToMany_mapping() {
+		assertNotNull(groupComment.getSubComments());
+		assertTrue(groupComment.getSubComments().size()>0);
+	}
+	
 }

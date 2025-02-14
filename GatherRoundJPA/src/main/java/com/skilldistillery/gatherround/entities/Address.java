@@ -1,11 +1,15 @@
 package com.skilldistillery.gatherround.entities;
 
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Address {
@@ -23,6 +27,10 @@ public class Address {
 	private String state;
 	
 	private String zip;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "address")
+	private List<SocialEvent> events;
 
 	public Address() {
 		super();
@@ -74,6 +82,15 @@ public class Address {
 
 	public void setZip(String zip) {
 		this.zip = zip;
+	}
+	
+
+	public List<SocialEvent> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<SocialEvent> events) {
+		this.events = events;
 	}
 
 	@Override

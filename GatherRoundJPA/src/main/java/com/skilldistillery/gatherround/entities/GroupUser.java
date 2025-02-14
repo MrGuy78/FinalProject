@@ -36,6 +36,11 @@ public class GroupUser {
 	@MapsId(value = "userId")
 	private User user;
 	
+	@ManyToOne
+	@JoinColumn(name= "group_id")
+	@MapsId(value = "groupId")
+	private SocialGroup socialGroup;
+	
 
 	public GroupUser() {
 		super();
@@ -79,6 +84,22 @@ public class GroupUser {
 
 	public void setLeader(boolean leader) {
 		this.leader = leader;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public SocialGroup getSocialGroup() {
+		return socialGroup;
+	}
+
+	public void setSocialGroup(SocialGroup socialGroup) {
+		this.socialGroup = socialGroup;
 	}
 
 	@Override

@@ -51,4 +51,9 @@ class EventImageTest {
 		assertEquals("Ben", eventImage.getUser().getFirstName());
 	}
 	
+	@Test
+	void test_EventImage_ManyToOne_SocialEvent_Mapping() {
+		assertEquals("2x2 Pickleball", eventImage.getEvent().getTitle());
+	}
+	
 }

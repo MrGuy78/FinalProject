@@ -35,6 +35,9 @@ public class EventImage {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@ManyToOne
+	@JoinColumn(name="social_event_id")
+	private SocialEvent event;
 
 	public User getUser() {
 		return user;
@@ -78,6 +81,15 @@ public class EventImage {
 
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
+	}
+
+	
+	public SocialEvent getEvent() {
+		return event;
+	}
+
+	public void setEvent(SocialEvent event) {
+		this.event = event;
 	}
 
 	@Override

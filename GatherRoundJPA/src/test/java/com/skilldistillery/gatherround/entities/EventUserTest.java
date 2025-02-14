@@ -1,7 +1,7 @@
 package com.skilldistillery.gatherround.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -44,10 +44,23 @@ class EventUserTest {
 		manager.close();
 	}
 
+	// ******  Need to add data into Event User table and add createDate  ****** 
 	@Test
 	void test_EventUser_Entity_Mapping() {
-		
+		assertNotNull(eventUser);
+		assertEquals(2025, eventUser.getCreateDate().getYear());
 	}
+	
+	@Test
+	void test_EventUser_ManyToOne_User_mapping() {
+		assertEquals(1, eventUser.getId().getUserId());
+	}
+
+	@Test
+	void test_MealReview_ManyToOne_Event_mapping() {
+		assertEquals(1, eventUser.getId().getEventId());
+	}
+	
 	
 	
 }

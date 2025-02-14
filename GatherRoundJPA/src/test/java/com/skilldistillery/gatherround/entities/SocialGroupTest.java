@@ -52,5 +52,28 @@ class SocialGroupTest {
 		
 	}
 	
+	// ***** field Approved in GroupUser needs a "1" *******
+	@Test
+	void test_SocialGroup_GroupUser_OneToMany_Mapping() {
+		assertTrue(socialGroup.getGroupUsers().size()>0);
+	}
+	
+	@Test
+	void test_SocialGroup_GroupCategory_ManyToOne_Mapping() {
+		assertEquals("Sports", socialGroup.getCategory().getName());
+	
+	}
+	
+	@Test
+	void test_SocialGroup_GroupComment_OneToMany_Mapping() {
+		assertTrue(socialGroup.getComments().size()>0);
+	}
+	
+	@Test
+	void test_SocialGroup_SocialEvent_OneToMany_Mapping() {
+		assertTrue(socialGroup.getEvents().size()>0);
+	}
+	
+	
 	
 }

@@ -3,6 +3,7 @@ package com.skilldistillery.gatherround.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -59,6 +61,23 @@ public class SocialEvent {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "meet_address_id")
+	private Address address;
+	
+	@ManyToOne
+	@JoinColumn(name = "social_group_id")
+	private SocialGroup group;
+	
+	@OneToMany(mappedBy = "event")
+	private List<EventUser> eventUsers;
+	
+	@OneToMany(mappedBy = "event")
+	private List<EventImage> images;
+	
+	@OneToMany(mappedBy = "event")
+	private List<EventComment> comments;
 
 	public SocialEvent() {
 		super();
@@ -166,6 +185,53 @@ public class SocialEvent {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+
+	public SocialGroup getGroup() {
+		return group;
+	}
+
+	public void setGroup(SocialGroup group) {
+		this.group = group;
+	}
+
+	
+	
+	public List<EventUser> getEventUsers() {
+		return eventUsers;
+	}
+
+	public void setEventUsers(List<EventUser> eventUsers) {
+		this.eventUsers = eventUsers;
+	}
+	
+	
+
+	public List<EventImage> getImages() {
+		return images;
+	}
+
+	public void setImages(List<EventImage> images) {
+		this.images = images;
+	}
+	
+
+	public List<EventComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<EventComment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

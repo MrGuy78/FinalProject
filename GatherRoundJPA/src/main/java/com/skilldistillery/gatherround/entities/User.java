@@ -17,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -86,6 +87,11 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<GroupComment> groupComments;
+	
+	@OneToOne(optional = true)
+	@JoinColumn(name = "address_id")
+	private Address address;
+	
 	
 	public User() {
 		super();
@@ -270,6 +276,16 @@ public class User {
 
 	public void setGroupComments(List<GroupComment> groupComments) {
 		this.groupComments = groupComments;
+	}
+	
+	
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override

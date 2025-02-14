@@ -51,6 +51,30 @@ class SocialEventTest {
 		assertEquals("Ben", socialEvent.getUser().getFirstName());
 	}
 	
+	@Test
+	void test_SocialEvent_ManyToOne_Address_Mapping() {
+		assertEquals("Utah", socialEvent.getAddress().getState());
+	}
 	
+	@Test
+	void test_SocialEvent_ManyToOne_SocialGroup_Mapping() {
+		assertEquals("Pickleball", socialEvent.getGroup().getName());
+	}
+	
+	// ******  Need to add data into Event User table   ****** 
+	@Test
+	void test_SocialEvent_OneToMany_EventUser_Mapping() {
+		assertTrue(socialEvent.getEventUsers().size()>0);
+	}
+	
+	@Test
+	void test_SocialEvent_OneToMany_EventImage_Mapping() {
+		assertTrue(socialEvent.getImages().size()>0);
+	}
+	
+	@Test
+	void test_SocialEvent_OneToMany_EventComment_Mapping() {
+		assertTrue(socialEvent.getComments().size()>0);
+	}
 	
 }

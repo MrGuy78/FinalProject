@@ -57,5 +57,10 @@ class GroupUserTest {
 	assertEquals(1, groupUser.getId().getUserId());
 	}
 	
+	// ***** field Approved needs a "1" *******
+	@Test
+	void test_GroupUser_ManyToOne_SocialGroup_mapping() {
+	assertEquals(1, groupUser.getId().getGroupId());
+	}
 	
 }

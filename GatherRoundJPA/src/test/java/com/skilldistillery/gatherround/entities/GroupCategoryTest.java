@@ -46,4 +46,9 @@ class GroupCategoryTest {
 		assertEquals("Sports", category.getName());
 		
 	}
+	
+	@Test
+	void test_GroupCategroy_SocialGroup_OneToMany_Mapping() {
+		assertTrue(category.getSocialGroups().size()>0);
+	}
 }

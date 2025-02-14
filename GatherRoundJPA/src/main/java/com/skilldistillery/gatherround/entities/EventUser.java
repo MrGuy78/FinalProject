@@ -34,6 +34,11 @@ public class EventUser {
 	@JoinColumn(name= "user_id")
 	@MapsId(value = "userId")
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name= "event_id")
+	@MapsId(value = "eventId")
+	private SocialEvent event;
 
 	public EventUser() {
 		super();
@@ -88,6 +93,14 @@ public class EventUser {
 	}
 	
 	
+
+	public SocialEvent getEvent() {
+		return event;
+	}
+
+	public void setEvent(SocialEvent event) {
+		this.event = event;
+	}
 
 	@Override
 	public int hashCode() {
