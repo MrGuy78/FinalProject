@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,14 +18,6 @@ public class EventUser {
 	@EmbeddedId
 	private EventUserId id;
 
-	public EventUserId getId() {
-		return id;
-	}
-
-	public void setId(EventUserId id) {
-		this.id = id;
-	}
-
 	private boolean attending;
 	
 	@CreationTimestamp
@@ -33,10 +26,21 @@ public class EventUser {
 	
 	private int rating;
 	
-	private String text;
+	private String remarks;
+	
+	@ManyToOne
+	private User user;
 
 	public EventUser() {
 		super();
+	}
+	
+	public EventUserId getId() {
+		return id;
+	}
+
+	public void setId(EventUserId id) {
+		this.id = id;
 	}
 
 	public boolean isAttending() {
@@ -63,17 +67,17 @@ public class EventUser {
 		this.rating = rating;
 	}
 
-	public String getText() {
-		return text;
+	public String getRemarks() {
+		return remarks;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setRemarks(String text) {
+		this.remarks = text;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(attending, createDate, id, rating, text);
+		return Objects.hash(attending, createDate, id, rating, remarks);
 	}
 
 	@Override
@@ -86,13 +90,13 @@ public class EventUser {
 			return false;
 		EventUser other = (EventUser) obj;
 		return attending == other.attending && Objects.equals(createDate, other.createDate)
-				&& Objects.equals(id, other.id) && rating == other.rating && Objects.equals(text, other.text);
+				&& Objects.equals(id, other.id) && rating == other.rating && Objects.equals(remarks, other.remarks);
 	}
 
 	@Override
 	public String toString() {
 		return "EventUser [id=" + id + ", attending=" + attending + ", createDate=" + createDate + ", rating=" + rating
-				+ ", text=" + text + "]";
+				+ ", text=" + remarks + "]";
 	}
 	
 	

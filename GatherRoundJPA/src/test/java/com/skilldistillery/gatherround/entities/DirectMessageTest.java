@@ -46,4 +46,11 @@ class DirectMessageTest {
 		assertEquals(1, directMessage.getId());
 		
 	}
+	
+	@Test
+	void test_User_ManyToOne_Mapping() {
+		assertEquals("Debra", directMessage.getReceipent().getFirstName());
+		
+	}
+	
 }

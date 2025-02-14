@@ -46,4 +46,9 @@ class EventCommentTest {
 		assertEquals("Great courts and we had a lot of fun!", eventComment.getComment());
 		
 	}
+	
+	@Test
+	void test_EventComment_ManyToOne_User_Mapping() {
+		assertEquals("Ben", eventComment.getUser().getFirstName());
+	}
 }

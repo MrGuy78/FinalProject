@@ -46,4 +46,25 @@ class UserTest {
 		assertEquals("pickleballPat", user.getUsername());
 		assertTrue(user.isEnabled());
 	}
+	
+	@Test
+	void test_User_DirectMessage_Sender_OneToMany_Mapping() {
+		assertTrue(user.getSentMessages().size()>0);
+	}
+	
+//	@Test
+//	void test_User_DirectMessage_Recipient_OneToMany_Mapping() {
+//		assertTrue(user.getReceivedMessages().size()>0);
+//	}
+	
+	@Test
+	void test_User_EventComment_OneToMany_Mapping() {
+		assertTrue(user.getComments().size()>0);
+	}
+	
+	@Test
+	void test_User_EventImage_OneToMany_Mapping() {
+		assertTrue(user.getImages().size()>0);
+	}
+	
 }

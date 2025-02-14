@@ -1,10 +1,13 @@
 package com.skilldistillery.gatherround.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +15,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -34,11 +39,19 @@ public class User {
 	@Column(name = "last_name") 
 	private String lastName;
 	
+	public List<EventComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<EventComment> comments) {
+		this.comments = comments;
+	}
+
 	private String email;
 	
 	private String phone;
 	
-	@Column(name = "profile_image_url")
+	@Column(name = "image_url")
 	private String imageUrl;
 	
 	private String biography;
@@ -51,10 +64,53 @@ public class User {
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "sender")
+	private List<DirectMessage> sentMessages;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "recipient")
+	private List<DirectMessage> receivedMessages;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<EventComment> comments;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<EventImage> images;
+	
+	@OneToMany(mappedBy = "user_id")
+	private List<EventUser> eventUsers;
+	
 //	@JoinColumn(name = "address_id")
 //	private Address address;
 //	
 	
+	public List<EventImage> getImages() {
+		return images;
+	}
+
+	public void setImages(List<EventImage> images) {
+		this.images = images;
+	}
+
+	public List<DirectMessage> getReceivedMessages() {
+		return receivedMessages;
+	}
+
+	public void setReceivedMessages(List<DirectMessage> receivedMessages) {
+		this.receivedMessages = receivedMessages;
+	}
+
+	public List<DirectMessage> getSentMessages() {
+		return sentMessages;
+	}
+
+	public void setSentMessages(List<DirectMessage> messages) {
+		this.sentMessages = messages;
+	}
+
 	public User() {
 		super();
 	}
