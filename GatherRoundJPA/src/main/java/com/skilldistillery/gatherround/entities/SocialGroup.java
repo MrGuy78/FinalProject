@@ -1,22 +1,27 @@
 package com.skilldistillery.gatherround.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "social_group")
 public class SocialGroup {
-	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +43,26 @@ public class SocialGroup {
 	private LocalDateTime lastUpdate;
 	
 	private boolean enabled;
+	
+	@ManyToOne
+	@JoinColumn(name = "owner_id")
+	private User owner;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "socialGroup")
+	private List<GroupUser> groupUsers;
+	
+	@ManyToOne
+	@JoinColumn(name = "group_category_id")
+	private GroupCategory category;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "group")
+	private List<GroupComment> comments;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "group")
+	private List<SocialEvent> events;
 	
 	public SocialGroup() {
 		super();
@@ -98,6 +123,52 @@ public class SocialGroup {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+	
+
+	public List<GroupUser> getGroupUsers() {
+		return groupUsers;
+	}
+
+	public void setGroupUsers(List<GroupUser> groupUsers) {
+		this.groupUsers = groupUsers;
+	}
+
+	
+	public GroupCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(GroupCategory category) {
+		this.category = category;
+	}
+	
+	
+
+	public List<GroupComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<GroupComment> comments) {
+		this.comments = comments;
+	}
+	
+
+	public List<SocialEvent> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<SocialEvent> events) {
+		this.events = events;
 	}
 
 	@Override

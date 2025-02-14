@@ -1,10 +1,13 @@
 package com.skilldistillery.gatherround.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +15,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -33,7 +39,7 @@ public class User {
 	
 	@Column(name = "last_name") 
 	private String lastName;
-	
+
 	private String email;
 	
 	private String phone;
@@ -51,12 +57,85 @@ public class User {
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "sender")
+	private List<DirectMessage> sentMessages;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "recipient")
+	private List<DirectMessage> receivedMessages;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<EventComment> comments;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<EventImage> images;
+	
+	@OneToMany(mappedBy = "user")
+	private List<EventUser> eventUsers;
+	
+	@OneToMany(mappedBy = "user")
+	private List<SocialEvent> events;
+	
+	@OneToMany(mappedBy = "user")
+	private List<GroupUser> groupUsers;
+	
+	@OneToMany(mappedBy = "owner")
+	private List<SocialGroup> socialGroups;
+	
+	@OneToMany(mappedBy = "user")
+	private List<GroupComment> groupComments;
+	
+	@OneToOne(optional = true)
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
 	
 	public User() {
 		super();
+	}
+	
+	public List<EventUser> getEventUsers() {
+		return eventUsers;
+	}
+
+	public void setEventUsers(List<EventUser> eventUsers) {
+		this.eventUsers = eventUsers;
+	}
+	
+	
+	public List<EventComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<EventComment> comments) {
+		this.comments = comments;
+	}
+	
+	public List<EventImage> getImages() {
+		return images;
+	}
+
+	public void setImages(List<EventImage> images) {
+		this.images = images;
+	}
+
+	public List<DirectMessage> getReceivedMessages() {
+		return receivedMessages;
+	}
+
+	public void setReceivedMessages(List<DirectMessage> receivedMessages) {
+		this.receivedMessages = receivedMessages;
+	}
+
+	public List<DirectMessage> getSentMessages() {
+		return sentMessages;
+	}
+
+	public void setSentMessages(List<DirectMessage> messages) {
+		this.sentMessages = messages;
 	}
 
 	public String getFirstName() {
@@ -123,15 +202,6 @@ public class User {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-
 	public int getId() {
 		return id;
 	}
@@ -172,6 +242,52 @@ public class User {
 		this.role = role;
 	}
 
+	public List<SocialEvent> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<SocialEvent> events) {
+		this.events = events;
+	}
+
+	
+	public List<GroupUser> getGroupUsers() {
+		return groupUsers;
+	}
+
+	public void setGroupUsers(List<GroupUser> groupUsers) {
+		this.groupUsers = groupUsers;
+	}
+	
+
+	public List<SocialGroup> getSocialGroups() {
+		return socialGroups;
+	}
+
+	public void setSocialGroups(List<SocialGroup> socialGroups) {
+		this.socialGroups = socialGroups;
+	}
+	
+
+
+	public List<GroupComment> getGroupComments() {
+		return groupComments;
+	}
+
+	public void setGroupComments(List<GroupComment> groupComments) {
+		this.groupComments = groupComments;
+	}
+	
+	
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(biography, createDate, email, enabled, firstName, id, imageUrl, lastName, lastUpdate,
@@ -204,4 +320,5 @@ public class User {
 				+ createDate + ", lastUpdate=" + lastUpdate + "]";
 	}
 
+	
 }

@@ -6,9 +6,20 @@ import java.util.Objects;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "event_image")
 public class EventImage {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "image_url")
@@ -20,6 +31,21 @@ public class EventImage {
 	@Column(name = "create_date") 
 	private LocalDateTime createDate;
 	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name="social_event_id")
+	private SocialEvent event;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public EventImage() {
 		super();
@@ -55,6 +81,15 @@ public class EventImage {
 
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
+	}
+
+	
+	public SocialEvent getEvent() {
+		return event;
+	}
+
+	public void setEvent(SocialEvent event) {
+		this.event = event;
 	}
 
 	@Override

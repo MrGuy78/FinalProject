@@ -8,6 +8,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,14 +21,6 @@ public class GroupUser {
 	private GroupUserId id;
 
 	private boolean approved;
-	
-	public GroupUserId getId() {
-		return id;
-	}
-
-	public void setId(GroupUserId id) {
-		this.id = id;
-	}
 
 	@CreationTimestamp
 	@Column(name = "create_date") 
@@ -36,9 +31,27 @@ public class GroupUser {
 	
 	private boolean leader;
 	
+	@ManyToOne
+	@JoinColumn(name= "user_id")
+	@MapsId(value = "userId")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name= "group_id")
+	@MapsId(value = "groupId")
+	private SocialGroup socialGroup;
+	
 
 	public GroupUser() {
 		super();
+	}
+	
+	public GroupUserId getId() {
+		return id;
+	}
+
+	public void setId(GroupUserId id) {
+		this.id = id;
 	}
 
 	public boolean isApproved() {
@@ -71,6 +84,22 @@ public class GroupUser {
 
 	public void setLeader(boolean leader) {
 		this.leader = leader;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public SocialGroup getSocialGroup() {
+		return socialGroup;
+	}
+
+	public void setSocialGroup(SocialGroup socialGroup) {
+		this.socialGroup = socialGroup;
 	}
 
 	@Override

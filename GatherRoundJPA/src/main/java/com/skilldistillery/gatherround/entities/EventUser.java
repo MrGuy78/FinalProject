@@ -8,33 +8,48 @@ import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="event_user")
 public class EventUser {
 	
 	@EmbeddedId
 	private EventUserId id;
 
-	public EventUserId getId() {
-		return id;
-	}
-
-	public void setId(EventUserId id) {
-		this.id = id;
-	}
-
 	private boolean attending;
-	
+
 	@CreationTimestamp
 	@Column(name = "create_date") 
 	private LocalDateTime createDate;
 	
 	private int rating;
 	
-	private String text;
+	private String remarks;
+	
+	@ManyToOne
+	@JoinColumn(name= "user_id")
+	@MapsId(value = "userId")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name= "event_id")
+	@MapsId(value = "eventId")
+	private SocialEvent event;
 
 	public EventUser() {
 		super();
+	}
+	
+	public EventUserId getId() {
+		return id;
+	}
+
+	public void setId(EventUserId id) {
+		this.id = id;
 	}
 
 	public boolean isAttending() {
@@ -61,17 +76,35 @@ public class EventUser {
 		this.rating = rating;
 	}
 
-	public String getText() {
-		return text;
+	public String getRemarks() {
+		return remarks;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setRemarks(String text) {
+		this.remarks = text;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+
+	public SocialEvent getEvent() {
+		return event;
+	}
+
+	public void setEvent(SocialEvent event) {
+		this.event = event;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(attending, createDate, id, rating, text);
+		return Objects.hash(attending, createDate, id, rating, remarks);
 	}
 
 	@Override
@@ -84,13 +117,13 @@ public class EventUser {
 			return false;
 		EventUser other = (EventUser) obj;
 		return attending == other.attending && Objects.equals(createDate, other.createDate)
-				&& Objects.equals(id, other.id) && rating == other.rating && Objects.equals(text, other.text);
+				&& Objects.equals(id, other.id) && rating == other.rating && Objects.equals(remarks, other.remarks);
 	}
 
 	@Override
 	public String toString() {
 		return "EventUser [id=" + id + ", attending=" + attending + ", createDate=" + createDate + ", rating=" + rating
-				+ ", text=" + text + "]";
+				+ ", text=" + remarks + "]";
 	}
 	
 	
