@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,6 +39,10 @@ public class SocialGroup {
 	private LocalDateTime lastUpdate;
 	
 	private boolean enabled;
+	
+	@ManyToOne
+	@JoinColumn(name = "owner_id")
+	private User owner;
 	
 	public SocialGroup() {
 		super();
@@ -97,6 +103,16 @@ public class SocialGroup {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 
 	@Override

@@ -44,6 +44,13 @@ class SocialEventTest {
 	@Test
 	void test_SocialEvent_Entity_Mapping() {
 		assertEquals("2x2 Pickleball", socialEvent.getTitle());
-		
 	}
+	
+	@Test
+	void test_SocialEvent_ManyToOne_User_Mapping() {
+		assertEquals("Ben", socialEvent.getUser().getFirstName());
+	}
+	
+	
+	
 }

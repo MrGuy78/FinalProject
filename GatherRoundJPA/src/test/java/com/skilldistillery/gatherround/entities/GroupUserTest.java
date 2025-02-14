@@ -1,7 +1,7 @@
 package com.skilldistillery.gatherround.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -13,11 +13,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class SocialGroupTest {
+class GroupUserTest {
 
 	private static EntityManagerFactory factory;
 	private EntityManager manager;
-	private SocialGroup socialGroup;
+	private GroupUser groupUser;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,24 +32,29 @@ class SocialGroupTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		manager = factory.createEntityManager();
-		socialGroup = manager.find(SocialGroup.class, 1);
+		GroupUserId gId = new GroupUserId();
+		gId.setGroupId(1);
+		gId.setUserId(1);
+		groupUser = manager.find(GroupUser.class, gId);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		socialGroup = null;
+		groupUser = null;
 		manager.close();
 	}
 
+	// ***** field Approved needs a "1", add a date for create_date too
 	@Test
-	void test_SocialGroup_Entity_Mapping() {
-		assertEquals("Pickleball", socialGroup.getName());
-		
+	void test_GroupUser_Entity_Mapping() {
+		assertNotNull(groupUser);
+		assertEquals(2025, groupUser.getCreateDate().getYear());
 	}
+	
+	// ***** field Approved needs a "1" *******
 	@Test
-	void test_SocialGroup_User_ManyToOne_Mapping() {
-		assertEquals("Ben", socialGroup.getOwner().getFirstName());
-		
+	void test_GroupUser_ManyToOne_User_mapping() {
+	assertEquals(1, groupUser.getId().getUserId());
 	}
 	
 	

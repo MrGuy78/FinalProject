@@ -52,10 +52,12 @@ class UserTest {
 		assertTrue(user.getSentMessages().size()>0);
 	}
 	
-//	@Test
-//	void test_User_DirectMessage_Recipient_OneToMany_Mapping() {
-//		assertTrue(user.getReceivedMessages().size()>0);
-//	}
+	
+	// ******  Need to add response in direct message table   ****** 
+	@Test
+	void test_User_DirectMessage_Recipient_OneToMany_Mapping() {
+		assertTrue(user.getReceivedMessages().size()>0);
+	}
 	
 	@Test
 	void test_User_EventComment_OneToMany_Mapping() {
@@ -65,6 +67,33 @@ class UserTest {
 	@Test
 	void test_User_EventImage_OneToMany_Mapping() {
 		assertTrue(user.getImages().size()>0);
+	}
+	
+	// ******  Need to add data into Event User table   ****** 
+	@Test
+	void test_User_EventUser_OneToMany_Mapping() {
+		assertTrue(user.getEventUsers().size()>0);
+	}
+	
+	@Test
+	void test_User_SocialEvent_OneToMany_Mapping() {
+		assertTrue(user.getEvents().size()>0);
+	}
+	
+	//  ******  Need to change "approved" field to "1" since boolean   ****** 
+	@Test
+	void test_User_GroupUser_OneToMany_Mapping() {
+		assertTrue(user.getGroupUsers().size()>0);
+	}
+	
+	@Test
+	void test_User_SocialGroup_OneToMany_Mapping() {
+		assertTrue(user.getSocialGroups().size()>0);
+	}
+	
+	@Test
+	void test_User_GroupComment_OneToMany_Mapping() {
+		assertTrue(user.getGroupComments().size()>0);
 	}
 	
 }

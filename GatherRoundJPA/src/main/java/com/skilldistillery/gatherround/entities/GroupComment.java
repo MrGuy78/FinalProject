@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,8 +35,9 @@ public class GroupComment {
 	
 	private boolean enabled;
 	
-//	@JoinColumn(name = "in_reply_to_id")
-//	private GroupComment commentRepliedTo;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public GroupComment() {
 		super();
@@ -71,6 +73,23 @@ public class GroupComment {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

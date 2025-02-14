@@ -13,11 +13,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class SocialGroupTest {
+class EventUserTest {
 
 	private static EntityManagerFactory factory;
 	private EntityManager manager;
-	private SocialGroup socialGroup;
+	private EventUser eventUser;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,23 +32,20 @@ class SocialGroupTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		manager = factory.createEntityManager();
-		socialGroup = manager.find(SocialGroup.class, 1);
+		EventUserId eId  = new EventUserId();
+		eId.setEventId(1);
+		eId.setUserId(1);
+		eventUser = manager.find(EventUser.class, eId);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		socialGroup = null;
+		eventUser = null;
 		manager.close();
 	}
 
 	@Test
-	void test_SocialGroup_Entity_Mapping() {
-		assertEquals("Pickleball", socialGroup.getName());
-		
-	}
-	@Test
-	void test_SocialGroup_User_ManyToOne_Mapping() {
-		assertEquals("Ben", socialGroup.getOwner().getFirstName());
+	void test_EventUser_Entity_Mapping() {
 		
 	}
 	

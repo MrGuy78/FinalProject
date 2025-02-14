@@ -1,7 +1,6 @@
 package com.skilldistillery.gatherround.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -45,5 +44,10 @@ class GroupCommentTest {
 	void test_GroupComment_Entity_Mapping() {
 		assertEquals("Hey group", groupComment.getComment());
 		
+	}
+	
+	@Test
+	void test_GroupComment_User_ManyToOne_Mapping() {
+		assertEquals("Ben", groupComment.getUser().getFirstName());
 	}
 }

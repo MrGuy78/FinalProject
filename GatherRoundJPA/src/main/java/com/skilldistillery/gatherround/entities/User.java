@@ -38,14 +38,6 @@ public class User {
 	
 	@Column(name = "last_name") 
 	private String lastName;
-	
-	public List<EventComment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<EventComment> comments) {
-		this.comments = comments;
-	}
 
 	private String email;
 	
@@ -71,7 +63,7 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "recipient")
 	private List<DirectMessage> receivedMessages;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<EventComment> comments;
@@ -80,12 +72,41 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<EventImage> images;
 	
-	@OneToMany(mappedBy = "user_id")
+	@OneToMany(mappedBy = "user")
 	private List<EventUser> eventUsers;
 	
-//	@JoinColumn(name = "address_id")
-//	private Address address;
-//	
+	@OneToMany(mappedBy = "user")
+	private List<SocialEvent> events;
+	
+	@OneToMany(mappedBy = "user")
+	private List<GroupUser> groupUsers;
+	
+	@OneToMany(mappedBy = "owner")
+	private List<SocialGroup> socialGroups;
+	
+	@OneToMany(mappedBy = "user")
+	private List<GroupComment> groupComments;
+	
+	public User() {
+		super();
+	}
+	
+	public List<EventUser> getEventUsers() {
+		return eventUsers;
+	}
+
+	public void setEventUsers(List<EventUser> eventUsers) {
+		this.eventUsers = eventUsers;
+	}
+	
+	
+	public List<EventComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<EventComment> comments) {
+		this.comments = comments;
+	}
 	
 	public List<EventImage> getImages() {
 		return images;
@@ -109,10 +130,6 @@ public class User {
 
 	public void setSentMessages(List<DirectMessage> messages) {
 		this.sentMessages = messages;
-	}
-
-	public User() {
-		super();
 	}
 
 	public String getFirstName() {
@@ -179,8 +196,6 @@ public class User {
 		this.lastUpdate = lastUpdate;
 	}
 
-
-
 	public int getId() {
 		return id;
 	}
@@ -219,6 +234,42 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public List<SocialEvent> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<SocialEvent> events) {
+		this.events = events;
+	}
+
+	
+	public List<GroupUser> getGroupUsers() {
+		return groupUsers;
+	}
+
+	public void setGroupUsers(List<GroupUser> groupUsers) {
+		this.groupUsers = groupUsers;
+	}
+	
+
+	public List<SocialGroup> getSocialGroups() {
+		return socialGroups;
+	}
+
+	public void setSocialGroups(List<SocialGroup> socialGroups) {
+		this.socialGroups = socialGroups;
+	}
+	
+
+
+	public List<GroupComment> getGroupComments() {
+		return groupComments;
+	}
+
+	public void setGroupComments(List<GroupComment> groupComments) {
+		this.groupComments = groupComments;
 	}
 
 	@Override

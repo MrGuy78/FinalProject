@@ -8,7 +8,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,7 +21,7 @@ public class EventUser {
 	private EventUserId id;
 
 	private boolean attending;
-	
+
 	@CreationTimestamp
 	@Column(name = "create_date") 
 	private LocalDateTime createDate;
@@ -29,6 +31,8 @@ public class EventUser {
 	private String remarks;
 	
 	@ManyToOne
+	@JoinColumn(name= "user_id")
+	@MapsId(value = "userId")
 	private User user;
 
 	public EventUser() {
@@ -74,6 +78,16 @@ public class EventUser {
 	public void setRemarks(String text) {
 		this.remarks = text;
 	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
 
 	@Override
 	public int hashCode() {

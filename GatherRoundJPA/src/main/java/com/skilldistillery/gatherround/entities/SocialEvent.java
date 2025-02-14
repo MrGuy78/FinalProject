@@ -3,7 +3,6 @@ package com.skilldistillery.gatherround.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,7 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -57,13 +56,9 @@ public class SocialEvent {
 	@Column(name = "member_only")
 	private boolean memberOnly;
 	
-	@ManyToMany(mappedBy = "event_user")
-	private List<User> users;
-	
-
-//	@JoinColumn(name = "event_address_id")
-//	private Address eventAddress;
-//	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public SocialEvent() {
 		super();
@@ -164,6 +159,14 @@ public class SocialEvent {
 	public void setMemberOnly(boolean memberOnly) {
 		this.memberOnly = memberOnly;
 	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Override
 	public int hashCode() {
@@ -196,6 +199,7 @@ public class SocialEvent {
 				+ ", createDate=" + createDate + ", lastUpdate=" + lastUpdate + ", cost=" + cost + ", enabled="
 				+ enabled + ", memberOnly=" + memberOnly + "]";
 	}
+
 
 
 }
