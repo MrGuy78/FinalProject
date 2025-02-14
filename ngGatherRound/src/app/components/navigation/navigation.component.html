@@ -2,6 +2,7 @@
 <div>
 <button class="btn btn-secondary me-5" [routerLink]="['/home']"> Home </button>
 <button class="btn btn-primary me-5" [routerLink]="['/register']"> Register </button>
-<button class="btn btn-success me-5" [routerLink]="['/login']"> Log In </button>
+<button class="btn btn-success me-5" *ngIf="!loggedIn()" [routerLink]="['/login']"> Log In </button>
+
 <app-logout *ngIf="loggedIn()"></app-logout>
 </div></nav>

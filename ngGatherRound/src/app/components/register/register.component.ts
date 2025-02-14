@@ -18,6 +18,7 @@ export class RegisterComponent {
 
   // FIELDS
   newUser: User = new User();
+username: any;
 
   constructor(
     private auth: AuthService,
@@ -46,5 +47,9 @@ export class RegisterComponent {
       }
     });
   }
+
+  // hasError() {
+  //   console.log('Username Already Taken')
+  // } ADJUST LATER FOR CUSTOM ERROR MESSAGE
 
 }

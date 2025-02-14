@@ -3,14 +3,30 @@
   <h1>Register</h1><br>
   <form class="form-control form-label form-group form-check form-inline"><br>
 
-  <label for="email">Email:</label><br>
-  <input type="text" name="email" [(ngModel)]="newUser.email"><br><br>
 
-  <label for="username">Username:</label><br>
-  <input type="text" name="username" [(ngModel)]="newUser.username"><br><br>
+    <label for="username">Username:</label><br>
+    <!-- <div *ngIf="username.hasError()">
+      Username Already Taken.
+    </div>  ADJUST LATER FOR CUSTOM ERROR MESSAGE -->
+    <input type="text" id="username" name="username" [(ngModel)]="newUser.username"><br><br>
 
-  <label for="password">Password:</label><br>
-  <input type="password" name="password" [(ngModel)]="newUser.password"><br><br>
+
+
+    <label for="password">Password:</label><br>
+    <input type="password" name="password" [(ngModel)]="newUser.password"><br><br>
+
+
+    <label for="firstName">First Name:</label><br>
+    <input type="text" name="firstName" [(ngModel)]="newUser.firstName"><br><br>
+
+
+    <label for="lastName">Last Name:</label><br>
+    <input type="text" name="lastName" [(ngModel)]="newUser.lastName"><br><br>
+
+
+    <label for="email">Email:</label><br>
+    <input type="text" name="email" [(ngModel)]="newUser.email"><br><br>
+
 
   <button class="btn btn-success" (click)="register(newUser)">Register Account</button><br><br>
 </form>
