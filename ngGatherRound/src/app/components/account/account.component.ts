@@ -102,7 +102,6 @@ export class AccountComponent implements OnInit{
   updateUser(user: User) : void {
     this.userService.update(user).subscribe({
       next: (updatedUser) => {
-        this.getUser();
       },
       error: (failure) => {
         console.error('AccountComponent.updateUser: Error updating user');
@@ -116,7 +115,11 @@ export class AccountComponent implements OnInit{
     }
 
     saveEdits() {
-      console.log('Profile Updated:', this.user)
+      console.log('Profile Updated:', this.loggedInUser)
+      this.isEditing = false;
+    }
+
+    cancelEdit() {
       this.isEditing = false;
     }
 }
