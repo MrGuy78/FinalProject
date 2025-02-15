@@ -8,17 +8,34 @@
   <h4>Name: {{loggedInUser.firstName}} {{loggedInUser.lastName}}</h4>
   <h5>{{loggedInUser.email}} - {{loggedInUser.phone}}</h5>
   <p>{{loggedInUser.biography}}</p>
-  <button class="btn btn-warning" >Submit Edits</button><br><br>
 </div>
 <br><br>
 
-<div class="container-fluid" style="text-align: center;">
-<form class="form-control form-label form-group form-check form-inline"><br>
+<!-- CLICKABLE FORM -->
+<button (click)="editProfile()" class="btn btn-primary">Edit Profile</button>
 
-  <label for="firstName">First Name:</label><br>
-  <input type="text" id="firstName" name="firstName" [(ngModel)]="editUser.firstName"><br><br>
+<div *ngIf="isEditing">
+  <label>First Name:</label>
+  <input type="text" [(ngModel)]="loggedInUser.firstName" class="form-control" />
 
-</form></div>
+  <label>Last Name:</label>
+  <input type="text" [(ngModel)]="loggedInUser.lastName" class="form-control" />
+
+  <label>Email:</label>
+  <input type="email" [(ngModel)]="loggedInUser.email" class="form-control" />
+
+  <label>Phone Number:</label>
+  <input type="phone" [(ngModel)]="loggedInUser.phone" class="form-control" />
+
+  <label>Biography:</label>
+  <input type="text" [(ngModel)]="loggedInUser.biography" class="form-control" />
+
+  <label>Profile Image:</label>
+  <input type="text" [(ngModel)]="loggedInUser.imageUrl" class="form-control" />
+
+  <button (click)="saveEdits()" class="btn btn-success">Save Edits</button>
+
+</div>
 
 <!-- SEE SOCIAL GROUPS -->
 <div class="container-fluid" style="text-align: center;">
