@@ -39,6 +39,7 @@ export class SocialGroupService {
   }
 
   create(socialGroup: SocialGroup): Observable<SocialGroup> {
+    socialGroup.enabled = true;
     return this.http.post<SocialGroup>(this.url, socialGroup, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
