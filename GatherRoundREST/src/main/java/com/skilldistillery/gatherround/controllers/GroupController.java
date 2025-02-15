@@ -1,6 +1,7 @@
 package com.skilldistillery.gatherround.controllers;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +26,11 @@ public class GroupController {
 	@Autowired
 	private GroupService groupService;
 
+	@GetMapping("groups") 
+	public List<SocialGroup> findAllGroups() {
+		return groupService.index();
+	}
+	
 	@GetMapping("groups/{groupId}") 
 	public SocialGroup findGroupById(@PathVariable("groupId") int groupId) {
 		SocialGroup foundGroup = groupService.show(groupId);

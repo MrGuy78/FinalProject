@@ -8,4 +8,5 @@ public interface GroupRepository extends JpaRepository<SocialGroup, Integer> {
 
 	SocialGroup findGroupById(int groupId);
 	
+	
 }

@@ -1,5 +1,7 @@
 package com.skilldistillery.gatherround.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ public class GroupServiceImpl implements GroupService {
 	UserRepository userRepository;
 
 	@Override
+	public List<SocialGroup> index() {
+		return groupRepository.findAll();
+	}
+	
+	@Override
 	public SocialGroup show(int groupId) {
 		return groupRepository.findGroupById(groupId);
 	}
@@ -31,5 +38,6 @@ public class GroupServiceImpl implements GroupService {
 		}
 		return null;
 	}
+
 
 }

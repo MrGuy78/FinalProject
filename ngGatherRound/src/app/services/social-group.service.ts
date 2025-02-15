@@ -10,7 +10,7 @@ import { SocialGroup } from '../models/social-group';
 })
 export class SocialGroupService {
 
-  private url = environment.baseUrl + 'api/socialGroups';
+  private url = environment.baseUrl + 'api/groups';
 
   constructor(
     private http: HttpClient,
@@ -22,7 +22,7 @@ export class SocialGroupService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('TodoService.index(): error retrieving todo: ' + err)
+          () => new Error('GroupService.index(): error retrieving todo: ' + err)
         );
       })
     );
