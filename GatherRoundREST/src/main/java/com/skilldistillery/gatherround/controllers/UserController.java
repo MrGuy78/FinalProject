@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,5 +47,21 @@ public class UserController {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
 		}
 		return createdUser;
+	}
+	
+	@PutMapping("users/{userId}")
+	public User updatingUser(@PathVariable("userId") int userId,
+							   HttpServletResponse resp, 
+							   HttpServletRequest requ,
+							   @RequestBody User user) {
+		try {
+			user = userService.update(user, userId);
+				resp.setStatus(HttpServletResponse.SC_OK); //200
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); //400
+		}
+		
+		return user; 
 	}
 }
