@@ -1,28 +1,24 @@
+<br><br>
+<h1 style="text-align: center;">{{loggedInUser.username}}</h1>
+<br>
 
-<div class="container-fluid">
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Biography</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><img src="{{loggedInUser.imageUrl}}"></td>
-      <td>{{loggedInUser.username}}</td>
-      <td>{{loggedInUser.email}}</td>
-      <td>{{loggedInUser.phone}}</td>
-      <td>{{loggedInUser.biography}}</td>
-    </tr>
-  </tbody>
-</table>
+<!-- DETAILS DIV -->
+<div class="container-fluid" style="text-align: center;">
+  <p><img src="{{loggedInUser.imageUrl}}"></p>
+  <h4>Name: {{loggedInUser.firstName}} {{loggedInUser.lastName}}</h4>
+  <h5>{{loggedInUser.email}} - {{loggedInUser.phone}}</h5>
+  <p>{{loggedInUser.biography}}</p>
+</div>
+<br><br>
+
+<!-- SEE SOCIAL GROUPS -->
+<div class="container-fluid" style="text-align: center;">
 <button class="btn btn-secondary me-5" [routerLink]="['/social-group']"> Social Group Page </button>
+</div>
+<br><br>
 
 <!-- NEW GROUP FORM -->
+<div class="container-fluid" style="text-align: center;">
 <form class="form-control form-label form-group form-check form-inline"><br>
 
   <label for="name">Group Name:</label><br>
@@ -40,5 +36,4 @@
   <input type="text" id="imageUrl" name="imageUrl" [(ngModel)]="socialGroup.imageUrl"><br><br>
 
 <button class="btn btn-success" (click)="createNewGroup(socialGroup)">Create Group</button><br><br>
-</form>
-</div>
+</form></div>
