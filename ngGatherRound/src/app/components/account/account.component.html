@@ -25,13 +25,12 @@
 <!-- NEW GROUP FORM -->
 <form class="form-control form-label form-group form-check form-inline"><br>
 
-
   <label for="name">Group Name:</label><br>
   <input type="text" id="name" name="name" [(ngModel)]="socialGroup.name"><br><br>
 
   <label for="category">Group Category:</label><br>
-  <select type="select" id="category" name="category" [(ngModel)]="socialGroup.groupCategoryId">
-    <option *ngFor="let category of categories" value={{category.id}}>{{category.name}}</option>
+  <select type="select" id="category" name="category" [(ngModel)]="socialGroup.category.id">
+    <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
   </select><br><br>
 
   <label for="description">Description:</label><br>
@@ -40,10 +39,6 @@
   <label for="imageUrl">Group Image URL:</label><br>
   <input type="text" id="imageUrl" name="imageUrl" [(ngModel)]="socialGroup.imageUrl"><br><br>
 
-
-
 <button class="btn btn-success" (click)="createNewGroup(socialGroup)">Create Group</button><br><br>
 </form>
-
-
 </div>

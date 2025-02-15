@@ -11,7 +11,7 @@ export class SocialGroup {
   lastUpdate: string;
   enabled: boolean;
   ownerId: User;
-  groupCategoryId: Category;
+  category: Category;
 
   constructor (
     id: number = 0,
@@ -22,7 +22,7 @@ export class SocialGroup {
     lastUpdate: string = '',
     enabled: boolean = false,
     ownerId: User = new User(),
-    groupCategoryId: Category = new Category(),
+    category: Category = new Category(),
 
   ) {
     this.id = id;
@@ -33,6 +33,6 @@ export class SocialGroup {
     this.lastUpdate = lastUpdate;
     this.enabled = enabled;
     this.ownerId = ownerId;
-    this.groupCategoryId = groupCategoryId;
+    this.category = category;
   }
 }

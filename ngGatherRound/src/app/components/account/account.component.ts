@@ -4,11 +4,10 @@ import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SocialGroupComponent } from '../social-group/social-group.component';
 import { SocialGroup } from '../../models/social-group';
-import { SocialGroupService } from '../../services/social-group.service';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category';
+import { SocialGroupService } from '../../services/social-group.service';
 
 @Component({
   selector: 'app-account',
@@ -24,10 +23,8 @@ import { Category } from '../../models/category';
 export class AccountComponent implements OnInit{
 
   loggedInUser: User = new User();
-
   groups: SocialGroup[] = [];
   categories: Category [] = [];
-
   socialGroup: SocialGroup = new SocialGroup();
 
   constructor(
@@ -93,6 +90,7 @@ export class AccountComponent implements OnInit{
         }
       });
       this.socialGroup = new SocialGroup();
+      this.reloadSocialGroups();
     }
 
 }
