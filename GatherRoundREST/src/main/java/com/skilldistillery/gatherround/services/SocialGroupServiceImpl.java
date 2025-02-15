@@ -5,16 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.gatherround.entities.GroupCategory;
 import com.skilldistillery.gatherround.entities.SocialGroup;
 import com.skilldistillery.gatherround.entities.User;
-import com.skilldistillery.gatherround.repositories.GroupRepository;
+import com.skilldistillery.gatherround.repositories.GroupCategoryRepository;
+import com.skilldistillery.gatherround.repositories.SocialGroupRepository;
 import com.skilldistillery.gatherround.repositories.UserRepository;
 
 @Service
-public class GroupServiceImpl implements GroupService {
+public class SocialGroupServiceImpl implements SocialGroupService {
 
 	@Autowired
-	GroupRepository groupRepository;
+	SocialGroupRepository groupRepository;
+	
+	@Autowired
+	GroupCategoryRepository groupCategoryRepo;
 
 	@Autowired
 	UserRepository userRepository;
@@ -37,6 +42,11 @@ public class GroupServiceImpl implements GroupService {
 			return groupRepository.saveAndFlush(socialGroup);
 		}
 		return null;
+	}
+
+	@Override
+	public List<GroupCategory> showAllCategories() {
+		return groupCategoryRepo.findAll();
 	}
 
 

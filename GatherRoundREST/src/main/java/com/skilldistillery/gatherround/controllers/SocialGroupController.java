@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.gatherround.entities.GroupCategory;
 import com.skilldistillery.gatherround.entities.SocialGroup;
-import com.skilldistillery.gatherround.services.GroupService;
+import com.skilldistillery.gatherround.services.SocialGroupService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,10 +22,10 @@ import jakarta.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost/" })
-public class GroupController {
+public class SocialGroupController {
 
 	@Autowired
-	private GroupService groupService;
+	private SocialGroupService groupService;
 
 	@GetMapping("groups") 
 	public List<SocialGroup> findAllGroups() {
@@ -35,6 +36,11 @@ public class GroupController {
 	public SocialGroup findGroupById(@PathVariable("groupId") int groupId) {
 		SocialGroup foundGroup = groupService.show(groupId);
 		return foundGroup;
+	}
+	
+	@GetMapping("categories") 
+	public List<GroupCategory> findAllCategories() {
+		return groupService.showAllCategories();
 	}
 	
 	@PostMapping({ "groups", "/groups" })
