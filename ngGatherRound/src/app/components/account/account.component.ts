@@ -8,6 +8,7 @@ import { SocialGroup } from '../../models/social-group';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category';
 import { SocialGroupService } from '../../services/social-group.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-account',
@@ -32,6 +33,7 @@ export class AccountComponent implements OnInit{
     private router: Router,
     private socialGroupService: SocialGroupService,
     private categoryService: CategoryService,
+    private userService: UserService,
   ){
   }
   ngOnInit(): void {
@@ -91,6 +93,18 @@ export class AccountComponent implements OnInit{
       });
       this.socialGroup = new SocialGroup();
       this.reloadSocialGroups();
+    }
+
+  updateUser(user: User) {
+    this.userService.update(user).subscribe({
+      next: (updatedUser) => {
+        this.getUser();
+      },
+      error: (failure) => {
+        console.error('AccountComponent.updateUser: Error updating user');
+        console.error(failure);
+      }
+     });
     }
 
 }
