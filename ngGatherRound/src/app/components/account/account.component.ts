@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { SocialGroupComponent } from '../social-group/social-group.component';
 import { SocialGroup } from '../../models/social-group';
 import { SocialGroupService } from '../../services/social-group.service';
+import { CategoryService } from '../../services/category.service';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-account',
@@ -14,6 +16,7 @@ import { SocialGroupService } from '../../services/social-group.service';
     CommonModule,
     RouterLink,
     FormsModule,
+
   ],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
@@ -23,6 +26,7 @@ export class AccountComponent implements OnInit{
   loggedInUser: User = new User();
 
   groups: SocialGroup[] = [];
+  categories: Category [] = [];
 
   socialGroup: SocialGroup = new SocialGroup();
 
@@ -30,11 +34,13 @@ export class AccountComponent implements OnInit{
     private auth: AuthService,
     private router: Router,
     private socialGroupService: SocialGroupService,
+    private categoryService: CategoryService,
   ){
   }
   ngOnInit(): void {
     if(this.auth.checkLogin()){
       this.getUser();
+      this.reloadGroupCategories();
     }
    else{
     this.router.navigateByUrl('/home');
@@ -59,6 +65,18 @@ export class AccountComponent implements OnInit{
       } ,
       error: (failure) => {
         console.error('SocialGroupComponent.reload: failed to reload groups');
+        console.error(failure);
+      }
+    });
+  }
+
+  reloadGroupCategories() {
+    this.categoryService.index().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+      } ,
+      error: (failure) => {
+        console.error('GroupCategoryComponent.reload: failed to reload categories');
         console.error(failure);
       }
     });

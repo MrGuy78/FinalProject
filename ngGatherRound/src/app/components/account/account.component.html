@@ -29,8 +29,10 @@
   <label for="name">Group Name:</label><br>
   <input type="text" id="name" name="name" [(ngModel)]="socialGroup.name"><br><br>
 
-  <!-- <label for="category">Group Category:</label><br>
-  <select type="select" id="category" name="category" [(ngModel)]="socialGroup.category"><br><br> -->
+  <label for="category">Group Category:</label><br>
+  <select type="select" id="category" name="category" [(ngModel)]="socialGroup.groupCategoryId">
+    <option *ngFor="let category of categories" value={{category.id}}>{{category.name}}</option>
+  </select><br><br>
 
   <label for="description">Description:</label><br>
   <textarea type="text" id="description" name="description" [(ngModel)]="socialGroup.description"></textarea><br><br>

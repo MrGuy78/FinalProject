@@ -22,7 +22,7 @@ constructor(
         catchError((err: any) => {
           console.log(err);
           return throwError(
-            () => new Error('GroupService.index(): error retrieving group: ' + err)
+            () => new Error('CategoryService.index(): error retrieving categories: ' + err)
           );
         })
       );
