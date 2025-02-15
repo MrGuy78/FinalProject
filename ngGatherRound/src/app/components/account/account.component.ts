@@ -27,6 +27,8 @@ export class AccountComponent implements OnInit{
   groups: SocialGroup[] = [];
   categories: Category [] = [];
   socialGroup: SocialGroup = new SocialGroup();
+  editUser: User | null = null;
+
 
   constructor(
     private auth: AuthService,
@@ -95,7 +97,7 @@ export class AccountComponent implements OnInit{
       this.reloadSocialGroups();
     }
 
-  updateUser(user: User) {
+  updateUser(user: User) : void {
     this.userService.update(user).subscribe({
       next: (updatedUser) => {
         this.getUser();
