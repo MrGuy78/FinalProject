@@ -84,15 +84,15 @@ export class AccountComponent implements OnInit{
 
   createNewGroup(socialGroup: SocialGroup) {
       this.socialGroupService.create(socialGroup).subscribe({
-        next: (SocialGroups) => {
+        next: () => {
           this.reloadSocialGroups();
-          this.socialGroup = new SocialGroup();
         } ,
         error: (failure) => {
           console.error('SocialGroupComponent.reload: failed to create a group');
           console.error(failure);
         }
       });
+      this.socialGroup = new SocialGroup();
     }
 
 }
