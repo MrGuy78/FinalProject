@@ -12,13 +12,13 @@
 </div>
 <br><br>
 
-<div class="container-fluid" style="text-align: center;">
-<form class="form-control form-label form-group form-check form-inline"><br>
-
+<!-- CLICKABLE FORM -->
+ <button (click)="updateUser(loggedInUser)" class="btn btn-primary">Edit Account</button>
+<div *ngIf="editUser">
   <label for="firstName">First Name:</label><br>
-  <input type="text" id="firstName" name="firstName" [(ngModel)]="editUser.firstName"><br><br>
+  <input type="text" id="firstName" name="firstName" [(ngModel)]="loggedInUser.firstName" class="form-control"><br><br>
 
-</form></div>
+</div>
 
 <!-- SEE SOCIAL GROUPS -->
 <div class="container-fluid" style="text-align: center;">
