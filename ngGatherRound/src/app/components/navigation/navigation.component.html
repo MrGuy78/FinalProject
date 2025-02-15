@@ -1,7 +1,8 @@
 <nav class="navbar navbar-dark bg-dark">
 <div>
 <button class="btn btn-secondary me-5" [routerLink]="['/home']"> Home </button>
-<button class="btn btn-primary me-5" [routerLink]="['/register']"> Register </button>
+<button class="btn btn-primary me-5" *ngIf="!loggedIn()"[routerLink]="['/register']"> Register </button>
+<button class="btn btn-primary me-5" *ngIf="loggedIn()"[routerLink]="['/account']"> My Account </button>
 <button class="btn btn-success me-5" *ngIf="!loggedIn()" [routerLink]="['/login']"> Log In </button>
 
 <app-logout *ngIf="loggedIn()"></app-logout>

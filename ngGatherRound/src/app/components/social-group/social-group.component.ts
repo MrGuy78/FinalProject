@@ -17,6 +17,8 @@ export class SocialGroupComponent implements OnInit {
 
   groups: SocialGroup[] = [];
 
+  socialGroup: SocialGroup = new SocialGroup();
+
   constructor (
     private socialGroupService: SocialGroupService,
   ) {}
@@ -32,6 +34,19 @@ export class SocialGroupComponent implements OnInit {
       } ,
       error: (failure) => {
         console.error('SocialGroupComponent.reload: failed to reload groups');
+        console.error(failure);
+      }
+    });
+  }
+
+  createNewGroup(socialGroup: SocialGroup) {
+    this.socialGroupService.create(socialGroup).subscribe({
+      next: (SocialGroups) => {
+        this.reloadSocialGroups();
+        this.socialGroup = new SocialGroup();
+      } ,
+      error: (failure) => {
+        console.error('SocialGroupComponent.reload: failed to create a group');
         console.error(failure);
       }
     });

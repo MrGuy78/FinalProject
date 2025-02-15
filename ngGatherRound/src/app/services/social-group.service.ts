@@ -22,7 +22,7 @@ export class SocialGroupService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('GroupService.index(): error retrieving todo: ' + err)
+          () => new Error('GroupService.index(): error retrieving group: ' + err)
         );
       })
     );
@@ -36,6 +36,17 @@ export class SocialGroupService {
       },
     };
     return options;
+  }
+
+  create(socialGroup: SocialGroup): Observable<SocialGroup> {
+    return this.http.post<SocialGroup>(this.url, socialGroup, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('GroupService.index(): error creating group: ' + err)
+        );
+      })
+    );
   }
 
 }
