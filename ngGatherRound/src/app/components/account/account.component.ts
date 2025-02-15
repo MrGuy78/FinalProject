@@ -27,7 +27,9 @@ export class AccountComponent implements OnInit{
   groups: SocialGroup[] = [];
   categories: Category [] = [];
   socialGroup: SocialGroup = new SocialGroup();
-  editUser: User | null = null;
+  user: User | null = null;
+  isEditing: any;
+
 
 
   constructor(
@@ -109,4 +111,12 @@ export class AccountComponent implements OnInit{
      });
     }
 
+    editProfile() {
+      this.isEditing = true;
+    }
+
+    saveEdits() {
+      console.log('Profile Updated:', this.user)
+      this.isEditing = false;
+    }
 }

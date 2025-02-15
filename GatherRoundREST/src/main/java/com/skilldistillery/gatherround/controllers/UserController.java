@@ -29,11 +29,9 @@ public class UserController {
 		User foundUser = userService.show(userId);
 		return foundUser;
 	}
-	
+
 	@PostMapping({ "users", "/users" })
-	public User addNewUser(@RequestBody User user, 
-			HttpServletRequest request, 
-			HttpServletResponse response) {
+	public User addNewUser(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
 		User createdUser = null;
 		try {
 			createdUser = userService.create(user);
@@ -48,20 +46,18 @@ public class UserController {
 		}
 		return createdUser;
 	}
-	
+
 	@PutMapping("users/{userId}")
-	public User updatingUser(@PathVariable("userId") int userId,
-							   HttpServletResponse resp, 
-							   HttpServletRequest requ,
-							   @RequestBody User user) {
+	public User updatingUser(@PathVariable("userId") int userId, HttpServletResponse resp, HttpServletRequest requ,
+			@RequestBody User user) {
 		try {
 			user = userService.update(user, userId);
-				resp.setStatus(HttpServletResponse.SC_OK); //200
+			resp.setStatus(HttpServletResponse.SC_OK); // 200
 		} catch (Exception e) {
 			e.printStackTrace();
-			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); //400
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
 		}
-		
-		return user; 
+
+		return user;
 	}
 }
