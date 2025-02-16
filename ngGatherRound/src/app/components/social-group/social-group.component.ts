@@ -25,6 +25,7 @@ export class SocialGroupComponent implements OnInit {
 
   ngOnInit(): void {
     this.reloadSocialGroups();
+
   }
 
   reloadSocialGroups() {

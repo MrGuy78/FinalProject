@@ -102,6 +102,7 @@ export class AccountComponent implements OnInit{
   updateUser(user: User) : void {
     this.userService.update(user).subscribe({
       next: (updatedUser) => {
+        this.loggedInUser = updatedUser;
       },
       error: (failure) => {
         console.error('AccountComponent.updateUser: Error updating user');
