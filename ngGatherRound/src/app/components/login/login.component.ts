@@ -34,6 +34,7 @@ export class LoginComponent {
       error: (error) => {
         console.error('LoginComponent.login(): Error Logging In:');
         console.error(error);
+        alert("Account has been disabled");
       }
     });
   }
