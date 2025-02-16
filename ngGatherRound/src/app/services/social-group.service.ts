@@ -38,13 +38,24 @@ export class SocialGroupService {
     return options;
   }
 
+  show(groupId: number): Observable<SocialGroup> {
+    return this.http.get<SocialGroup>(this.url + "/" + groupId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('GroupService.show(): error retrieving group with id:' + err)
+        );
+      })
+    );
+  }
+
   create(socialGroup: SocialGroup): Observable<SocialGroup> {
     socialGroup.enabled = true;
     return this.http.post<SocialGroup>(this.url, socialGroup, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('GroupService.index(): error creating group: ' + err)
+          () => new Error('GroupService.create(): error creating group: ' + err)
         );
       })
     );
