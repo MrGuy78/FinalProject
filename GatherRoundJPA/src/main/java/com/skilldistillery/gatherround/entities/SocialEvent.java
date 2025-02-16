@@ -9,6 +9,8 @@ import java.util.Objects;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -58,6 +60,8 @@ public class SocialEvent {
 	@Column(name = "member_only")
 	private boolean memberOnly;
 	
+	//JsonProperties? to see userId associated with group
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -70,16 +74,21 @@ public class SocialEvent {
 	@JoinColumn(name = "event_address_id")
 	private Address eventAddress;
 	
+	//JsonProperties? to see groupId associated with group
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "social_group_id")
 	private SocialGroup group;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "event")
 	private List<EventUser> eventUsers;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "event")
 	private List<EventImage> images;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "event")
 	private List<EventComment> comments;
 
