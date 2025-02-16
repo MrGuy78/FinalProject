@@ -37,6 +37,16 @@ public class UserServiceImpl implements UserService {
 		return managedUser;
 	}
 
+	@Override
+	public User disableUser(int userId) {
+		User managedUser = userRepository.findById(userId).orElse(null);
+		if(managedUser != null) {
+			managedUser.setEnabled(false);
+			userRepository.saveAndFlush(managedUser);
+		}
+		return managedUser;
+	}
+
 
 	
 }

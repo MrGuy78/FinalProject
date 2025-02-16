@@ -9,5 +9,7 @@ public interface UserService {
 	public User create(User user);
 
 	public User update(User user, int userId);
+	
+	public User disableUser(int userId);
 
 }

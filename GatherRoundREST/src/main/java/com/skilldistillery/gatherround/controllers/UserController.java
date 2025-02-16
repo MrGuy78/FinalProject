@@ -2,6 +2,7 @@ package com.skilldistillery.gatherround.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,4 +61,26 @@ public class UserController {
 
 		return user;
 	}
+	
+	@DeleteMapping("users/{userId}")
+	public User disableUser(@PathVariable("userId") int userId, HttpServletResponse resp, HttpServletRequest requ ) {
+		User managedUser = null;
+		try {
+			managedUser = userService.disableUser(userId);
+			if(managedUser == null) {
+				resp.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
+			}
+			else {
+				resp.setStatus(HttpServletResponse.SC_OK); // 200
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
+		}
+
+		return managedUser;
+	}
+	
+	
 }
