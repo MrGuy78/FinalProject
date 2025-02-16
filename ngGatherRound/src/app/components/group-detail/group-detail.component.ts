@@ -21,7 +21,6 @@ export class GroupDetailComponent {
   groupDetail(groupId: number) {
     this.socialGroupService.show(groupId).subscribe({
       next: (group) => {
-        this.selected = group;
       } ,
       error: (failure) => {
         this.router.navigateByUrl('Group' + groupId + ' not found')

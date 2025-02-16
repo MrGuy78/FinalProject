@@ -1,4 +1,15 @@
+<!-- Display all social groups -->
+
+<div *ngIf="!selectedGroup">
 <div *ngFor="let group of groups">
-  <!-- <p (click)="groupDetails(group)"> {{group.name}}</p> -->
-<p>Hiya</p>
+  <p (click)="displayGroup(group)"> {{group.name}}</p>
+</div>
+</div>
+
+<!-- Display Social Group Details -->
+<div *ngIf="selectedGroup">
+  <img [src]="selectedGroup.imageUrl">
+  <h3>{{selectedGroup.name}}</h3>
+  <p>Category: {{selectedGroup.category.name}}</p>
+  <button (click)="selectedGroup = null" class="btn btn-secondary">Back</button>
 </div>

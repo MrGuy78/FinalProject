@@ -3,6 +3,7 @@ import { SocialGroup } from './../../models/social-group';
 import { SocialGroupService } from './../../services/social-group.service';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-social-group',
@@ -18,9 +19,11 @@ export class SocialGroupComponent implements OnInit {
   groups: SocialGroup[] = [];
 
   socialGroup: SocialGroup = new SocialGroup();
+  selectedGroup: SocialGroup | null = null;
 
   constructor (
     private socialGroupService: SocialGroupService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +51,23 @@ export class SocialGroupComponent implements OnInit {
       } ,
       error: (failure) => {
         console.error('SocialGroupComponent.reload: failed to create a group');
+        console.error(failure);
+      }
+    });
+  }
+
+  displayGroup(socialGroup : SocialGroup){
+    this.selectedGroup = socialGroup;
+  }
+
+
+  groupDetail(groupId: number) {
+    this.socialGroupService.show(groupId).subscribe({
+      next: (group) => {
+      } ,
+      error: (failure) => {
+        this.router.navigateByUrl('Group' + groupId + ' not found')
+        console.error('GroupDetailComponent.reload: failed to reload groups');
         console.error(failure);
       }
     });
