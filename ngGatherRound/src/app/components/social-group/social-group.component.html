@@ -1,6 +1,6 @@
 <br><br>
 <div class="container-fluid text-center">
-  <h1>Activity Groups</h1>
+  <h1>Activity Groups</h1><hr>
   </div>
 <!-- Display all social groups -->
 <div class="container-fluid text-center">
@@ -22,15 +22,16 @@
   <img [src]="selectedGroup.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
   <h1>{{selectedGroup.name}}</h1>
   <p>Category: {{selectedGroup.category.name}}</p>
-  <blockquote>Description: {{selectedGroup.description}}</blockquote><br>
+  <blockquote>Description: {{selectedGroup.description}}</blockquote><hr>
 
 <!-- Events of Group -->
   <div class="container-fluid" style="text-align: center;" *ngFor="let event of events">
-    <p>Event Id: {{event.id}}</p>
-    <p>Title: {{event.title}}</p>
-    <p>Description: {{event.description}}</p>
-    <p>Event Date: {{event.eventDate}}</p>
-    <p>Meeting Address: {{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</p>
+    <h2>{{event.title}}</h2>
+    <p>{{event.description}}</p>
+    <h3>Event Date:</h3>
+    <p>{{event.eventDate}}</p>
+    <h3>Meeting Address:</h3>
+    <p>{{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</p><hr>
   </div>
-  <button (click)="selectedGroup = null" class="btn btn-secondary">Back to Groups</button>
+  <button (click)="selectedGroup = null" class="btn btn-secondary">Back to Groups</button><br><br>
 </div>

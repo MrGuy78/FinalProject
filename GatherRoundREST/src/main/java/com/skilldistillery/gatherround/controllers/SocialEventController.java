@@ -1,11 +1,15 @@
 package com.skilldistillery.gatherround.controllers;
 
+import java.net.http.HttpRequest;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +37,23 @@ public class SocialEventController {
 		}
 		response.setStatus(HttpServletResponse.SC_OK); // 200
 		return events;
+	}
+	
+	@PostMapping("groups/{groupId}/events")
+	public SocialEvent createEvent(@PathVariable("groupId") int groupId, 
+			@RequestBody SocialEvent socialEvent, 
+			HttpServletResponse response, Principal principal) {
+		try {
+			socialEvent = eventService.create(principal.getName(), socialEvent, groupId);
+			if(socialEvent == null) {
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
+			socialEvent = null;
+		}
+		return socialEvent;
 	}
 
 }

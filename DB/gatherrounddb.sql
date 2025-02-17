@@ -495,7 +495,7 @@ COMMIT;
 START TRANSACTION;
 USE `gatherrounddb`;
 INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (1, 1, 1, '2025-1-23', '2025-1-24', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (2, 2, 1, '2025-2-3', '2025-2-3', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (2, 1, 1, '2025-2-3', '2025-2-3', 1);
 INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (3, 3, 1, '2025-2-5', '2025-2-5', 1);
 INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (4, 4, 1, '2025-2-8', '2025-2-8', 1);
 INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (5, 5, 1, '2025-2-11', '2025-2-12', 1);
