@@ -77,9 +77,6 @@ export class SocialGroupComponent implements OnInit {
     });
   }
 
-
-
-
   groupDetail(groupId: number) {
     this.socialGroupService.show(groupId).subscribe({
       next: (group) => {
