@@ -28,6 +28,17 @@ export class SocialGroupService {
     );
   }
 
+  ownedGroups(): Observable<SocialGroup[]> {
+    return this.http.get<SocialGroup[]>(this.url  + '/owned' , this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('GroupService.index(): error retrieving group: ' + err)
+        );
+      })
+    );
+  }
+
   getHttpOptions() {
     let options = {
       headers: {

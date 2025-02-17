@@ -57,16 +57,20 @@
 
 <!-- MY GROUP LIST -->
 <div class="container-fluid"style="text-align: center;">
-  <button (click)="displayMyGroups()" class="btn btn-primary">My Groups</button>
+  <button (click)="displayMyGroups()" (click)="toggleMyGroups" class="btn btn-primary">My Groups</button>
   <div *ngIf="showMyGroups" >
     <label >Groups Owned By Me</label>
     <br><br>
-    <div *ngFor="let group of showMyGroups">
+
+    <div *ngFor="let group of ownedGroups">
     <!-- <div class="container-fluid" style="text-align: center;" *ngIf="selectedGroup"> -->
       <img [src]="group.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
       <h1> {{group.name}}</h1>
       <p>Category: {{group.category.name}}</p>
       <blockquote>Description: {{group.description}}</blockquote><br>
+
+      <button (click)="editMyGroup(group)" class="btn btn-secondary">Edit My Group</button>
+
       </div>
   </div>
 </div><br>
