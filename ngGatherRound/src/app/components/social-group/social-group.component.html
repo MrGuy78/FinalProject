@@ -43,11 +43,23 @@
     <label for="title">Event Title:</label><br>
     <input type="text" id="title" name="title" size="50" [(ngModel)]="newSocialEvent.title"><br><br>
 
-    <label for="description">Description:</label><br>
+    <label for="description">Event Description:</label><br>
     <textarea type="text" cols="50" rows="5" id="description" name="description" [(ngModel)]="newSocialEvent.description"></textarea><br><br>
 
-    <label for="imageUrl">Social Event Image URL:</label><br>
+    <label for="imageUrl">Event Image URL:</label><br>
     <input type="text" id="imageUrl" name="imageUrl" size="50" [(ngModel)]="newSocialEvent.imageUrl"><br><br>
+
+    <label for="eventDate">Event Date:</label><br>
+    <input type="date" id="eventDate" name="eventDate" size="50" [(ngModel)]="newSocialEvent.eventDate"><br><br>
+
+    <label for="startTime">Event Start Time:</label><br>
+    <input type="time" id="startTime" name="startTime" size="50" [(ngModel)]="newSocialEvent.startTime"><br><br>
+
+    <label for="endTime">Event End Time:</label><br>
+    <input type="time" id="endTime" name="endTime" size="50" [(ngModel)]="newSocialEvent.endTime"><br><br>
+
+    <label for="cost">Event Cost:</label><br>
+    <input type="number" id="cost" name="cost" [(ngModel)]="newSocialEvent.cost"><br><br>
 
   <button class="btn btn-success" (click)="createSocialEvent(newSocialEvent, newSocialEvent.id)">Create Group</button><br><br>
   </form></div><br><br>
