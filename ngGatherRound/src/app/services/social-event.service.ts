@@ -10,7 +10,7 @@ import { SocialEvent } from '../models/social-event';
 })
 export class SocialEventService {
 
-  private url = environment.baseUrl + 'api/events';
+  private url = environment.baseUrl + 'api/groups';
 
   constructor(
     private http : HttpClient,
@@ -18,7 +18,7 @@ export class SocialEventService {
   ) { }
 
   groupsById(groupId : number) : Observable<SocialEvent[]> {
-    return this.http.get<SocialEvent[]>(this.url +'/' + groupId, this.getHttpOptions()).pipe(
+    return this.http.get<SocialEvent[]>(this.url +'/' + groupId + '/events', this.getHttpOptions()).pipe(
       catchError((error:any) => {
         console.log(error);
         return throwError(
@@ -38,8 +38,8 @@ getHttpOptions() {
   return options;
 }
 
-public create(socialEvent: SocialEvent): Observable<SocialEvent> {
-  return this.http.post<SocialEvent>(this.url, socialEvent, this.getHttpOptions()).pipe(
+public create(socialEvent: SocialEvent, groupId: number): Observable<SocialEvent> {
+  return this.http.post<SocialEvent>(this.url +'/' + groupId + '/events', socialEvent, this.getHttpOptions()).pipe(
     catchError((error: any) => {
       console.log(error);
       return throwError(

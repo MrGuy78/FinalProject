@@ -17,7 +17,7 @@
 </div>
 
 <!-- Display Social Group Details -->
-<br><br>
+<br>
 <div class="container-fluid" style="text-align: center;" *ngIf="selectedGroup">
   <img [src]="selectedGroup.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
   <h1>{{selectedGroup.name}}</h1>
@@ -34,10 +34,10 @@
     <p>{{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</p><hr>
   </div>
   <button (click)="selectedGroup = null" class="btn btn-primary">Back to Social Groups</button><br><br>
-</div>
+
 
 <!-- NEW EVENT FORM -->
-<div class="container-fluid" style="text-align: center;">
+<div class="container-fluid" style="text-align: center;" *ngIf="selectedGroupUser && selectedGroupUser.leader">
   <form class="form-control form-label form-group form-check form-inline"><br>
     <h2>Create New Event</h2><br>
     <label for="title">Event Title:</label><br>
@@ -61,5 +61,5 @@
     <label for="cost">Event Cost:</label><br>
     <input type="number" id="cost" name="cost" [(ngModel)]="newSocialEvent.cost"><br><br>
 
-  <button class="btn btn-success" (click)="createSocialEvent(newSocialEvent, newSocialEvent.id)">Create Group</button><br><br>
-  </form></div><br><br>
+  <button class="btn btn-success" (click)="createSocialEvent(newSocialEvent, selectedGroup.id)">Create Group</button><br><br>
+  </form></div></div><br><br>
