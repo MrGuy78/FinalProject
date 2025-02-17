@@ -29,6 +29,8 @@ export class AccountComponent implements OnInit{
   socialGroup: SocialGroup = new SocialGroup();
   user: User | null = null;
   isEditing: any;
+  selectedGroup: any;
+  showMyGroups: any;
 
 
 
@@ -122,5 +124,9 @@ export class AccountComponent implements OnInit{
 
     cancelEdit() {
       this.isEditing = false;
+    }
+
+    displayMyGroups() {
+      console.log('Display Groups by Leader');
     }
 }
