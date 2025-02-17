@@ -28,7 +28,7 @@ export class GroupUserService {
     }
 
     show(groupId: number): Observable<GroupUser> {
-      return this.http.get<GroupUser>(this.url + "/" + groupId, this.getHttpOptions()).pipe(
+      return this.http.get<GroupUser>(this.url + "/" + groupId + "/groupUsers", this.getHttpOptions()).pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError(

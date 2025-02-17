@@ -129,6 +129,7 @@ export class SocialGroupComponent implements OnInit {
     this.groupUserService.show(groupId).subscribe({
       next: (groupUser) => {
         this.selectedGroupUser = groupUser;
+        console.log(this.selectedGroupUser);
       },
       error: (error) => {
         console.error('SocialGroupComponent.loadGroupUser: Error Loading Group User')
