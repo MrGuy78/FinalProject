@@ -8,8 +8,8 @@
     <div class="col-6 offset-md-3">
 <div *ngIf="!selectedGroup">
 <div *ngFor="let group of groups">
-  <img (click)="displayGroup(group)" [src]="group.imageUrl" style="width: 15vw; min-width: 100px;">
-  <h2   (click)="displayGroupEvents(group.name)"> {{group.name}}</h2><hr>
+  <img (click)="displayGroup(group)" (click)="displayGroupEvents(group.id)" [src]="group.imageUrl" style="width: 15vw; min-width: 100px;">
+  <h2  (click)="displayGroup(group)" (click)="displayGroupEvents(group.id)">{{group.name}}</h2><hr>
 </div>
 </div>
 </div>

@@ -64,8 +64,8 @@ export class SocialGroupComponent implements OnInit {
     this.selectedGroup = socialGroup;
   }
 
-  displayGroupEvents(groupName : string){
-    this.socialEventService.groupsByName(groupName).subscribe({
+  displayGroupEvents(groupId : number){
+    this.socialEventService.groupsById(groupId).subscribe({
     next: (socialEventsByGroup) => {
       this.events = socialEventsByGroup;
       } ,

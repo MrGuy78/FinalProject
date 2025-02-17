@@ -17,19 +17,16 @@ export class SocialEventService {
     private auth: AuthService,
   ) { }
 
-
-  groupsByName(groupName : string) : Observable<SocialEvent[]> {
-    return this.http.get<SocialEvent[]>(this.url +'/' + groupName, this.getHttpOptions()  ).pipe(
+  groupsById(groupId : number) : Observable<SocialEvent[]> {
+    return this.http.get<SocialEvent[]>(this.url +'/' + groupId, this.getHttpOptions()).pipe(
       catchError((error:any) => {
         console.log(error);
         return throwError(
-          () => new Error ('SocialEventService.show(): error finding event with name ' + groupName +  error.message)
+          () => new Error ('SocialEventService.show(): error finding event with name ' + groupId +  error.message)
         );
       })
     );
   }
-
-
 
 getHttpOptions() {
   let options = {
