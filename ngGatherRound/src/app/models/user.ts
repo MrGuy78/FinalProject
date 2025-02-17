@@ -1,3 +1,4 @@
+import { Address } from "./address";
 
 export class User {
   id: number;
@@ -13,7 +14,7 @@ export class User {
   enabled: boolean;
   createDate: string;
   lastUpdate: string;
-  addressId: number | null;
+  address: Address | null;
 
   constructor (
     id: number = 0,
@@ -29,7 +30,7 @@ export class User {
     role: string = '',
     createDate: string = '',
     lastUpdate: string = '',
-    addressId: number = 0,
+    address: Address = new Address(),
   )   {
     this.id = id;
     this.username = username;
@@ -44,7 +45,7 @@ export class User {
     this.role = role;
     this.createDate = createDate;
     this.lastUpdate = lastUpdate;
-    this.addressId = addressId;
+    this.address = address;
 
   }
 
