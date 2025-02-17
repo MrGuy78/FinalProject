@@ -1,3 +1,5 @@
+import { SocialEventService } from './../../services/social-event.service';
+import { SocialEvent } from './../../models/social-event';
 import { CommonModule } from '@angular/common';
 import { SocialGroup } from './../../models/social-group';
 import { SocialGroupService } from './../../services/social-group.service';
@@ -17,12 +19,14 @@ import { Router } from '@angular/router';
 export class SocialGroupComponent implements OnInit {
 
   groups: SocialGroup[] = [];
+  events: SocialEvent[] = [];
 
   socialGroup: SocialGroup = new SocialGroup();
   selectedGroup: SocialGroup | null = null;
 
   constructor (
     private socialGroupService: SocialGroupService,
+    private socialEventService: SocialEventService,
     private router: Router
   ) {}
 
@@ -59,6 +63,21 @@ export class SocialGroupComponent implements OnInit {
   displayGroup(socialGroup : SocialGroup){
     this.selectedGroup = socialGroup;
   }
+
+  displayGroupEvents(groupName : string){
+    this.socialEventService.groupsByName(groupName).subscribe({
+    next: (socialEventsByGroup) => {
+      this.events = socialEventsByGroup;
+      } ,
+      error: (failure) => {
+        console.error('SocialGroupComponent.reload: failed find events for group');
+        console.error(failure);
+      }
+
+    });
+  }
+
+
 
 
   groupDetail(groupId: number) {

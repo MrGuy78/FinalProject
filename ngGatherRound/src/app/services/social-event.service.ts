@@ -3,6 +3,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { SocialEvent } from '../models/social-event';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class SocialEventService {
   ) { }
 
 
-  show(groupName : string) : Observable<SocialEvent[]> {
+  groupsByName(groupName : string) : Observable<SocialEvent[]> {
     return this.http.get<SocialEvent[]>(this.url +'/' + groupName, this.getHttpOptions()  ).pipe(
       catchError((error:any) => {
         console.log(error);

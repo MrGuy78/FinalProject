@@ -2,7 +2,6 @@
 import { SocialGroup } from './social-group';
 import { User } from './user';
 import { Address } from './address';
-import { end } from '@popperjs/core';
 export class SocialEvent {
 
   id: number;

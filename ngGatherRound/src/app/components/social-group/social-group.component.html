@@ -2,7 +2,7 @@
 
 <div *ngIf="!selectedGroup">
 <div *ngFor="let group of groups">
-  <p (click)="displayGroup(group)"> {{group.name}}</p>
+  <p (click)="displayGroup(group)"  (click)="displayGroupEvents(group.name)"> {{group.name}}</p>
 </div>
 </div>
 
@@ -11,5 +11,13 @@
   <img [src]="selectedGroup.imageUrl">
   <h3>{{selectedGroup.name}}</h3>
   <p>Category: {{selectedGroup.category.name}}</p>
+    <!-- Events of Group -->
+  <div *ngFor="let event of events">
+    <p>Event Id: {{event.id}}</p>
+    <p>Title: {{event.title}}</p>
+    <p>Description: {{event.description}}</p>
+    <p>Event Date: {{event.eventDate}}</p>
+    <p>Meeting Address: {{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</p>
+  </div>
   <button (click)="selectedGroup = null" class="btn btn-secondary">Back</button>
 </div>
