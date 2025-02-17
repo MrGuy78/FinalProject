@@ -17,7 +17,7 @@ public class SocialGroupServiceImpl implements SocialGroupService {
 
 	@Autowired
 	SocialGroupRepository groupRepository;
-	
+
 	@Autowired
 	GroupCategoryRepository groupCategoryRepo;
 
@@ -28,7 +28,7 @@ public class SocialGroupServiceImpl implements SocialGroupService {
 	public List<SocialGroup> index() {
 		return groupRepository.findAll();
 	}
-	
+
 	@Override
 	public SocialGroup show(int groupId) {
 		return groupRepository.findGroupById(groupId);
@@ -48,6 +48,5 @@ public class SocialGroupServiceImpl implements SocialGroupService {
 	public List<GroupCategory> showAllCategories() {
 		return groupCategoryRepo.findAll();
 	}
-
 
 }

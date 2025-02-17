@@ -32,7 +32,9 @@ public class UserController {
 	}
 
 	@PostMapping({ "users", "/users" })
-	public User addNewUser(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
+	public User addNewUser(@RequestBody User user, 
+			HttpServletResponse response, 
+			HttpServletRequest request) {
 		User createdUser = null;
 		try {
 			createdUser = userService.create(user);
@@ -49,38 +51,40 @@ public class UserController {
 	}
 
 	@PutMapping("users/{userId}")
-	public User updatingUser(@PathVariable("userId") int userId, HttpServletResponse resp, HttpServletRequest requ,
+	public User updatingUser(@PathVariable("userId") int userId, 
+			HttpServletResponse response,
+			HttpServletRequest request, 
 			@RequestBody User user) {
 		try {
 			user = userService.update(user, userId);
-			resp.setStatus(HttpServletResponse.SC_OK); // 200
+			response.setStatus(HttpServletResponse.SC_OK); // 200
 		} catch (Exception e) {
 			e.printStackTrace();
-			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
 		}
 
 		return user;
 	}
-	
+
 	@DeleteMapping("users/{userId}")
-	public User disableUser(@PathVariable("userId") int userId, HttpServletResponse resp, HttpServletRequest requ ) {
+	public User disableUser(@PathVariable("userId") int userId, 
+			HttpServletResponse response, 
+			HttpServletRequest requ) {
 		User managedUser = null;
 		try {
 			managedUser = userService.disableUser(userId);
-			if(managedUser == null) {
-				resp.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
+			if (managedUser == null) {
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
+			} else {
+				response.setStatus(HttpServletResponse.SC_OK); // 200
 			}
-			else {
-				resp.setStatus(HttpServletResponse.SC_OK); // 200
-			}
-			
-		} catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
 		}
 
 		return managedUser;
 	}
-	
-	
+
 }

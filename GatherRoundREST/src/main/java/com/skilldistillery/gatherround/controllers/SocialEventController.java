@@ -1,6 +1,5 @@
 package com.skilldistillery.gatherround.controllers;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +23,16 @@ public class SocialEventController {
 	@Autowired
 	private SocialEventService eventService;
 	
-
 	@GetMapping("events/{group}")
-	public List<SocialEvent> index(@PathVariable("group") String groupName, HttpServletRequest req, HttpServletResponse res){
-		
+	public List<SocialEvent> index(@PathVariable("group") String groupName, 
+			HttpServletResponse response,
+			HttpServletRequest request){		
 		List<SocialEvent> events = eventService.findByGroup(groupName);
 		if(events == null) {
-			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		}
-		res.setStatus(HttpServletResponse.SC_OK);
+		response.setStatus(HttpServletResponse.SC_OK);
 		return events;
 	}
-	
 
 }
