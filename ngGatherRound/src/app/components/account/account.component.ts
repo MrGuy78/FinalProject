@@ -42,8 +42,10 @@ export class AccountComponent implements OnInit{
     private userService: UserService,
   ){
   }
+
   ngOnInit(): void {
     if(this.auth.checkLogin()){
+      this.reloadSocialGroups();
       this.getUser();
       this.reloadGroupCategories();
     }
@@ -91,14 +93,13 @@ export class AccountComponent implements OnInit{
       this.socialGroupService.create(socialGroup).subscribe({
         next: () => {
           this.reloadSocialGroups();
+          this.socialGroup = new SocialGroup();
         } ,
         error: (failure) => {
           console.error('SocialGroupComponent.reload: failed to create a group');
           console.error(failure);
         }
       });
-      this.socialGroup = new SocialGroup();
-      this.reloadSocialGroups();
     }
 
   updateUser(user: User) : void {
@@ -127,6 +128,7 @@ export class AccountComponent implements OnInit{
     }
 
     displayMyGroups() {
+
       console.log('Display Groups by Leader');
       this.showMyGroups = this.groups.filter(group => group.id === this.loggedInUser.id);
     }
