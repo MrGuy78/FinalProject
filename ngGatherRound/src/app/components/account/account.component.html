@@ -63,13 +63,28 @@
     <br><br>
 
     <div *ngFor="let group of ownedGroups">
-    <!-- <div class="container-fluid" style="text-align: center;" *ngIf="selectedGroup"> -->
       <img [src]="group.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
       <h1> {{group.name}}</h1>
       <p>Category: {{group.category.name}}</p>
       <blockquote>Description: {{group.description}}</blockquote><br>
 
-      <button (click)="editMyGroup(group)" class="btn btn-secondary">Edit My Group</button>
+      <!-- EDIT MY GROUP -->
+
+
+      <button (click)="editMyGroup(group)" class="btn btn-primary">Edit My Group</button>
+
+      <div *ngIf="isEditingGroup">
+        <label>Name:</label>
+        <input type="text" [(ngModel)]="ownedGroups" class="form-control" /><br>
+
+        <label>Description:</label>
+        <input type="text" [(ngModel)]="loggedInUser.lastName" class="form-control" /><br>
+
+        <label>imageUrl:</label>
+        <input type="email" [(ngModel)]="loggedInUser.email" class="form-control" /><br>
+
+        <label>Category:</label>
+        <input type="phone" [(ngModel)]="loggedInUser.phone" class="form-control" /><br>
 
       </div>
   </div>
