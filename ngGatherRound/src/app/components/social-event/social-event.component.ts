@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SocialEvent } from '../../models/social-event';
+import { SocialEventService } from '../../services/social-event.service';
 
 @Component({
   selector: 'app-social-event',
@@ -7,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrl: './social-event.component.css'
 })
 export class SocialEventComponent {
+
+
+  constructor(
+    private socialEventService: SocialEventService,
+  ){}
+
+  // METHODS
+
 
 }

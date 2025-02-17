@@ -37,4 +37,17 @@ getHttpOptions() {
   };
   return options;
 }
+
+public create(socialEvent: SocialEvent): Observable<SocialEvent> {
+  return this.http.post<SocialEvent>(this.url, socialEvent, this.getHttpOptions()).pipe(
+    catchError((error: any) => {
+      console.log(error);
+      return throwError(
+        () => new Error('SocialEventService.create(): Error Creating Event: ' + error)
+      );
+    })
+  );
+}
+
+
 }
