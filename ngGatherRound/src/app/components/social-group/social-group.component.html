@@ -7,17 +7,20 @@
 </div>
 
 <!-- Display Social Group Details -->
-<div *ngIf="selectedGroup">
-  <img [src]="selectedGroup.imageUrl">
-  <h3>{{selectedGroup.name}}</h3>
+<br><br>
+<div class="container-fluid" style="text-align: center;" *ngIf="selectedGroup">
+  <img [src]="selectedGroup.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
+  <h1>{{selectedGroup.name}}</h1>
   <p>Category: {{selectedGroup.category.name}}</p>
-    <!-- Events of Group -->
-  <div *ngFor="let event of events">
+  <blockquote>Description: {{selectedGroup.description}}</blockquote><br>
+
+<!-- Events of Group -->
+  <div class="container-fluid" style="text-align: center;" *ngFor="let event of events">
     <p>Event Id: {{event.id}}</p>
     <p>Title: {{event.title}}</p>
     <p>Description: {{event.description}}</p>
     <p>Event Date: {{event.eventDate}}</p>
     <p>Meeting Address: {{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</p>
   </div>
-  <button (click)="selectedGroup = null" class="btn btn-secondary">Back</button>
+  <button (click)="selectedGroup = null" class="btn btn-secondary">Back to Groups</button>
 </div>
