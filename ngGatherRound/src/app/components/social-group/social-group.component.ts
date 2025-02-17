@@ -6,6 +6,9 @@ import { SocialGroupService } from './../../services/social-group.service';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user';
+import { GroupUser } from '../../models/group-user';
 
 @Component({
   selector: 'app-social-group',
@@ -23,15 +26,31 @@ export class SocialGroupComponent implements OnInit {
   newSocialEvent: SocialEvent = new SocialEvent();
   socialGroup: SocialGroup = new SocialGroup();
   selectedGroup: SocialGroup | null = null;
+  loggedInUser: User | null = null;
+  selectedGroupUser: GroupUser | null = null;
 
   constructor (
     private socialGroupService: SocialGroupService,
     private socialEventService: SocialEventService,
-    private router: Router
+    private authService: AuthService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.reloadSocialGroups();
+    this.getLoggedInUser();
+  }
+
+  getLoggedInUser() {
+    this.authService.getLoggedInUser().subscribe({
+      next: (foundUser) => {
+        this.loggedInUser = foundUser;
+      },
+      error: (error) => {
+        console.error('SocialGroupComponent.getLoggedInUser: failed to retrieve logged in user');
+        console.error(error);
+      }
+    });
   }
 
   // GROUP METHODS
@@ -62,6 +81,7 @@ export class SocialGroupComponent implements OnInit {
 
   displayGroup(socialGroup : SocialGroup){
     this.selectedGroup = socialGroup;
+    this.loadGroupUser(socialGroup.id);
   }
 
   groupDetail(groupId: number) {
@@ -90,7 +110,7 @@ export class SocialGroupComponent implements OnInit {
   }
 
   createSocialEvent(socialEvent : SocialEvent, groupId: number) {
-    this.socialEventService.create(socialEvent).subscribe({
+    this.socialEventService.create(socialEvent, groupId).subscribe({
       next: (groupEvents) => {
       this.displayGroupSocialEvents(groupId);
       },
@@ -101,6 +121,11 @@ export class SocialGroupComponent implements OnInit {
     });
     this.newSocialEvent = new SocialEvent();
     this.displayGroupSocialEvents(groupId);
+  }
+
+  loadGroupUser(groupId: number) {
+    // Subscribe to service to load group user, passing groupId
+
   }
 
   // isMember(): number {

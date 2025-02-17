@@ -27,7 +27,7 @@ public class SocialEventController {
 	@Autowired
 	private SocialEventService eventService;
 	
-	@GetMapping("events/{groupId}")
+	@GetMapping("groups/{groupId}/events")
 	public List<SocialEvent> index(@PathVariable("groupId") int groupId, 
 			HttpServletResponse response,
 			HttpServletRequest request){		
