@@ -73,7 +73,6 @@ export class SocialGroupComponent implements OnInit {
         console.error('SocialGroupComponent.reload: failed find events for group');
         console.error(failure);
       }
-
     });
   }
 
