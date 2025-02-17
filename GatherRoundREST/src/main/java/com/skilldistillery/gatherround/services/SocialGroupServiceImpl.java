@@ -49,4 +49,9 @@ public class SocialGroupServiceImpl implements SocialGroupService {
 		return groupCategoryRepository.findAll();
 	}
 
+	@Override
+	public List<SocialGroup> loggedInUserGroups(String username) {
+		return groupRepository.findByOwner_Username(username);
+	}
+
 }

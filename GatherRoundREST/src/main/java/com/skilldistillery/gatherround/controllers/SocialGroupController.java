@@ -32,6 +32,11 @@ public class SocialGroupController {
 		return groupService.index();
 	}
 	
+	@GetMapping("groups/owned") 
+	public List<SocialGroup> findCurrentUserGroups(Principal principal) {
+		return groupService.loggedInUserGroups(principal.getName());
+	}
+	
 	@GetMapping("groups/{groupId}") 
 	public SocialGroup findGroupById(@PathVariable("groupId") int groupId) {
 		SocialGroup foundGroup = groupService.show(groupId);
@@ -62,5 +67,7 @@ public class SocialGroupController {
 		}
 		return createdGroup;
 	}
+	
+	
 
 }

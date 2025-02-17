@@ -53,7 +53,7 @@ public class SocialEvent {
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	
-	private double cost;
+	private Double cost;
 	
 	private boolean enabled;
 	
@@ -168,11 +168,11 @@ public class SocialEvent {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public double getCost() {
+	public Double getCost() {
 		return cost;
 	}
 
-	public void setCost(double cost) {
+	public void setCost(Double cost) {
 		this.cost = cost;
 	}
 

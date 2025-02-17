@@ -9,6 +9,8 @@ import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category';
 import { SocialGroupService } from '../../services/social-group.service';
 import { UserService } from '../../services/user.service';
+import { group } from '@angular/animations';
+import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/signals';
 
 @Component({
   selector: 'app-account',
@@ -31,6 +33,9 @@ export class AccountComponent implements OnInit{
   isEditing: any;
   selectedGroup: any;
   showMyGroups: SocialGroup[] = [];
+  toggleMyGroups: boolean = false;
+  editGroup: SocialGroup | null = null;
+  ownedGroups: SocialGroup [] = [];
 
 
 
@@ -48,6 +53,7 @@ export class AccountComponent implements OnInit{
       this.reloadSocialGroups();
       this.getUser();
       this.reloadGroupCategories();
+      this.reloadOwnedGroups();
     }
    else{
     this.router.navigateByUrl('/home');
@@ -77,6 +83,18 @@ export class AccountComponent implements OnInit{
     });
   }
 
+  reloadOwnedGroups() {
+    this.socialGroupService.ownedGroups().subscribe({
+      next: (socialGroups) => {
+        this.ownedGroups = socialGroups;
+      } ,
+      error: (failure) => {
+        console.error('OwnedGroupsComponent.reload: failed to reload groups');
+        console.error(failure);
+      }
+    });
+  }
+
   reloadGroupCategories() {
     this.categoryService.index().subscribe({
       next: (categories) => {
@@ -93,6 +111,7 @@ export class AccountComponent implements OnInit{
       this.socialGroupService.create(socialGroup).subscribe({
         next: () => {
           this.reloadSocialGroups();
+          this.reloadOwnedGroups();
           this.socialGroup = new SocialGroup();
         } ,
         error: (failure) => {
@@ -132,4 +151,11 @@ export class AccountComponent implements OnInit{
       console.log('Display Groups by Leader');
       this.showMyGroups = this.groups.filter(group => group.id === this.loggedInUser.id);
     }
+
+    editMyGroup(group: SocialGroup){
+    this.editGroup = group;
+    }
+
+
+
 }
