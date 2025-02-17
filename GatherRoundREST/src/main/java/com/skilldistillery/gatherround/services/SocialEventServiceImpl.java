@@ -15,8 +15,8 @@ public class SocialEventServiceImpl implements SocialEventService{
 	private SocialEventRepository eventRepo;
 
 	
-	public List<SocialEvent> findByGroup(String name){
-		return eventRepo.findByGroup_Name(name);
+	public List<SocialEvent> findByGroup(int groupId){
+		return eventRepo.findByGroup_Id(groupId);
 	}
 
 

@@ -9,7 +9,7 @@
 <div *ngIf="!selectedGroup">
 <div *ngFor="let group of groups">
   <img (click)="displayGroup(group)" [src]="group.imageUrl" style="width: 15vw; min-width: 100px;">
-  <h2 (click)="displayGroup(group)"  (click)="displayGroupEvents(group.name)"> {{group.name}}</h2><hr>
+  <h2   (click)="displayGroupEvents(group.name)"> {{group.name}}</h2><hr>
 </div>
 </div>
 </div>

@@ -23,15 +23,15 @@ public class SocialEventController {
 	@Autowired
 	private SocialEventService eventService;
 	
-	@GetMapping("events/{group}")
-	public List<SocialEvent> index(@PathVariable("group") String groupName, 
+	@GetMapping("events/{groupId}")
+	public List<SocialEvent> index(@PathVariable("groupId") int groupId, 
 			HttpServletResponse response,
 			HttpServletRequest request){		
-		List<SocialEvent> events = eventService.findByGroup(groupName);
+		List<SocialEvent> events = eventService.findByGroup(groupId);
 		if(events == null) {
-			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 400
 		}
-		response.setStatus(HttpServletResponse.SC_OK);
+		response.setStatus(HttpServletResponse.SC_OK); // 200
 		return events;
 	}
 

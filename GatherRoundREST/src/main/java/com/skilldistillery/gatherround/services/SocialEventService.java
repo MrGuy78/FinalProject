@@ -7,7 +7,7 @@ import com.skilldistillery.gatherround.entities.SocialEvent;
 
 public interface SocialEventService {
 	
-	public List<SocialEvent> findByGroup(String name);
+	public List<SocialEvent> findByGroup(int groupId);
 	
 //	public List<SocialEvent> index();
 	
