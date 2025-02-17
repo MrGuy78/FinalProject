@@ -1,6 +1,6 @@
 <br><br>
 <div class="container-fluid text-center">
-  <h1>Activity Groups</h1>
+  <h1>Activity Groups</h1><hr>
   </div>
 <!-- Display all social groups -->
 <div class="container-fluid text-center">
@@ -8,8 +8,8 @@
     <div class="col-6 offset-md-3">
 <div *ngIf="!selectedGroup">
 <div *ngFor="let group of groups">
-  <img (click)="displayGroup(group)" (click)="displayGroupEvents(group.id)" [src]="group.imageUrl" style="width: 15vw; min-width: 100px;">
-  <h2  (click)="displayGroup(group)" (click)="displayGroupEvents(group.id)">{{group.name}}</h2><hr>
+  <img (click)="displayGroup(group)" (click)="displayGroupSocialEvents(group.id)" [src]="group.imageUrl" style="width: 15vw; min-width: 100px;">
+  <h2  (click)="displayGroup(group)" (click)="displayGroupSocialEvents(group.id)">{{group.name}}</h2><hr>
 </div>
 </div>
 </div>
@@ -22,15 +22,44 @@
   <img [src]="selectedGroup.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
   <h1>{{selectedGroup.name}}</h1>
   <p>Category: {{selectedGroup.category.name}}</p>
-  <blockquote>Description: {{selectedGroup.description}}</blockquote><br>
+  <blockquote>Description: {{selectedGroup.description}}</blockquote><hr>
 
 <!-- Events of Group -->
   <div class="container-fluid" style="text-align: center;" *ngFor="let event of events">
-    <p>Event Id: {{event.id}}</p>
-    <p>Title: {{event.title}}</p>
-    <p>Description: {{event.description}}</p>
-    <p>Event Date: {{event.eventDate}}</p>
-    <p>Meeting Address: {{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</p>
+    <h2>{{event.title}} </h2>
+    <p>{{event.description}}</p>
+    <h3>Event Date:</h3>
+    <p>{{event.eventDate}}</p>
+    <h3>Meeting Address:</h3>
+    <p>{{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</p><hr>
   </div>
-  <button (click)="selectedGroup = null" class="btn btn-secondary">Back to Groups</button>
+  <button (click)="selectedGroup = null" class="btn btn-primary">Back to Social Groups</button><br><br>
 </div>
+
+<!-- NEW EVENT FORM -->
+<div class="container-fluid" style="text-align: center;">
+  <form class="form-control form-label form-group form-check form-inline"><br>
+    <h2>Create New Event</h2><br>
+    <label for="title">Event Title:</label><br>
+    <input type="text" id="title" name="title" size="50" [(ngModel)]="newSocialEvent.title"><br><br>
+
+    <label for="description">Event Description:</label><br>
+    <textarea type="text" cols="50" rows="5" id="description" name="description" [(ngModel)]="newSocialEvent.description"></textarea><br><br>
+
+    <label for="imageUrl">Event Image URL:</label><br>
+    <input type="text" id="imageUrl" name="imageUrl" size="50" [(ngModel)]="newSocialEvent.imageUrl"><br><br>
+
+    <label for="eventDate">Event Date:</label><br>
+    <input type="date" id="eventDate" name="eventDate" size="50" [(ngModel)]="newSocialEvent.eventDate"><br><br>
+
+    <label for="startTime">Event Start Time:</label><br>
+    <input type="time" id="startTime" name="startTime" size="50" [(ngModel)]="newSocialEvent.startTime"><br><br>
+
+    <label for="endTime">Event End Time:</label><br>
+    <input type="time" id="endTime" name="endTime" size="50" [(ngModel)]="newSocialEvent.endTime"><br><br>
+
+    <label for="cost">Event Cost:</label><br>
+    <input type="number" id="cost" name="cost" [(ngModel)]="newSocialEvent.cost"><br><br>
+
+  <button class="btn btn-success" (click)="createSocialEvent(newSocialEvent, newSocialEvent.id)">Create Group</button><br><br>
+  </form></div><br><br>

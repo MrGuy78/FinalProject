@@ -20,7 +20,7 @@ export class SocialGroupComponent implements OnInit {
 
   groups: SocialGroup[] = [];
   events: SocialEvent[] = [];
-
+  newSocialEvent: SocialEvent = new SocialEvent();
   socialGroup: SocialGroup = new SocialGroup();
   selectedGroup: SocialGroup | null = null;
 
@@ -32,9 +32,9 @@ export class SocialGroupComponent implements OnInit {
 
   ngOnInit(): void {
     this.reloadSocialGroups();
-
   }
 
+  // GROUP METHODS
   reloadSocialGroups() {
     this.socialGroupService.index().subscribe({
       next: (SocialGroups) => {
@@ -64,18 +64,6 @@ export class SocialGroupComponent implements OnInit {
     this.selectedGroup = socialGroup;
   }
 
-  displayGroupEvents(groupId : number){
-    this.socialEventService.groupsById(groupId).subscribe({
-    next: (socialEventsByGroup) => {
-      this.events = socialEventsByGroup;
-      } ,
-      error: (failure) => {
-        console.error('SocialGroupComponent.reload: failed find events for group');
-        console.error(failure);
-      }
-    });
-  }
-
   groupDetail(groupId: number) {
     this.socialGroupService.show(groupId).subscribe({
       next: (group) => {
@@ -87,5 +75,43 @@ export class SocialGroupComponent implements OnInit {
       }
     });
   }
+
+  // EVENT METHODS
+  displayGroupSocialEvents(groupId : number){
+    this.socialEventService.groupsById(groupId).subscribe({
+    next: (socialEventsByGroup) => {
+      this.events = socialEventsByGroup;
+      } ,
+      error: (failure) => {
+        console.error('SocialGroupComponent.reload: failed find events for group');
+        console.error(failure);
+      }
+    });
+  }
+
+  createSocialEvent(socialEvent : SocialEvent, groupId: number) {
+    this.socialEventService.create(socialEvent).subscribe({
+      next: (groupEvents) => {
+      this.displayGroupSocialEvents(groupId);
+      },
+      error: (error) => {
+        console.error('TodoListComponent.createTodo: Error Creating Todo')
+        console.error(error);
+      }
+    });
+    this.newSocialEvent = new SocialEvent();
+    this.displayGroupSocialEvents(groupId);
+  }
+
+  // isMember(): number {
+  //   let className = "bg-";
+  //   let membership = this.isMember();
+  //   if (membership = 2) {
+  //     className += "danger";
+  //   } else {
+  //     className += "success";
+  //   }
+  //   return className;
+  // }
 
 }

@@ -49,7 +49,7 @@
 
 <!-- SEE SOCIAL GROUPS -->
 <div class="container-fluid" style="text-align: center;">
-  <button class="btn btn-warning" [routerLink]="['/social-group']"> Social Group Page </button>
+  <button class="btn btn-warning" [routerLink]="['/social-group']"> Activity Group Page </button>
   </div>
   <br>
 </form>
@@ -57,22 +57,24 @@
 
 <!-- MY GROUP LIST -->
 <div class="container-fluid"style="text-align: center;">
-  <button (click)="displayMyGroups()" (click)="showMyGroups = !showMyGroups" class="btn btn-primary">Show Groups By Leader</button>
+  <button (click)="displayMyGroups()" class="btn btn-primary">Show Groups By Leader</button>
   <div *ngIf="showMyGroups" >
-  <label >Groups Owned By Me</label>
-  <br><br>
-  <!-- <div class="container-fluid" style="text-align: center;" *ngIf="selectedGroup"> -->
-    <img [src]="showMyGroups.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
-    <h1> {{showMyGroups.name}}</h1>
-    <p>Category: {{showMyGroups.category.name}}</p>
-    <blockquote>Description: {{showMyGroups.description}}</blockquote><br>
+    <label >Groups Owned By Me</label>
+    <br><br>
+    <div *ngFor="let group of showMyGroups">
+    <!-- <div class="container-fluid" style="text-align: center;" *ngIf="selectedGroup"> -->
+      <img [src]="group.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
+      <h1> {{group.name}}</h1>
+      <p>Category: {{group.category.name}}</p>
+      <blockquote>Description: {{group.description}}</blockquote><br>
+      </div>
   </div>
 </div><br>
 
 <!-- NEW GROUP FORM -->
 <div class="container-fluid" style="text-align: center;">
 <form class="form-control form-label form-group form-check form-inline"><br>
-
+  <h2>Create New Group</h2><br>
   <label for="name">Group Name:</label><br>
   <input type="text" id="name" name="name" size="50" [(ngModel)]="socialGroup.name"><br><br>
 

@@ -46,8 +46,5 @@ export class User {
     this.createDate = createDate;
     this.lastUpdate = lastUpdate;
     this.address = address;
-
   }
-
-
 }

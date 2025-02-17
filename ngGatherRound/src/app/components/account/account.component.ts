@@ -30,7 +30,7 @@ export class AccountComponent implements OnInit{
   user: User | null = null;
   isEditing: any;
   selectedGroup: any;
-  showMyGroups: any;
+  showMyGroups: SocialGroup[] = [];
 
 
 
@@ -128,5 +128,6 @@ export class AccountComponent implements OnInit{
 
     displayMyGroups() {
       console.log('Display Groups by Leader');
+      this.showMyGroups = this.groups.filter(group => group.id === this.loggedInUser.id);
     }
 }
