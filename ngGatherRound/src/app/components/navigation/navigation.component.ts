@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LogoutComponent } from '../logout/logout.component';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,9 +9,8 @@ import { AuthService } from '../../services/auth.service';
   imports: [
     RouterLink,
     NgbModule,
-    CommonModule,
-    LogoutComponent,
-  ],
+    CommonModule
+],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })
@@ -22,11 +20,18 @@ public isCollapsed = false;
 
 constructor(
   private auth: AuthService,
+  private router: Router,
 ) {}
 
 // METHODS
 loggedIn(): boolean {
   return this.auth.checkLogin();
+}
+
+logout() {
+  console.log('Logging Out');
+  this.auth.logout();
+  this.router.navigateByUrl('/home');
 }
 
 }
