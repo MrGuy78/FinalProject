@@ -31,6 +31,7 @@ export class AccountComponent implements OnInit{
   socialGroup: SocialGroup = new SocialGroup();
   user: User | null = null;
   isEditing: any;
+  isEditingGroup: any;
   selectedGroup: any;
   showMyGroups: SocialGroup[] = [];
   toggleMyGroups: boolean = false;
