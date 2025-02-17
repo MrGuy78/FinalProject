@@ -1,3 +1,4 @@
+import { GroupUserService } from './../../services/group-user.service';
 import { SocialEventService } from './../../services/social-event.service';
 import { SocialEvent } from './../../models/social-event';
 import { CommonModule } from '@angular/common';
@@ -32,6 +33,7 @@ export class SocialGroupComponent implements OnInit {
   constructor (
     private socialGroupService: SocialGroupService,
     private socialEventService: SocialEventService,
+    private groupUserService: GroupUserService,
     private authService: AuthService,
     private router: Router,
   ) {}
@@ -101,7 +103,7 @@ export class SocialGroupComponent implements OnInit {
     this.socialEventService.groupsById(groupId).subscribe({
     next: (socialEventsByGroup) => {
       this.events = socialEventsByGroup;
-      } ,
+      },
       error: (failure) => {
         console.error('SocialGroupComponent.reload: failed find events for group');
         console.error(failure);
@@ -115,7 +117,7 @@ export class SocialGroupComponent implements OnInit {
       this.displayGroupSocialEvents(groupId);
       },
       error: (error) => {
-        console.error('TodoListComponent.createTodo: Error Creating Todo')
+        console.error('SocialGroupComponent.createSocialEvent: Error Creating Event')
         console.error(error);
       }
     });
@@ -124,7 +126,15 @@ export class SocialGroupComponent implements OnInit {
   }
 
   loadGroupUser(groupId: number) {
-    // Subscribe to service to load group user, passing groupId
+    this.groupUserService.show(groupId).subscribe({
+      next: (groupUser) => {
+        this.selectedGroupUser = groupUser;
+      },
+      error: (error) => {
+        console.error('SocialGroupComponent.loadGroupUser: Error Loading Group User')
+        console.error(error);
+      }
+    });
 
   }
 

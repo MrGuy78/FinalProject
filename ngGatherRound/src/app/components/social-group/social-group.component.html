@@ -21,12 +21,15 @@
 <div class="container-fluid" style="text-align: center;" *ngIf="selectedGroup">
   <img [src]="selectedGroup.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
   <h1>{{selectedGroup.name}}</h1>
-  <p>Category: {{selectedGroup.category.name}}</p>
-  <blockquote>Description: {{selectedGroup.description}}</blockquote><hr>
+  <p><strong>Category: </strong>{{selectedGroup.category.name}}</p>
+  <!-- <h3>{{selectedGroupUser.leader}}</h3> // FIX ME -->
+   <h4>Description:</h4>
+  <blockquote>{{selectedGroup.description}}</blockquote><hr>
 
 <!-- Events of Group -->
   <div class="container-fluid" style="text-align: center;" *ngFor="let event of events">
     <h2>{{event.title}} </h2>
+    <img [src]="event.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
     <p>{{event.description}}</p>
     <h3>Event Date:</h3>
     <p>{{event.eventDate}}</p>
