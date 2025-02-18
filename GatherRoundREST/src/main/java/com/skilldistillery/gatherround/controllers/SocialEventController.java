@@ -54,5 +54,17 @@ public class SocialEventController {
 		}
 		return socialEvent;
 	}
+	
+	
+	@GetMapping("groups/events/{eventId}")
+	public SocialEvent findEventById(@PathVariable("eventId") int eventId, HttpServletResponse response,
+			HttpServletRequest request) {
+		SocialEvent foundEvent = eventService.show(eventId);
+		if(foundEvent == null) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
+		}
+		response.setStatus(HttpServletResponse.SC_OK); // 200
+		return foundEvent;
+	}
 
 }

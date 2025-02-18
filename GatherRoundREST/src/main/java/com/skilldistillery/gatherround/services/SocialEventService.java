@@ -12,6 +12,8 @@ public interface SocialEventService {
 //	public List<SocialEvent> index();
 	
 	public SocialEvent create(String username, SocialEvent event, int groupId);
+	
+	public SocialEvent show(int eventId);
 
 //	public SocialEvent update(String username, int eventId, SocialEvent event);
 //	
