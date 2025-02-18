@@ -4,7 +4,7 @@
 <div class="container-fluid text-center">
   <div class="row">
     <div class="col-6 offset-md-3">
-      <p><img src="{{loggedInUser.imageUrl}}"></p>
+      <p><img src="{{loggedInUser.imageUrl}}"></p><br>
       <div class="card text-dark bg-light mb-5">
         <div class="card-body">
           <h1 class="text-center">{{loggedInUser.username}}</h1>
@@ -20,7 +20,7 @@
 
           <!-- CLICKABLE FORM -->
           <button *ngIf="!isEditing" (click)="editProfile()" class="btn btn-primary">Edit My Profile</button>
-          <button *ngIf="isEditing" (click)="cancelEdit()" class="btn btn-danger">Cancel</button>
+          <button *ngIf="isEditing" (click)="cancelEdit()" class="btn btn-danger">Cancel Edit Profile</button>
           <div class="col-6 offset-md-3">
             <div *ngIf="isEditing" class="text-center"><br>
 
@@ -46,7 +46,7 @@
             <label>Profile Image:</label>
             <input type="text" [(ngModel)]="loggedInUser.imageUrl" class="form-control text-center" /><br>
 
-            <button (click)="saveEdits()" (click)="updateUser(loggedInUser)" class="btn btn-success">Save Edits</button>
+            <button (click)="saveEdits()" (click)="updateUser(loggedInUser)" class="btn btn-success">Save Profile Edits</button>
           </div>
         </div>
       </div><br>
@@ -77,7 +77,7 @@
 
                 <!-- EDIT MY GROUP -->
                 <button *ngIf="!isEditingGroup" (click)="editMyGroup()" class="btn btn-primary">Edit This Group</button>
-                <button *ngIf="isEditingGroup" (click)="cancelEditGroup()" class="btn btn-danger">Cancel</button><br><br>
+                <button *ngIf="isEditingGroup" (click)="cancelEditGroup()" class="btn btn-danger">Cancel Edit Group</button><br><br>
               <div *ngIf="isEditingGroup">
                 <div class="col-6 offset-md-3">
 
@@ -114,7 +114,7 @@
         <div class="card-body">
           <h2>Create New Group</h2><br>
           <button *ngIf="!showNewGroupForm" (click)="toggleNewGroup()" class="btn btn-primary">Create New Group</button>
-          <button *ngIf="showNewGroupForm" (click)="cancelNewGroup()" class="btn btn-danger">Cancel</button><br><br>
+          <button *ngIf="showNewGroupForm" (click)="cancelNewGroup()" class="btn btn-danger">Cancel New Group</button><br><br>
           <div *ngIf="showNewGroupForm"><div class="col-6 offset-md-3">
 
             <label>Name:</label>
@@ -132,8 +132,9 @@
             <label>Image Url:</label>
             <input type="text" [(ngModel)]="socialGroup.imageUrl" class="form-control text-center" /><br>
           </div>
-      <button (click)="createNewGroup(socialGroup)" class="btn btn-success">Create Group</button><br><br>
-    </div></div>
+          <button (click)="createNewGroup(socialGroup)" class="btn btn-success">Create Group</button><br><br>
+        </div>
+      </div>
+    </div>
   </div>
-  </div></div></div>
 </div><br>
