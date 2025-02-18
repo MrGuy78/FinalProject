@@ -42,7 +42,6 @@ public class AddressServiceImpl implements AddressService {
 						username, groupId, username, groupId);
 		SocialGroup group = socialGroupRepository.findById(groupId).orElse(null);
 		SocialEvent event = eventRepository.findById(eventId).orElse(null);
-
 		if (managedUser == null || group == null || event == null) {
 			return null;
 		}
