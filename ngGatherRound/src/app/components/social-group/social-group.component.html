@@ -8,7 +8,7 @@
     <div class="col-6 offset-md-3">
 <div *ngIf="!selectedGroup">
 <div *ngFor="let group of groups">
-  <img (click)="displayGroup(group)" (click)="displayGroupSocialEvents(group.id)" [src]="group.imageUrl" style="width: 15vw; min-width: 100px;">
+  <img class="group" (click)="displayGroup(group)" (click)="displayGroupSocialEvents(group.id)" [src]="group.imageUrl">
   <h2  (click)="displayGroup(group)" (click)="displayGroupSocialEvents(group.id)">{{group.name}}</h2><hr>
 </div>
 </div>
@@ -19,7 +19,7 @@
 <!-- Display Social Group Details -->
 <br>
 <div class="container-fluid" style="text-align: center;" *ngIf="selectedGroup">
-  <img [src]="selectedGroup.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
+  <img class="group" [src]="selectedGroup.imageUrl"><br><br>
   <h1>{{selectedGroup.name}}</h1>
   <p><strong>Category: </strong>{{selectedGroup.category.name}}</p>
   <!-- <h3>{{selectedGroupUser.leader}}</h3> // FIX ME -->
@@ -29,7 +29,7 @@
 <!-- Events of Group -->
   <div class="container-fluid" style="text-align: center;" *ngFor="let event of events">
     <h2>{{event.title}} </h2>
-    <img [src]="event.imageUrl" style="width: 50vw; min-width: 300px;"><br><br>
+    <img class="event" [src]="event.imageUrl"><br><br>
     <p>{{event.description}}</p>
     <h3>Event Date:</h3>
     <p>{{event.eventDate}}</p>
