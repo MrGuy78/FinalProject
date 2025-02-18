@@ -2,7 +2,6 @@ package com.skilldistillery.gatherround.services;
 
 import java.util.List;
 
-import com.skilldistillery.gatherround.entities.Address;
 import com.skilldistillery.gatherround.entities.SocialEvent;
 
 public interface SocialEventService {
