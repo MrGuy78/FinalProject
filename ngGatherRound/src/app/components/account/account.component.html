@@ -69,8 +69,11 @@
 
       <!-- EDIT MY GROUP -->
 
+      <div class="container-fluid" style="text-align: center;">
 
       <button (click)="editMyGroup(group)" class="btn btn-primary">Edit My Group</button>
+
+      <br>
 
       <div *ngIf="isEditingGroup">
         <label>Name:</label>
@@ -85,9 +88,15 @@
         <label>Category:</label>
         <input type="select" [(ngModel)]="group.category" class="form-control" /><br>
 
+        <button (click)="updateMyGroup(group)" class="btn btn-primary">Save</button><br><br>
+        <button (click)="cancelEdit()" class="btn btn-danger">Cancel</button><br><br>
+
       </div>
   </div>
-</div><br>
+  </div>
+  </div>
+  </div>
+<br>
 
 <!-- NEW GROUP FORM -->
 <div class="container-fluid" style="text-align: center;">
