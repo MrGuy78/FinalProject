@@ -154,6 +154,7 @@ export class AccountComponent implements OnInit{
     }
 
     editMyGroup(group: SocialGroup){
+      console.log
     this.editGroup = group;
     }
 

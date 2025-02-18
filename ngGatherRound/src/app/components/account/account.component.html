@@ -18,7 +18,6 @@
 
 <!-- CLICKABLE FORM -->
 <div class="container-fluid" style="text-align: center;">
-  <form class="form-control form-label form-group form-check form-inline"><br>
 
   <button (click)="editProfile()" class="btn btn-primary">Edit My Profile</button><br>
 <br>
@@ -52,7 +51,7 @@
   <button class="btn btn-warning" [routerLink]="['/social-group']"> Activity Group Page </button>
   </div>
   <br>
-</form>
+
 </div><br>
 
 <!-- MY GROUP LIST -->
@@ -75,16 +74,16 @@
 
       <div *ngIf="isEditingGroup">
         <label>Name:</label>
-        <input type="text" [(ngModel)]="ownedGroups" class="form-control" /><br>
+        <input type="text" [(ngModel)]="group.name" class="form-control" /><br>
 
         <label>Description:</label>
-        <input type="text" [(ngModel)]="loggedInUser.lastName" class="form-control" /><br>
+        <input type="text" [(ngModel)]="group.description" class="form-control" /><br>
 
         <label>imageUrl:</label>
-        <input type="email" [(ngModel)]="loggedInUser.email" class="form-control" /><br>
+        <input type="text" [(ngModel)]="group.imageUrl" class="form-control" /><br>
 
         <label>Category:</label>
-        <input type="phone" [(ngModel)]="loggedInUser.phone" class="form-control" /><br>
+        <input type="select" [(ngModel)]="group.category" class="form-control" /><br>
 
       </div>
   </div>

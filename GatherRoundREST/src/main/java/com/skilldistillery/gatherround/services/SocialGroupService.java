@@ -15,6 +15,8 @@ public interface SocialGroupService {
 
 	public SocialGroup create(SocialGroup socialGroup, String username);
 	
+	public SocialGroup update(SocialGroup socialGroup, String username, int groupId);
+	
 	public List<SocialGroup> loggedInUserGroups(String username);
 	
 }

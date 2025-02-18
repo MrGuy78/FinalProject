@@ -54,4 +54,18 @@ public class SocialGroupServiceImpl implements SocialGroupService {
 		return groupRepository.findByOwner_Username(username);
 	}
 
+	@Override
+	public SocialGroup update(SocialGroup socialGroup, String username, int groupId) {
+		SocialGroup managedSocialGroup = groupRepository.findByIdAndOwner_Username( groupId, username);
+		if (managedSocialGroup != null) {
+			managedSocialGroup.setName(socialGroup.getName());
+			managedSocialGroup.setDescription(socialGroup.getDescription());
+			managedSocialGroup.setImageUrl(socialGroup.getImageUrl());
+			managedSocialGroup.setCategory(socialGroup.getCategory());
+			groupRepository.saveAndFlush(managedSocialGroup);
+
+		}
+		return managedSocialGroup;
+
+	}
 }
