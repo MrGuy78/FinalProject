@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-6 offset-md-3">
       <p><img src="{{loggedInUser.imageUrl}}"></p>
-      <div class="card text-dark bg-light mb-4">
+      <div class="card text-dark bg-light mb-5">
         <div class="card-body">
           <h1 class="text-center">{{loggedInUser.username}}</h1>
             <hr>
@@ -46,7 +46,7 @@
             <label>Profile Image:</label>
             <input type="text" [(ngModel)]="loggedInUser.imageUrl" class="form-control text-center" /><br>
 
-            <button (click)="saveEdits()" (click)="updateUser(loggedInUser)"class="btn btn-success">Save Edits</button>
+            <button (click)="saveEdits()" (click)="updateUser(loggedInUser)" class="btn btn-success">Save Edits</button>
           </div>
         </div>
       </div><br>
@@ -60,70 +60,80 @@
     <div class="col-8 offset-md-2">
       <div class="card text-dark bg-light mb-4">
         <div class="card-body">
-        <h2>Groups I Own</h2><br>
-        <button *ngIf="!showMyGroups" (click)="displayMyGroups()" class="btn btn-primary">My Groups</button>
-        <button *ngIf="showMyGroups" (click)="hideMyGroups()" class="btn btn-danger">Hide Groups</button>
+          <h2>Groups I Own</h2><br>
+          <button *ngIf="!showMyGroups" (click)="displayMyGroups()" class="btn btn-primary">My Groups</button>
+          <button *ngIf="showMyGroups" (click)="hideMyGroups()" class="btn btn-danger">Hide Groups</button>
           <div *ngIf="showMyGroups"><br>
             <div *ngFor="let group of ownedGroups">
-              <img class="group" [src]="group.imageUrl"><br><br>
+              <img class="group" [src]="group.imageUrl"><br>
               <h3> {{group.name}}</h3>
               <p><strong>Category: </strong>{{group.category.name}}</p>
               <h3>Description: </h3>
-              <div class="card col-8 offset-md-2 text-dark bg-light mb-4 ">
-                <div class="card-body">
-              <blockquote>{{group.description}}</blockquote>
+                <div class="card col-8 offset-md-2 text-dark bg-light mb-4 ">
+                  <div class="card-body">
+                    <blockquote>{{group.description}}</blockquote>
+                  </div>
                 </div>
-              </div>
 
-              <!-- EDIT MY GROUP -->
-              <button *ngIf="!isEditingGroup" (click)="editMyGroup()" class="btn btn-primary">Edit This Group</button>
-              <button *ngIf="isEditingGroup" (click)="cancelEditGroup()" class="btn btn-danger">Cancel</button><br><br>
+                <!-- EDIT MY GROUP -->
+                <button *ngIf="!isEditingGroup" (click)="editMyGroup()" class="btn btn-primary">Edit This Group</button>
+                <button *ngIf="isEditingGroup" (click)="cancelEditGroup()" class="btn btn-danger">Cancel</button><br><br>
+              <div *ngIf="isEditingGroup">
                 <div class="col-6 offset-md-3">
-                  <div *ngIf="isEditingGroup">
 
                   <label>Name:</label>
                   <input type="text" [(ngModel)]="group.name" class="form-control text-center" /><br>
 
+                  <label>Category:</label><br>
+                  <select type="select" [(ngModel)]="group.category.id" class="form-control text-center">
+                  <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+                  </select><br>
+                </div>
+                <div class="col-10 offset-md-1">
                   <label>Description:</label>
                   <textarea type="text" cols="50" rows="4" [(ngModel)]="group.description" class="form-control text-center"></textarea><br>
 
                   <label>Image Url:</label>
                   <input type="text" [(ngModel)]="group.imageUrl" class="form-control text-center" /><br>
-
-                  <label>Category:</label><br>
-                  <select type="select" id="category" name="category" [(ngModel)]="group.category.id">
-                  <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
-                  </select><br><br>
-
-                  <button (click)="updateMyGroup(group)" class="btn btn-success">Save Group Edits</button><br>
-                  </div>
-                </div><hr><br>
-        </div>
+                </div>
+                <button (click)="saveGroupEdits()" (click)="updateMyGroup(group)" class="btn btn-success">Save Group Edits</button><br>
+              </div><hr>
+            </div>
+          </div>
+        </div><br>
       </div>
-    </div><br></div></div></div>
+    </div>
+  </div>
 </div><br>
 
 <!-- NEW GROUP FORM -->
-<div class="card">
-  <div class="card-body">
-    <div class="container-fluid text-center">
-      <h2>Create New Group</h2>
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col-8 offset-md-2">
+      <div class="card text-dark bg-light mb-4">
+        <div class="card-body">
+          <h2>Create New Group</h2><br>
+          <button *ngIf="!showNewGroupForm" (click)="toggleNewGroup()" class="btn btn-primary">Create New Group</button>
+          <button *ngIf="showNewGroupForm" (click)="cancelNewGroup()" class="btn btn-danger">Cancel</button><br><br>
+          <div *ngIf="showNewGroupForm"><div class="col-6 offset-md-3">
 
-      <label for="name">Group Name:</label><br>
-      <input type="text" id="name" name="name" size="50" [(ngModel)]="socialGroup.name"><br><br>
+            <label>Name:</label>
+            <input type="text" [(ngModel)]="socialGroup.name" class="form-control text-center" /><br>
 
-      <label for="category">Group Category:</label><br>
-      <select type="select" id="category" name="category" [(ngModel)]="socialGroup.category.id">
-      <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
-      </select><br><br>
+            <label>Category:</label><br>
+            <select type="select" [(ngModel)]="socialGroup.category.id" class="form-control text-center">
+            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+            </select><br>
+          </div>
+          <div class="col-10 offset-md-1">
+            <label>Description:</label>
+            <textarea type="text" cols="50" rows="4" [(ngModel)]="socialGroup.description" class="form-control text-center"></textarea><br>
 
-      <label for="description">Description:</label><br>
-      <textarea type="text" cols="50" rows="5" id="description" name="description" [(ngModel)]="socialGroup.description"></textarea><br><br>
-
-      <label for="imageUrl">Group Image URL:</label><br>
-      <input type="text" id="imageUrl" name="imageUrl" size="50" [(ngModel)]="socialGroup.imageUrl"><br><br>
-
-      <button class="btn btn-success" (click)="createNewGroup(socialGroup)">Create Group</button><br><br>
-    </div>
+            <label>Image Url:</label>
+            <input type="text" [(ngModel)]="socialGroup.imageUrl" class="form-control text-center" /><br>
+          </div>
+      <button (click)="createNewGroup(socialGroup)" class="btn btn-success">Create Group</button><br><br>
+    </div></div>
   </div>
+  </div></div></div>
 </div><br>

@@ -35,6 +35,7 @@ export class AccountComponent implements OnInit{
   showMyGroups: any;
   toggleMyGroups: boolean = false;
   ownedGroups: SocialGroup [] = [];
+  showNewGroupForm: any;
 
   // GROUP CATEGORY FIELDS
   categories: Category [] = [];
@@ -122,12 +123,21 @@ export class AccountComponent implements OnInit{
     });
   }
 
+  toggleNewGroup() {
+    this.showNewGroupForm = true;
+  }
+
+  cancelNewGroup() {
+    this.showNewGroupForm = false;
+  }
+
   createNewGroup(socialGroup: SocialGroup) {
       this.socialGroupService.create(socialGroup).subscribe({
         next: () => {
           this.reloadSocialGroups();
           this.reloadOwnedGroups();
           this.socialGroup = new SocialGroup();
+          this.showNewGroupForm = false;
         } ,
         error: (failure) => {
           console.error('SocialGroupComponent.reload: failed to create a group');
@@ -135,7 +145,6 @@ export class AccountComponent implements OnInit{
         }
       });
     }
-
 
   displayMyGroups() {
       console.log('Display Groups by Leader');
