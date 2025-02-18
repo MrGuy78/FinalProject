@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
 import { GroupUser } from '../../models/group-user';
+import { AddressService } from '../../services/address.service';
+import { Address } from '../../models/address';
 
 @Component({
   selector: 'app-social-group',
@@ -29,11 +31,13 @@ export class SocialGroupComponent implements OnInit {
   selectedGroup: SocialGroup | null = null;
   loggedInUser: User | null = null;
   selectedGroupUser: GroupUser | null = null;
+  newAddress: Address = new Address();
 
   constructor (
     private socialGroupService: SocialGroupService,
     private socialEventService: SocialEventService,
     private groupUserService: GroupUserService,
+    private addressService: AddressService,
     private authService: AuthService,
     private router: Router,
   ) {}
@@ -112,18 +116,17 @@ export class SocialGroupComponent implements OnInit {
   }
 
   createSocialEvent(socialEvent : SocialEvent, groupId: number) {
-    socialEvent.meetAddress.id = 1;
     this.socialEventService.create(socialEvent, groupId).subscribe({
-      next: (groupEvents) => {
-      this.displayGroupSocialEvents(groupId);
+      next: (groupEvent) => {
+        this.newSocialEvent = new SocialEvent();
+        this.displayGroupSocialEvents(groupId);
       },
       error: (error) => {
         console.error('SocialGroupComponent.createSocialEvent: Error Creating Event')
         console.error(error);
       }
     });
-    this.newSocialEvent = new SocialEvent();
-    this.displayGroupSocialEvents(groupId);
+
   }
 
   loadGroupUser(groupId: number) {
@@ -137,8 +140,23 @@ export class SocialGroupComponent implements OnInit {
         console.error(error);
       }
     });
-
   }
+
+  createAddress(groupId: number, eventId: number, address: Address) {
+    this.addressService.createAddressForEvent(groupId, eventId, address).subscribe({
+      next: (newAddress) => {
+        this.newAddress = newAddress;
+
+        // do future reload address method
+      },
+      error: (error) => {
+        console.error('SocialGroupComponent.createAddress: Error creating new address')
+        console.error(error);
+      }
+    })
+  }
+
+
 
   // isMember(): number {
   //   let className = "bg-";

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.gatherround.entities.SocialEvent;
 import com.skilldistillery.gatherround.entities.SocialGroup;
 import com.skilldistillery.gatherround.entities.User;
+import com.skilldistillery.gatherround.repositories.AddressRepository;
 import com.skilldistillery.gatherround.repositories.SocialEventRepository;
 import com.skilldistillery.gatherround.repositories.SocialGroupRepository;
 import com.skilldistillery.gatherround.repositories.UserRepository;
@@ -23,6 +24,9 @@ public class SocialEventServiceImpl implements SocialEventService {
 	
 	@Autowired
 	private SocialGroupRepository socialGroupRepository;
+	
+	@Autowired
+	private AddressRepository addressRepo;
 
 	public List<SocialEvent> findByGroup(int groupId) {
 		return eventRepository.findByGroup_Id(groupId);
@@ -38,6 +42,9 @@ public class SocialEventServiceImpl implements SocialEventService {
 		event.setUser(managedUser);
 		event.setGroup(group);
 		event.setEnabled(true);
+		if(event.getMeetAddress() != null) {
+			addressRepo.saveAndFlush(event.getMeetAddress());
+		}
 		return eventRepository.saveAndFlush(event);
 	}
 
