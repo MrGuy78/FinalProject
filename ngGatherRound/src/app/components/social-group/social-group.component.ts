@@ -31,7 +31,11 @@ export class SocialGroupComponent implements OnInit {
   selectedGroup: SocialGroup | null = null;
   loggedInUser: User | null = null;
   selectedGroupUser: GroupUser | null = null;
+
+  // ADDRESS FIELDS
+  addresses: Address [] = [];
   newAddress: Address = new Address();
+  showNewAddressForm: any;
 
   constructor (
     private socialGroupService: SocialGroupService,
@@ -88,6 +92,7 @@ export class SocialGroupComponent implements OnInit {
   displayGroup(socialGroup : SocialGroup){
     this.selectedGroup = socialGroup;
     this.loadGroupUser(socialGroup.id);
+    this.reloadAddresses(socialGroup.id);
   }
 
   groupDetail(groupId: number) {
@@ -142,21 +147,40 @@ export class SocialGroupComponent implements OnInit {
     });
   }
 
-  createAddress(groupId: number, eventId: number, address: Address) {
-    this.addressService.createAddressForEvent(groupId, eventId, address).subscribe({
-      next: (newAddress) => {
-        this.newAddress = newAddress;
 
-        // do future reload address method
-      },
-      error: (error) => {
-        console.error('SocialGroupComponent.createAddress: Error creating new address')
-        console.error(error);
-      }
-    })
-  }
+// ADDRESS METHODS
+createAddress(groupId: number, eventId: number, address: Address) {
+  this.addressService.createAddressForEvent(groupId, eventId, address).subscribe({
+    next: (newAddress) => {
+      this.newAddress = newAddress;
+      this.reloadAddresses(groupId);
+    },
+    error: (error) => {
+      console.error('SocialGroupComponent.createAddress: Error creating new address')
+      console.error(error);
+    }
+  })
+}
 
+reloadAddresses(groupId: number) {
+  this.addressService.index(groupId).subscribe({
+    next: (addresses) => {
+      this.addresses = addresses;
+    } ,
+    error: (error) => {
+      console.error('AddressComponent.reload: failed to reload addresses');
+      console.error(error);
+    }
+  });
+}
 
+toggleNewAddress() {
+  this.showNewAddressForm = true;
+}
+
+cancelNewAddress() {
+  this.showNewAddressForm = false;
+}
 
   // isMember(): number {
   //   let className = "bg-";

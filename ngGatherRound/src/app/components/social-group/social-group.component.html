@@ -27,20 +27,25 @@
   <blockquote>{{selectedGroup.description}}</blockquote><hr>
 
 <!-- Events of Group -->
-  <div class="container-fluid" style="text-align: center;" *ngFor="let event of events">
+  <div class="container-fluid text-center;" *ngFor="let event of events">
     <h2>{{event.title}} </h2>
     <img class="event" [src]="event.imageUrl"><br><br>
     <p>{{event.description}}</p>
     <h3>Event Date:</h3>
     <p>{{event.eventDate}}</p>
+    <h3>Start Time:</h3>
+    <p>{{event.startTime}}</p>
     <h3>Meeting Address:</h3>
-    <p>{{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</p><hr>
+    <a href="http://maps.google.com/?q={{event.meetAddress.address}}{{event.meetAddress.city}},{{event.meetAddress.state}}{{event.meetAddress.zip}}" target="blank">
+      {{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</a><br><br>
+      <h3>Cost:</h3>
+    <p>${{event.cost}}</p><hr>
   </div>
   <button (click)="selectedGroup = null" class="btn btn-primary">Back to Social Groups</button><br><br>
 
 
 <!-- NEW EVENT FORM -->
-<div class="container-fluid" style="text-align: center;" *ngIf="selectedGroupUser && selectedGroupUser.leader">
+<div class="container-fluid text-center" *ngIf="selectedGroupUser && selectedGroupUser.leader">
   <form class="form-control form-label form-group form-check form-inline"><br>
     <h2>Create New Event</h2><br>
     <label for="title">Event Title:</label><br>
@@ -63,7 +68,14 @@
 
     <label for="cost">Event Cost:</label><br>
     <input type="number" id="cost" name="cost" [(ngModel)]="newSocialEvent.cost"><br><br>
-
+    <div *ngIf="!showNewAddressForm">
+    <label>Choose An Existing MeetAddress:</label><br>
+      <select type="select" name="address" [(ngModel)]="newSocialEvent.meetAddress.id" class="form-control text-center">
+        <option *ngFor="let address of addresses" value="{{address.id}}">{{address.name}}</option>
+      </select><br></div>
+      <button *ngIf="!showNewAddressForm" (click)="toggleNewAddress()" class="btn btn-primary">Create New Address</button>
+          <button *ngIf="showNewAddressForm" (click)="cancelNewAddress()" class="btn btn-danger">Cancel New Address</button><br><br>
+          <div *ngIf="showNewAddressForm"><div class="col-6 offset-md-3">
     <label for="meetAddress.name">Meet Address Name:</label><br>
     <input type="text" id="meetAddress.name" name="meetAddress.name" [(ngModel)]="newSocialEvent.meetAddress.name"><br><br>
 
@@ -78,7 +90,7 @@
 
     <label for="meetAddress.zip">Meet Address Zip:</label><br>
     <input type="text" id="meetAddress.zip" name="meetAddress.zip" [(ngModel)]="newSocialEvent.meetAddress.zip"><br><br>
-
+  </div></div>
 
   <button class="btn btn-success" (click)="createSocialEvent(newSocialEvent, selectedGroup.id)" >Create New Event</button><br><br>
   </form></div></div><br><br>

@@ -42,7 +42,7 @@ public class SocialGroup {
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	
-	private boolean enabled;
+	private Boolean enabled;
 	
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
@@ -117,11 +117,11 @@ public class SocialGroup {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public boolean isEnabled() {
+	public Boolean isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 	

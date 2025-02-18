@@ -9,14 +9,15 @@ import { AuthService } from '../../services/auth.service';
   imports: [
     RouterLink,
     NgbModule,
-    CommonModule
+    CommonModule,
 ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })
 export class NavigationComponent {
-// FIELDS
-public isCollapsed = false;
+
+  // FIELDS
+  public isCollapsed = false;
 
 constructor(
   private auth: AuthService,

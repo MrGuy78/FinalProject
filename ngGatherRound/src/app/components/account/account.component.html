@@ -77,27 +77,27 @@
                 </div>
 
                 <!-- EDIT MY GROUP -->
-                <button *ngIf="!isEditingGroup" (click)="editMyGroup()" class="btn btn-primary">Edit This Group</button>
-                <button *ngIf="isEditingGroup" (click)="cancelEditGroup()" class="btn btn-danger">Cancel Edit Group</button><br><br>
-              <div *ngIf="isEditingGroup">
+                <button *ngIf="isEditingGroup?.id !== group.id" (click)="editMyGroup(group)" class="btn btn-primary">Edit This Group</button>
+                <button *ngIf="isEditingGroup?.id === group.id" (click)="cancelEditGroup()" class="btn btn-danger">Cancel Edit Group</button><br><br>
+              <div *ngIf="isEditingGroup && isEditingGroup.id === group.id">
                 <div class="col-6 offset-md-3">
 
                   <label>Name:</label>
-                  <input type="text" [(ngModel)]="group.name" class="form-control text-center" /><br>
+                  <input type="text" [(ngModel)]="isEditingGroup.name" class="form-control text-center" /><br>
 
                   <label>Category:</label><br>
-                  <select type="select" [(ngModel)]="group.category.id" class="form-control text-center">
+                  <select type="select" [(ngModel)]="isEditingGroup.category.id" class="form-control text-center">
                   <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
                   </select><br>
                 </div>
                 <div class="col-10 offset-md-1">
                   <label>Description:</label>
-                  <textarea type="text" cols="50" rows="4" [(ngModel)]="group.description" class="form-control text-center"></textarea><br>
+                  <textarea type="text" cols="50" rows="4" [(ngModel)]="isEditingGroup.description" class="form-control text-center"></textarea><br>
 
                   <label>Image Url:</label>
-                  <input type="text" [(ngModel)]="group.imageUrl" class="form-control text-center" /><br>
+                  <input type="text" [(ngModel)]="isEditingGroup.imageUrl" class="form-control text-center" /><br>
                 </div>
-                <button (click)="saveGroupEdits()" (click)="updateMyGroup(group)" class="btn btn-success">Save Group Edits</button><br>
+                <button (click)="saveGroupEdits()" (click)="updateMyGroup(isEditingGroup)" class="btn btn-success">Save Group Edits</button><br>
               </div><hr>
             </div>
           </div>
@@ -116,7 +116,8 @@
           <h2>Create New Group</h2><br>
           <button *ngIf="!showNewGroupForm" (click)="toggleNewGroup()" class="btn btn-primary">Create New Group</button>
           <button *ngIf="showNewGroupForm" (click)="cancelNewGroup()" class="btn btn-danger">Cancel New Group</button><br><br>
-          <div *ngIf="showNewGroupForm"><div class="col-6 offset-md-3">
+          <div *ngIf="showNewGroupForm">
+            <div class="col-6 offset-md-3">
 
             <label>Name:</label>
             <input type="text" [(ngModel)]="socialGroup.name" class="form-control text-center" /><br>

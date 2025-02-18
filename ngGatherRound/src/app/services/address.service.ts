@@ -12,6 +12,7 @@ export class AddressService {
 
   private groupUrl = environment.baseUrl + 'api/groups';
   private eventUrl = environment.baseUrl + '/events';
+
   constructor(
     private http : HttpClient,
     private auth: AuthService,
@@ -28,13 +29,24 @@ export class AddressService {
     );
   }
 
-  getHttpOptions() {
-    let options = {
-      headers: {
-        Authorization: 'Basic ' + this.auth.getCredentials(),
-        'X-Requested-With': 'XMLHttpRequest',
-      },
-    };
-    return options;
+  index(groupId: number): Observable<Address[]> {
+        return this.http.get<Address[]>(this.groupUrl + '/' + groupId + '/addresses', this.getHttpOptions()).pipe(
+          catchError((error: any) => {
+            console.log(error);
+            return throwError(
+              () => new Error('AddressService.index(): error retrieving addresses: ' + error)
+            );
+          })
+        );
+      }
+
+      getHttpOptions() {
+        let options = {
+          headers: {
+            Authorization: 'Basic ' + this.auth.getCredentials(),
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+        };
+        return options;
+      }
   }
-}

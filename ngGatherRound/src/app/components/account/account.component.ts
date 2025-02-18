@@ -9,6 +9,8 @@ import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category';
 import { SocialGroupService } from '../../services/social-group.service';
 import { UserService } from '../../services/user.service';
+import { Address } from '../../models/address';
+import { AddressService } from '../../services/address.service';
 
 @Component({
   selector: 'app-account',
@@ -30,7 +32,7 @@ export class AccountComponent implements OnInit{
   // GROUP FIELDS
   groups: SocialGroup[] = [];
   socialGroup: SocialGroup = new SocialGroup();
-  isEditingGroup: any;
+  isEditingGroup: SocialGroup | null = null;
   selectedGroup: SocialGroup | null = null;
   showMyGroups: any;
   toggleMyGroups: boolean = false;
@@ -40,11 +42,15 @@ export class AccountComponent implements OnInit{
   // GROUP CATEGORY FIELDS
   categories: Category [] = [];
 
+  // ADDRESS FIELDS
+  addresses: Address [] = [];
+
   constructor(
     private auth: AuthService,
     private router: Router,
     private socialGroupService: SocialGroupService,
     private categoryService: CategoryService,
+    private addressService: AddressService,
     private userService: UserService,
   ){
   }
@@ -155,8 +161,8 @@ export class AccountComponent implements OnInit{
     this.showMyGroups = false;
   }
 
-  editMyGroup(){
-    this.isEditingGroup = true;
+  editMyGroup(socialGroup: SocialGroup){
+    this.isEditingGroup = {...socialGroup};
     }
 
   updateMyGroup(editGroup: SocialGroup) {
@@ -164,7 +170,7 @@ export class AccountComponent implements OnInit{
         next: (updatedGroup) => {
           this.reloadOwnedGroups();
           this.selectedGroup = updatedGroup;
-          this.isEditingGroup = false;
+          this.isEditingGroup = null;
         },
         error: (error) => {
           console.error('AccountComponent.updateGroup: Error updating group');
@@ -174,7 +180,7 @@ export class AccountComponent implements OnInit{
     }
 
   cancelEditGroup() {
-      this.isEditingGroup = false;
+      this.isEditingGroup = null;
      }
 
   saveGroupEdits() {
