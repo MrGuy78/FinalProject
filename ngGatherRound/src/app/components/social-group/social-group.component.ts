@@ -112,6 +112,7 @@ export class SocialGroupComponent implements OnInit {
   }
 
   createSocialEvent(socialEvent : SocialEvent, groupId: number) {
+    socialEvent.meetAddress.id = 1;
     this.socialEventService.create(socialEvent, groupId).subscribe({
       next: (groupEvents) => {
       this.displayGroupSocialEvents(groupId);
