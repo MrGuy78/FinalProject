@@ -22,48 +22,48 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "social_group")
 public class SocialGroup {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	private String description;
-	
+
 	@Column(name = "image_url")
 	private String imageUrl;
-	
+
 	@CreationTimestamp
-	@Column(name = "create_date") 
+	@Column(name = "create_date")
 	private LocalDateTime createDate;
-	
+
 	@UpdateTimestamp
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
-	
+
 	private Boolean enabled;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
 	private User owner;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "socialGroup")
 	private List<GroupUser> groupUsers;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "group_category_id")
 	private GroupCategory category;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "group")
 	private List<GroupComment> comments;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "group")
 	private List<SocialEvent> events;
-	
+
 	public SocialGroup() {
 		super();
 	}
@@ -71,7 +71,6 @@ public class SocialGroup {
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -124,7 +123,6 @@ public class SocialGroup {
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
-	
 
 	public User getOwner() {
 		return owner;
@@ -133,7 +131,6 @@ public class SocialGroup {
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
-	
 
 	public List<GroupUser> getGroupUsers() {
 		return groupUsers;
@@ -143,7 +140,6 @@ public class SocialGroup {
 		this.groupUsers = groupUsers;
 	}
 
-	
 	public GroupCategory getCategory() {
 		return category;
 	}
@@ -151,8 +147,6 @@ public class SocialGroup {
 	public void setCategory(GroupCategory category) {
 		this.category = category;
 	}
-	
-	
 
 	public List<GroupComment> getComments() {
 		return comments;
@@ -161,7 +155,6 @@ public class SocialGroup {
 	public void setComments(List<GroupComment> comments) {
 		this.comments = comments;
 	}
-	
 
 	public List<SocialEvent> getEvents() {
 		return events;
@@ -195,8 +188,5 @@ public class SocialGroup {
 		return "SocialGroup [id=" + id + ", name=" + name + ", description=" + description + ", imageUrl=" + imageUrl
 				+ ", createDate=" + createDate + ", lastUpdate=" + lastUpdate + ", enabled=" + enabled + "]";
 	}
-	
-	
-	
 
 }
