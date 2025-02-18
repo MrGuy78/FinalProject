@@ -1,0 +1,12 @@
+label {
+  font-weight: bold;
+}
+
+img.group {
+  width: 150px;
+  border-radius: 10px;
+}
+
+p.title {
+  font-weight: bold;
+}

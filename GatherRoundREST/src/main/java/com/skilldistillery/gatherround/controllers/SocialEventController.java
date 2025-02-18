@@ -1,5 +1,4 @@
 package com.skilldistillery.gatherround.controllers;
-
 import java.net.http.HttpRequest;
 import java.security.Principal;
 import java.util.List;
@@ -21,31 +20,31 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost/"})
+@CrossOrigin({ "*", "http://localhost/" })
 public class SocialEventController {
-	
+
 	@Autowired
 	private SocialEventService eventService;
-	
+
 	@GetMapping("groups/{groupId}/events")
 	public List<SocialEvent> index(@PathVariable("groupId") int groupId, 
 			HttpServletResponse response,
-			HttpServletRequest request){		
+			HttpServletRequest request) {
 		List<SocialEvent> events = eventService.findByGroup(groupId);
-		if(events == null) {
+		if (events == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 400
 		}
 		response.setStatus(HttpServletResponse.SC_OK); // 200
 		return events;
 	}
-	
+
 	@PostMapping("groups/{groupId}/events")
 	public SocialEvent createEvent(@PathVariable("groupId") int groupId, 
-			@RequestBody SocialEvent socialEvent, 
+			@RequestBody SocialEvent socialEvent,
 			HttpServletResponse response, Principal principal) {
 		try {
 			socialEvent = eventService.create(principal.getName(), socialEvent, groupId);
-			if(socialEvent == null) {
+			if (socialEvent == null) {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
 			}
 		} catch (Exception e) {

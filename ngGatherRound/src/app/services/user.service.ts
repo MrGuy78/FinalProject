@@ -29,10 +29,10 @@ private url = environment.baseUrl + 'api/users';
 
   update(user: User) : Observable<User> {
     return this.http.put<User>(this.url + '/' + user.id, user, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
+      catchError((error: any) => {
+        console.log(error);
         return throwError(
-          () => new Error('UserService.index(): error updating user: ' + err)
+          () => new Error('UserService.index(): error updating user: ' + error)
         );
       })
     );

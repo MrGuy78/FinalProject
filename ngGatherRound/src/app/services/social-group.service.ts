@@ -63,21 +63,21 @@ export class SocialGroupService {
   create(socialGroup: SocialGroup): Observable<SocialGroup> {
     socialGroup.enabled = true;
     return this.http.post<SocialGroup>(this.url, socialGroup, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
+      catchError((error: any) => {
+        console.log(error);
         return throwError(
-          () => new Error('GroupService.create(): error creating group: ' + err)
+          () => new Error('GroupService.create(): error creating group: ' + error)
         );
       })
     );
   }
 
-  update(socialGroup: SocialGroup ) : Observable<SocialGroup> {
+  update(socialGroup: SocialGroup): Observable<SocialGroup> {
     return this.http.put<SocialGroup>(this.url +'/' + socialGroup.id, socialGroup, this.getHttpOptions()).pipe(
-      catchError((error:any) => {
+      catchError((error: any) => {
         console.log(error);
         return throwError(
-          () => new Error ('SocialGroupService.update(): error updating SGS' + error.message)
+          () => new Error ('SocialGroupService.update(): error updating group: ' + error.message)
         );
       })
     );

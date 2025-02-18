@@ -26,40 +26,39 @@ import jakarta.servlet.http.HttpServletResponse;
 public class SocialGroupController {
 
 	@Autowired
-	private SocialGroupService groupService;
+	private SocialGroupService socialGroupService;
 
 	@GetMapping("groups")
 	public List<SocialGroup> findAllGroups() {
-		return groupService.index();
+		return socialGroupService.index();
 	}
 
 	@GetMapping("groups/owned")
 	public List<SocialGroup> findCurrentUserGroups(Principal principal) {
-		return groupService.loggedInUserGroups(principal.getName());
+		return socialGroupService.loggedInUserGroups(principal.getName());
 	}
 
 	@GetMapping("groups/{groupId}")
 	public SocialGroup findGroupById(@PathVariable("groupId") int groupId) {
-		SocialGroup foundGroup = groupService.show(groupId);
+		SocialGroup foundGroup = socialGroupService.show(groupId);
 		return foundGroup;
 	}
 
 	@GetMapping("categories")
 	public List<GroupCategory> findAllCategories() {
-		return groupService.showAllCategories();
+		return socialGroupService.showAllCategories();
 	}
 
 	@PutMapping("groups/{groupId}")
 	public SocialGroup editGroup(@PathVariable("groupId") int groupId, @RequestBody SocialGroup socialGroup,
 			Principal principal, HttpServletRequest request, HttpServletResponse response) {
 		try {
-			socialGroup = groupService.update(socialGroup, principal.getName(), groupId);
-			response.setStatus(HttpServletResponse.SC_OK); //200
-		} catch(Exception e) {
+			socialGroup = socialGroupService.update(socialGroup, principal.getName(), groupId);
+			response.setStatus(HttpServletResponse.SC_OK); // 200
+		} catch (Exception e) {
 			e.printStackTrace();
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); //400
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
 		}
-
 		return socialGroup;
 	}
 
@@ -68,7 +67,7 @@ public class SocialGroupController {
 			HttpServletRequest request, HttpServletResponse response) {
 		SocialGroup createdGroup = null;
 		try {
-			createdGroup = groupService.create(socialGroup, principal.getName());
+			createdGroup = socialGroupService.create(socialGroup, principal.getName());
 			if (createdGroup == null) {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
 			} else {

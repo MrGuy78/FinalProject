@@ -24,70 +24,70 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "social_event")
 public class SocialEvent {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String title;
-	
+
 	private String description;
-	
+
 	@Column(name = "event_date")
 	private LocalDate eventDate;
-	
+
 	@Column(name = "start_time")
 	private LocalTime startTime;
-	
+
 	@Column(name = "end_time")
 	private LocalTime endTime;
-	
+
 	@Column(name = "image_url")
 	private String imageUrl;
-	
+
 	@CreationTimestamp
-	@Column(name = "create_date") 
+	@Column(name = "create_date")
 	private LocalDateTime createDate;
-	
+
 	@UpdateTimestamp
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
-	
+
 	private Double cost;
-	
+
 	private boolean enabled;
-	
+
 	@Column(name = "member_only")
 	private boolean memberOnly;
-	
-	//JsonProperties? to see userId associated with group
+
+	// JsonProperties? to see userId associated with group
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "meet_address_id")
 	private Address meetAddress;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "event_address_id")
 	private Address eventAddress;
-	
-	//JsonProperties? to see groupId associated with group
+
+	// JsonProperties? to see groupId associated with group
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "social_group_id")
 	private SocialGroup group;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "event")
 	private List<EventUser> eventUsers;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "event")
 	private List<EventImage> images;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "event")
 	private List<EventComment> comments;
@@ -191,7 +191,7 @@ public class SocialEvent {
 	public void setMemberOnly(boolean memberOnly) {
 		this.memberOnly = memberOnly;
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -200,7 +200,6 @@ public class SocialEvent {
 		this.user = user;
 	}
 
-	
 	public Address getMeetAddress() {
 		return meetAddress;
 	}
@@ -208,7 +207,6 @@ public class SocialEvent {
 	public void setMeetAddress(Address address) {
 		this.meetAddress = address;
 	}
-	
 
 	public SocialGroup getGroup() {
 		return group;
@@ -218,8 +216,6 @@ public class SocialEvent {
 		this.group = group;
 	}
 
-	
-	
 	public List<EventUser> getEventUsers() {
 		return eventUsers;
 	}
@@ -227,8 +223,6 @@ public class SocialEvent {
 	public void setEventUsers(List<EventUser> eventUsers) {
 		this.eventUsers = eventUsers;
 	}
-	
-	
 
 	public List<EventImage> getImages() {
 		return images;
@@ -237,7 +231,6 @@ public class SocialEvent {
 	public void setImages(List<EventImage> images) {
 		this.images = images;
 	}
-	
 
 	public List<EventComment> getComments() {
 		return comments;
@@ -246,8 +239,6 @@ public class SocialEvent {
 	public void setComments(List<EventComment> comments) {
 		this.comments = comments;
 	}
-	
-	
 
 	public Address getEventAddress() {
 		return eventAddress;
@@ -288,7 +279,5 @@ public class SocialEvent {
 				+ ", createDate=" + createDate + ", lastUpdate=" + lastUpdate + ", cost=" + cost + ", enabled="
 				+ enabled + ", memberOnly=" + memberOnly + "]";
 	}
-
-
 
 }

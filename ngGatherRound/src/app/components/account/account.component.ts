@@ -1,4 +1,4 @@
-import { Router, RouterLink } from '@angular/router';
+import { Router} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
@@ -9,14 +9,11 @@ import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category';
 import { SocialGroupService } from '../../services/social-group.service';
 import { UserService } from '../../services/user.service';
-import { group } from '@angular/animations';
-import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/signals';
 
 @Component({
   selector: 'app-account',
   imports: [
     CommonModule,
-    RouterLink,
     FormsModule,
 
   ],
@@ -25,20 +22,22 @@ import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/sign
 })
 export class AccountComponent implements OnInit{
 
+  // USER FIELDS
   loggedInUser: User = new User();
-  groups: SocialGroup[] = [];
-  categories: Category [] = [];
-  socialGroup: SocialGroup = new SocialGroup();
   user: User | null = null;
   isEditing: any;
-  isEditingGroup: SocialGroup[] = [];
-  selectedGroup: any;
-  showMyGroups: SocialGroup[] = [];
+
+  // GROUP FIELDS
+  groups: SocialGroup[] = [];
+  socialGroup: SocialGroup = new SocialGroup();
+  isEditingGroup: any;
+  selectedGroup: SocialGroup | null = null;
+  showMyGroups: any;
   toggleMyGroups: boolean = false;
-  editGroup: SocialGroup | null = null;
   ownedGroups: SocialGroup [] = [];
 
-
+  // GROUP CATEGORY FIELDS
+  categories: Category [] = [];
 
   constructor(
     private auth: AuthService,
@@ -61,6 +60,7 @@ export class AccountComponent implements OnInit{
    }
   }
 
+  // USER METHODS
   getUser(){
     this.auth.getLoggedInUser().subscribe({
       next: (user) => {
@@ -72,6 +72,32 @@ export class AccountComponent implements OnInit{
     })
   }
 
+  editProfile() {
+    this.isEditing = true;
+  }
+
+  updateUser(user: User) : void {
+    this.userService.update(user).subscribe({
+      next: (updatedUser) => {
+        this.loggedInUser = updatedUser;
+      },
+      error: (failure) => {
+        console.error('AccountComponent.updateUser: Error updating user');
+        console.error(failure);
+      }
+     });
+    }
+
+    cancelEdit() {
+      this.isEditing = false;
+     }
+
+    saveEdits() {
+      console.log('Profile Updated:', this.loggedInUser)
+      this.isEditing = false;
+    }
+
+  // GROUP METHODS
   reloadSocialGroups() {
     this.socialGroupService.index().subscribe({
       next: (SocialGroups) => {
@@ -96,18 +122,6 @@ export class AccountComponent implements OnInit{
     });
   }
 
-  reloadGroupCategories() {
-    this.categoryService.index().subscribe({
-      next: (categories) => {
-        this.categories = categories;
-      } ,
-      error: (failure) => {
-        console.error('GroupCategoryComponent.reload: failed to reload categories');
-        console.error(failure);
-      }
-    });
-  }
-
   createNewGroup(socialGroup: SocialGroup) {
       this.socialGroupService.create(socialGroup).subscribe({
         next: () => {
@@ -122,56 +136,53 @@ export class AccountComponent implements OnInit{
       });
     }
 
-  updateUser(user: User) : void {
-    this.userService.update(user).subscribe({
-      next: (updatedUser) => {
-        this.loggedInUser = updatedUser;
-      },
-      error: (failure) => {
-        console.error('AccountComponent.updateUser: Error updating user');
-        console.error(failure);
-      }
-     });
-    }
 
-    editProfile() {
-      this.isEditing = true;
-    }
-
-    saveEdits() {
-      console.log('Profile Updated:', this.loggedInUser)
-      this.isEditing = false;
-    }
-
-    cancelEdit() {
-      this.isEditing = false;
-     }
-
-     cancelEditGroup() {
-      this.isEditingGroup = [];
-     }
-
-    displayMyGroups() {
-
+  displayMyGroups() {
       console.log('Display Groups by Leader');
       this.showMyGroups = this.groups.filter(group => group.id === this.loggedInUser.id);
     }
 
-    editMyGroup(group: SocialGroup){
-      console.log
-    this.editGroup = group;
+  hideMyGroups() {
+    this.showMyGroups = false;
+  }
+
+  editMyGroup(){
+    this.isEditingGroup = true;
     }
 
-    updateMyGroup(group: SocialGroup){
-      this.socialGroupService.update(group).subscribe({
-        next: (group) => {
-          this.socialGroup = group;
+  updateMyGroup(editGroup: SocialGroup) {
+      this.socialGroupService.update(editGroup).subscribe({
+        next: (updatedGroup) => {
+          this.reloadOwnedGroups();
+          this.selectedGroup = updatedGroup;
+          this.isEditingGroup = false;
         },
-        error: (failure) => {
+        error: (error) => {
           console.error('AccountComponent.updateGroup: Error updating group');
-          console.error(failure);
+          console.error(error);
         }
        });
     }
+
+  cancelEditGroup() {
+      this.isEditingGroup = false;
+     }
+
+  saveGroupEdits() {
+    console.log('Group Updated:', this.socialGroup)
+    }
+
+  // GROUP CATEGORY METHODS
+  reloadGroupCategories() {
+    this.categoryService.index().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+      } ,
+      error: (failure) => {
+        console.error('GroupCategoryComponent.reload: failed to reload categories');
+        console.error(failure);
+      }
+    });
+  }
 
 }
