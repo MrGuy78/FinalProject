@@ -41,4 +41,9 @@ public class SocialEventServiceImpl implements SocialEventService {
 		return eventRepository.saveAndFlush(event);
 	}
 
+	@Override
+	public SocialEvent show(int eventId) {
+		return eventRepository.findById(eventId).orElse(null);
+	}
+
 }

@@ -8,12 +8,9 @@ public interface AddressService {
 	
 //	public List<Address> index();
 	
-	public Address show(int addressId);
+	public Address createAddressForUser(String username, Address address);
 	
-	public Address create(String username, Address address);
+	public Address createAddressForEvent(String username, int groupId, int eventId, Address address);
 	
-	public Address update(String username, int addressId, Address address);
-	
-	public Address delete(String username, int addressId);
 
 }
