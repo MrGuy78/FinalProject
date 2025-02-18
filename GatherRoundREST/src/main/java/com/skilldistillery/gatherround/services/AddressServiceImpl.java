@@ -1,5 +1,7 @@
 package com.skilldistillery.gatherround.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +16,16 @@ import com.skilldistillery.gatherround.repositories.UserRepository;
 
 @Service
 public class AddressServiceImpl implements AddressService {
-	
+
 	@Autowired
 	private AddressRepository addressRepo;
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	private SocialEventRepository eventRepository;
-	
+
 	@Autowired
 	private SocialGroupRepository socialGroupRepository;
 
@@ -35,11 +37,13 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public Address createAddressForEvent(String username, int groupId, int eventId, Address address) {
-		User managedUser = userRepository.findByUsernameAndSocialGroups_IdOrUsernameAndGroupUsers_SocialGroup_IdAndGroupUsers_LeaderIsTrue(username, groupId, username, groupId);
+		User managedUser = userRepository
+				.findByUsernameAndSocialGroups_IdOrUsernameAndGroupUsers_SocialGroup_IdAndGroupUsers_LeaderIsTrue(
+						username, groupId, username, groupId);
 		SocialGroup group = socialGroupRepository.findById(groupId).orElse(null);
 		SocialEvent event = eventRepository.findById(eventId).orElse(null);
-		
-		if(managedUser == null || group == null || event == null ) {
+
+		if (managedUser == null || group == null || event == null) {
 			return null;
 		}
 		addressRepo.saveAndFlush(address);
@@ -48,8 +52,12 @@ public class AddressServiceImpl implements AddressService {
 		return address;
 	}
 
-
-
-	
+	@Override
+	public List<Address> addressByGroup(int groupId) {
+		if (!socialGroupRepository.existsById(groupId)) {
+			return null;
+		}
+		return addressRepo.findByEvents_Group_Id(groupId);
+	}
 
 }

@@ -6,7 +6,7 @@ import com.skilldistillery.gatherround.entities.Address;
 
 public interface AddressService {
 	
-//	public List<Address> index();
+	public List<Address> addressByGroup(int groupId);
 	
 	public Address createAddressForUser(String username, Address address);
 	
