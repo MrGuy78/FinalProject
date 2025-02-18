@@ -53,4 +53,29 @@ public class SocialEventServiceImpl implements SocialEventService {
 		return eventRepository.findById(eventId).orElse(null);
 	}
 
-}
+	@Override
+	public SocialEvent update(String username, int eventId, SocialEvent event, int groupId) {
+		User managedUser = userRepository.
+				findByUsernameAndSocialGroups_IdOrUsernameAndGroupUsers_SocialGroup_IdAndGroupUsers_LeaderIsTrue(username, groupId, username, groupId);
+		if (managedUser == null) {
+			return null;
+		}
+		SocialEvent managedSocialEvent = eventRepository.findById(eventId).orElse(null );
+		if (managedSocialEvent != null) {
+			managedSocialEvent.setTitle(event.getTitle());
+			managedSocialEvent.setDescription(event.getDescription());
+			managedSocialEvent.setImageUrl(event.getImageUrl());
+			managedSocialEvent.setEventDate(event.getEventDate());
+			managedSocialEvent.setStartTime(event.getStartTime());
+			managedSocialEvent.setEndTime(event.getEndTime());
+			managedSocialEvent.setCost(event.getCost());
+			managedSocialEvent.setMemberOnly(event.isMemberOnly());
+			managedSocialEvent.setMeetAddress(event.getMeetAddress());
+			managedSocialEvent.setEventAddress(event.getEventAddress());
+			
+			eventRepository.saveAndFlush(managedSocialEvent);
+
+		}
+		return managedSocialEvent;
+	}
+	}

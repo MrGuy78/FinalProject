@@ -1,5 +1,5 @@
 package com.skilldistillery.gatherround.controllers;
-import java.net.http.HttpRequest;
+
 import java.security.Principal;
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,8 +28,7 @@ public class SocialEventController {
 	private SocialEventService eventService;
 
 	@GetMapping("groups/{groupId}/events")
-	public List<SocialEvent> index(@PathVariable("groupId") int groupId, 
-			HttpServletResponse response,
+	public List<SocialEvent> index(@PathVariable("groupId") int groupId, HttpServletResponse response,
 			HttpServletRequest request) {
 		List<SocialEvent> events = eventService.findByGroup(groupId);
 		if (events == null) {
@@ -39,8 +39,7 @@ public class SocialEventController {
 	}
 
 	@PostMapping("groups/{groupId}/events")
-	public SocialEvent createEvent(@PathVariable("groupId") int groupId, 
-			@RequestBody SocialEvent socialEvent,
+	public SocialEvent createEvent(@PathVariable("groupId") int groupId, @RequestBody SocialEvent socialEvent,
 			HttpServletResponse response, Principal principal) {
 		try {
 			socialEvent = eventService.create(principal.getName(), socialEvent, groupId);
@@ -54,17 +53,31 @@ public class SocialEventController {
 		}
 		return socialEvent;
 	}
-	
-	
+
 	@GetMapping("groups/events/{eventId}")
 	public SocialEvent findEventById(@PathVariable("eventId") int eventId, HttpServletResponse response,
 			HttpServletRequest request) {
 		SocialEvent foundEvent = eventService.show(eventId);
-		if(foundEvent == null) {
+		if (foundEvent == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
 		}
 		response.setStatus(HttpServletResponse.SC_OK); // 200
 		return foundEvent;
+	}
+
+	@PutMapping("groups/{groupId}/events/{eventId}")
+	public SocialEvent updateEvent(@PathVariable("eventId") int eventId, @PathVariable("groupId") int groupId,
+			@RequestBody SocialEvent socialEvent, Principal principal, HttpServletResponse response,
+			HttpServletRequest request) {
+		try {
+			socialEvent = eventService.update(principal.getName(), eventId, socialEvent, groupId);
+			response.setStatus(HttpServletResponse.SC_OK); // 200
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
+		}
+		return socialEvent;
+
 	}
 
 }
