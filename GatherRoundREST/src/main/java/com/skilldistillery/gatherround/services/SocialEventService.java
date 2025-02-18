@@ -15,7 +15,7 @@ public interface SocialEventService {
 	
 	public SocialEvent show(int eventId);
 
-//	public SocialEvent update(String username, int eventId, SocialEvent event);
+	public SocialEvent update(String username, int eventId, SocialEvent event, int groupId);
 //	
 //	//We want to disable
 //	public SocialEvent disableEvent(int eventId);
