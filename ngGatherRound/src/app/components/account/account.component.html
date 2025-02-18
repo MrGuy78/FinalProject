@@ -8,9 +8,10 @@
       <div class="card text-dark bg-light mb-5">
         <div class="card-body">
           <h1 class="text-center">{{loggedInUser.username}}</h1>
+          <button class="btn btn-success">Send Direct Message</button>
             <hr>
           <h4>Name: {{loggedInUser.firstName}} {{loggedInUser.lastName}}</h4>
-          <h5>{{loggedInUser.email}} >>> {{loggedInUser.phone}}</h5><br>
+          <h5><a href= "mailto:{{loggedInUser.email}}">Send Email</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=“tel:{{loggedInUser.phone}}”>Call or Text</a></h5><br>
           <h4>Bio:</h4>
           <div class="card col-8 offset-md-2 text-dark bg-light mb-4 ">
             <div class="card-body">
@@ -34,7 +35,7 @@
               <input type="email" [(ngModel)]="loggedInUser.email" class="form-control text-center" /><br>
 
               <label>Phone:</label>
-              <input type="phone" [(ngModel)]="loggedInUser.phone" class="form-control text-center" />
+              <input type="tel" [(ngModel)]="loggedInUser.phone" class="form-control text-center" />
             </div>
           </div>
           <div class="col-10 offset-md-1">
