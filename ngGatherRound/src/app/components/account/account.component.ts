@@ -31,7 +31,7 @@ export class AccountComponent implements OnInit{
   socialGroup: SocialGroup = new SocialGroup();
   user: User | null = null;
   isEditing: any;
-  isEditingGroup: any;
+  isEditingGroup: SocialGroup[] = [];
   selectedGroup: any;
   showMyGroups: SocialGroup[] = [];
   toggleMyGroups: boolean = false;
@@ -145,7 +145,11 @@ export class AccountComponent implements OnInit{
 
     cancelEdit() {
       this.isEditing = false;
-    }
+     }
+
+     cancelEditGroup() {
+      this.isEditingGroup = [];
+     }
 
     displayMyGroups() {
 
@@ -154,9 +158,20 @@ export class AccountComponent implements OnInit{
     }
 
     editMyGroup(group: SocialGroup){
+      console.log
     this.editGroup = group;
     }
 
-
+    updateMyGroup(group: SocialGroup){
+      this.socialGroupService.update(group).subscribe({
+        next: (group) => {
+          this.socialGroup = group;
+        },
+        error: (failure) => {
+          console.error('AccountComponent.updateGroup: Error updating group');
+          console.error(failure);
+        }
+       });
+    }
 
 }

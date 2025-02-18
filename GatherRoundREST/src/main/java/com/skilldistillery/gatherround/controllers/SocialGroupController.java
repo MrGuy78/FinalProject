@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,32 +28,44 @@ public class SocialGroupController {
 	@Autowired
 	private SocialGroupService groupService;
 
-	@GetMapping("groups") 
+	@GetMapping("groups")
 	public List<SocialGroup> findAllGroups() {
 		return groupService.index();
 	}
-	
-	@GetMapping("groups/owned") 
+
+	@GetMapping("groups/owned")
 	public List<SocialGroup> findCurrentUserGroups(Principal principal) {
 		return groupService.loggedInUserGroups(principal.getName());
 	}
-	
-	@GetMapping("groups/{groupId}") 
+
+	@GetMapping("groups/{groupId}")
 	public SocialGroup findGroupById(@PathVariable("groupId") int groupId) {
 		SocialGroup foundGroup = groupService.show(groupId);
 		return foundGroup;
 	}
-	
-	@GetMapping("categories") 
+
+	@GetMapping("categories")
 	public List<GroupCategory> findAllCategories() {
 		return groupService.showAllCategories();
 	}
-	
+
+	@PutMapping("groups/{groupId}")
+	public SocialGroup editGroup(@PathVariable("groupId") int groupId, @RequestBody SocialGroup socialGroup,
+			Principal principal, HttpServletRequest request, HttpServletResponse response) {
+		try {
+			socialGroup = groupService.update(socialGroup, principal.getName(), groupId);
+			response.setStatus(HttpServletResponse.SC_OK); //200
+		} catch(Exception e) {
+			e.printStackTrace();
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); //400
+		}
+
+		return socialGroup;
+	}
+
 	@PostMapping({ "groups", "/groups" })
-	public SocialGroup addNewGroup(@RequestBody SocialGroup socialGroup,
-			Principal principal,
-			HttpServletRequest request, 
-			HttpServletResponse response) {
+	public SocialGroup addNewGroup(@RequestBody SocialGroup socialGroup, Principal principal,
+			HttpServletRequest request, HttpServletResponse response) {
 		SocialGroup createdGroup = null;
 		try {
 			createdGroup = groupService.create(socialGroup, principal.getName());
@@ -67,7 +80,5 @@ public class SocialGroupController {
 		}
 		return createdGroup;
 	}
-	
-	
 
 }

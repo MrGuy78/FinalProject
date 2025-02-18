@@ -1,9 +1,9 @@
+import { SocialGroup } from './../models/social-group';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
-import { SocialGroup } from '../models/social-group';
 
 @Injectable({
   providedIn: 'root'
@@ -72,4 +72,15 @@ export class SocialGroupService {
     );
   }
 
-}
+  update(socialGroup: SocialGroup ) : Observable<SocialGroup> {
+    return this.http.put<SocialGroup>(this.url +'/' + socialGroup.id, socialGroup, this.getHttpOptions()).pipe(
+      catchError((error:any) => {
+        console.log(error);
+        return throwError(
+          () => new Error ('SocialGroupService.update(): error updating SGS' + error.message)
+        );
+      })
+    );
+  }
+ }
+

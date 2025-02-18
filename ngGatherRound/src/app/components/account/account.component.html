@@ -69,25 +69,34 @@
 
       <!-- EDIT MY GROUP -->
 
+      <div class="container-fluid" style="text-align: center;">
 
       <button (click)="editMyGroup(group)" class="btn btn-primary">Edit My Group</button>
 
+      <br>
+
       <div *ngIf="isEditingGroup">
         <label>Name:</label>
-        <input type="text" [(ngModel)]="ownedGroups" class="form-control" /><br>
+        <input type="text" [(ngModel)]="group.name" class="form-control" /><br>
 
         <label>Description:</label>
-        <input type="text" [(ngModel)]="loggedInUser.lastName" class="form-control" /><br>
+        <input type="text" [(ngModel)]="group.description" class="form-control" /><br>
 
         <label>imageUrl:</label>
-        <input type="email" [(ngModel)]="loggedInUser.email" class="form-control" /><br>
+        <input type="text" [(ngModel)]="group.imageUrl" class="form-control" /><br>
 
         <label>Category:</label>
-        <input type="phone" [(ngModel)]="loggedInUser.phone" class="form-control" /><br>
+        <input type="select" [(ngModel)]="group.category" class="form-control" /><br>
+
+        <button (click)="updateMyGroup(group)" class="btn btn-primary">Save</button><br><br>
+        <button (click)="cancelEdit()" class="btn btn-danger">Cancel</button><br><br>
 
       </div>
   </div>
-</div><br>
+  </div>
+  </div>
+  </div>
+<br>
 
 <!-- NEW GROUP FORM -->
 <div class="container-fluid" style="text-align: center;">
