@@ -28,11 +28,11 @@
   <p><strong>Category: </strong>{{selectedGroup.category.name}}</p>
   <!-- <h3>{{selectedGroupUser.leader}}</h3> // FIX ME -->
    <h4>Description:</h4>
-  <blockquote>{{selectedGroup.description}}</blockquote><hr>
+  <blockquote>{{selectedGroup.description}}</blockquote>
 
 <!-- Events of Group -->
 
-  <div class="container-fluid text-center;" *ngFor="let event of events">
+  <div class="container-fluid text-center;" *ngFor="let event of events"><hr>
     <h2>{{event.title}} </h2>
     <img class="event" [src]="event.imageUrl"><br><br>
     <p>{{event.description}}</p>
@@ -41,14 +41,14 @@
     <h3>Start Time:</h3>
     <p>{{event.startTime}}</p>
     <h3>Meeting Address:</h3>
+    <h5>{{event.meetAddress.name}}</h5>
     <a href="http://maps.google.com/?q={{event.meetAddress.address}}{{event.meetAddress.city}},{{event.meetAddress.state}}{{event.meetAddress.zip}}" target="blank">
       {{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</a><br><br>
       <h3>Cost:</h3>
     <p>${{event.cost}}.00</p>
 
-
   <!--UPDATE SOCIAL EVENT FORM-->
-<button *ngIf="editEvent?.id !== event.id" (click)="setEditEvent(event)" class="btn btn-primary">Edit This Event</button><hr>
+<button *ngIf="editEvent?.id !== event.id" (click)="setEditEvent(event)" class="btn btn-primary">Edit This Event</button>
 <button *ngIf="editEvent?.id === event.id" (click)="cancelEditEvent()" class="btn btn-danger">Cancel Edit Event</button><br><br>
 <div *ngIf="editEvent && editEvent.id === event.id" >
 <form class="form-control form-label form-group form-check form-inline"><br>
@@ -129,6 +129,7 @@
 
     <label for="cost">Event Cost:</label><br>
     <input type="number" id="cost" name="cost" [(ngModel)]="newSocialEvent.cost"><br><br>
+
     <div *ngIf="!showNewAddressForm">
     <label>Choose An Existing MeetAddress:</label><br>
       <select type="select" name="address" [(ngModel)]="newSocialEvent.meetAddress.id" class="form-control text-center">
@@ -156,5 +157,6 @@
   <button class="btn btn-success" (click)="createSocialEvent(newSocialEvent, selectedGroup.id)" >Create New Event</button><br><br>
   </form></div></div><br><br>
 </div></div></div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
