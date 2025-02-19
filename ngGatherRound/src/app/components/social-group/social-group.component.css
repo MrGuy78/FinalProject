@@ -14,6 +14,13 @@ img.group {
   border-width: medium;
 }
 
+.card {
+  border-radius: 10px;
+  border-color: #F1642E;
+  border-style: solid;
+  border-width: medium;
+}
+
 label {
   font-weight: bold;
 }

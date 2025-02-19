@@ -2,3 +2,9 @@ img.group {
   width: 150px;
   border-radius: 10px;
 }
+
+img.thumbnail {
+  border-color: #67af31;
+  border-style: solid;
+  border-width: medium;
+}

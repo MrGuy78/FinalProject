@@ -2,11 +2,16 @@ img.thumbnail {
   border-color: #67af31;
   border-style: solid;
   border-width: medium;
+  border-radius: 10px;
 }
 
 .card {
-  margin: 0 auto; /* Added */
-  float: none; /* Added */
+  border-radius: 10px;
+  border-color: #F1642E;
+  border-style: solid;
+  border-width: medium;
+  margin: 0 auto;
+  float: none;
 }
 
 .btn-primary {

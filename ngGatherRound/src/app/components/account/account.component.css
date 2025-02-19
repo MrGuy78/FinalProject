@@ -2,6 +2,13 @@ label {
   font-weight: bold;
 }
 
+.card {
+  border-radius: 10px;
+  border-color: #F1642E;
+  border-style: solid;
+  border-width: medium;
+}
+
 img.group {
   width: 150px;
   border-radius: 10px;
