@@ -1,5 +1,7 @@
 package com.skilldistillery.gatherround.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.skilldistillery.gatherround.entities.GroupUser;
@@ -9,4 +11,5 @@ public interface GroupUserRepository extends JpaRepository<GroupUser, GroupUserI
 	
 	GroupUser findByUserUsernameAndSocialGroup_Id(String username, int groupId);
 	
+	List<GroupUser> findBySocialGroup_Id (int groupId);
 }

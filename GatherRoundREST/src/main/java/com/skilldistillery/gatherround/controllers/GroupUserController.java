@@ -1,6 +1,7 @@
 package com.skilldistillery.gatherround.controllers;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,5 +31,10 @@ public class GroupUserController {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
 		}
 		return foundGroupUser;
+	}
+	
+	@GetMapping("groups/{groupId}/groupUsers/all")
+	public List<GroupUser> findAllGroupUsers(@PathVariable("groupId") int groupId, HttpServletResponse response ){
+		return groupUserService.findBySocialGroupId(groupId);
 	}
 }

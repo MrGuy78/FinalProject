@@ -36,6 +36,7 @@ export class SocialGroupComponent implements OnInit {
 
   loggedInUser: User | null = null;
   selectedGroupUser: GroupUser | null = null;
+  selectedGroupMembers: GroupUser[] = [];
 
 
   // ADDRESS FIELDS
@@ -99,6 +100,19 @@ export class SocialGroupComponent implements OnInit {
     this.selectedGroup = socialGroup;
     this.loadGroupUser(socialGroup.id);
     this.reloadAddresses(socialGroup.id);
+    this.loadGroupMembers(socialGroup.id);
+  }
+
+  loadGroupMembers(groupId: number){
+    this.groupUserService.showAllUsers(groupId).subscribe({
+      next: (members) => {
+        this.selectedGroupMembers = members;
+      } ,
+      error: (failure) => {
+        console.error('SocialGroupComponent.loadGroupMembers: failed to reload group users');
+        console.error(failure);
+      }
+    })
   }
 
   groupDetail(groupId: number) {
@@ -154,12 +168,15 @@ export class SocialGroupComponent implements OnInit {
   }
 
   setEditEvent(socialEvent : SocialEvent){
-    this.editEvent = Object.assign({}, this.selectedEvent);
+    this.editEvent = {...socialEvent};
+    // this.editEvent = Object.assign({}, this.selectedEvent); // try socialEvent"
   }
   cancelEditEvent() {
     this.editEvent = null;
    }
 
+
+   //Group User Methods
   loadGroupUser(groupId: number) {
     this.groupUserService.show(groupId).subscribe({
       next: (groupUser) => {
@@ -172,6 +189,10 @@ export class SocialGroupComponent implements OnInit {
       }
     });
   }
+
+
+
+
 
 // ADDRESS METHODS
 createAddress(groupId: number, eventId: number, address: Address) {
