@@ -31,6 +31,7 @@ export class SocialGroupComponent implements OnInit {
   selectedGroup: SocialGroup | null = null;
   loggedInUser: User | null = null;
   selectedGroupUser: GroupUser | null = null;
+  selectedEvent: SocialEvent = new SocialEvent();
 
   // ADDRESS FIELDS
   addresses: Address [] = [];
@@ -133,6 +134,17 @@ export class SocialGroupComponent implements OnInit {
     });
 
   }
+  updateSocialEvent(socialEvent : SocialEvent, groupId: number, eventId: number) {
+    this.socialEventService.update(socialEvent, groupId, eventId).subscribe({
+      next: (socialEvent) => {
+        this.displayGroupSocialEvents(groupId);
+      },
+      error: (error) => {
+        console.error('SocialGroupComponent.updateSocialEvent: Error Updating Event')
+        console.error(error);
+      }
+    });
+  }
 
   loadGroupUser(groupId: number) {
     this.groupUserService.show(groupId).subscribe({
@@ -146,7 +158,6 @@ export class SocialGroupComponent implements OnInit {
       }
     });
   }
-
 
 // ADDRESS METHODS
 createAddress(groupId: number, eventId: number, address: Address) {
