@@ -95,9 +95,6 @@ export class AccountComponent implements OnInit{
     this.isViewingMessages = false;
   }
 
-
-
-
   editProfile() {
     this.isEditing = true;
   }
