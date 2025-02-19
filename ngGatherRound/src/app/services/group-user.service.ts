@@ -37,6 +37,19 @@ export class GroupUserService {
         })
       );
     }
+
+    showAllUsers(groupId: number): Observable<GroupUser[]> {
+      return this.http.get<GroupUser[]>(this.url + "/" + groupId + "/groupUsers/all", this.getHttpOptions()).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('GroupUser.showAllUsers: error retrieving all groupusers:' + err)
+          );
+        })
+      );
+    }
+
+
 }
 
 
