@@ -153,7 +153,8 @@ export class SocialGroupComponent implements OnInit {
   }
 
   setEditEvent(socialEvent : SocialEvent){
-    this.editEvent = Object.assign({}, this.selectedEvent);
+    this.editEvent = {...socialEvent};
+    // this.editEvent = Object.assign({}, this.selectedEvent);
   }
   cancelEditEvent() {
     this.editEvent = null;
