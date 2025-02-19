@@ -73,9 +73,14 @@ public class SocialEventServiceImpl implements SocialEventService {
 			managedSocialEvent.setEndTime(event.getEndTime());
 			managedSocialEvent.setCost(event.getCost());
 			managedSocialEvent.setMemberOnly(event.isMemberOnly());
-			managedSocialEvent.setMeetAddress(event.getMeetAddress());
 			managedSocialEvent.setEventAddress(event.getEventAddress());
 
+			if(event.getMeetAddress() != null) {
+				if(event.getMeetAddress().getId() == 0) {
+					addressRepo.saveAndFlush(event.getMeetAddress());
+				}
+				managedSocialEvent.setMeetAddress(event.getMeetAddress());
+			}
 			eventRepository.saveAndFlush(managedSocialEvent);
 
 		}

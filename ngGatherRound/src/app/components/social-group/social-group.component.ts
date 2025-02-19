@@ -144,6 +144,7 @@ export class SocialGroupComponent implements OnInit {
       next: (socialEvent) => {
         this.displayGroupSocialEvents(groupId);
         this.editEvent = null;
+        this.reloadAddresses(groupId);
       },
       error: (error) => {
         console.error('SocialGroupComponent.updateSocialEvent: Error Updating Event')
@@ -201,6 +202,9 @@ reloadAddresses(groupId: number) {
 
 toggleNewAddress() {
   this.showNewAddressForm = true;
+  if(this.editEvent){
+    this.editEvent.meetAddress.id = 0
+  };
 }
 
 cancelNewAddress() {
