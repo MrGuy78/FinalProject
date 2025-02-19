@@ -1,3 +1,4 @@
+import { GroupMemberListComponent } from './components/group-member-list/group-member-list.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'account', component: AccountComponent},
   { path: 'social-group', component: SocialGroupComponent},
+  { path: 'social-group/:groupId/members', component: GroupMemberListComponent},
   { path: '**', component: NotFoundComponent},
 
 ];
