@@ -6,7 +6,7 @@ import { SocialGroup } from './../../models/social-group';
 import { SocialGroupService } from './../../services/social-group.service';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
 import { GroupUser } from '../../models/group-user';
@@ -16,6 +16,7 @@ import { Address } from '../../models/address';
 @Component({
   selector: 'app-social-group',
   imports: [
+    RouterLink,
     CommonModule,
     FormsModule,
   ],

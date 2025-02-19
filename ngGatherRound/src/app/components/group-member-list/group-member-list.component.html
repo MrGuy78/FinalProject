@@ -1,5 +1,19 @@
 <h1>{{group!.name}} Members</h1>
-<button (click)="showLeaders = !showLeaders">View {{showLeaders ? "Members" : "Leaders"}}</button>
+<!-- <button (click)="showLeaders = !showLeaders">View {{showLeaders ? "Members" : "Leaders"}}</button>
 <ul>
   <li *ngFor="let member of groupMembers | groupRole:showLeaders">{{member.user.firstName}}</li>
-</ul>
+</ul> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" *ngFor="let member of groupMembers | groupRole:showLeaders">
+      <div class="card mb-3">
+        <div class="card-body">
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
