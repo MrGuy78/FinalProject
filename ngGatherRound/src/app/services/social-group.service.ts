@@ -18,7 +18,7 @@ export class SocialGroupService {
   ) { }
 
   index(): Observable<SocialGroup[]> {
-    return this.http.get<SocialGroup[]>(this.url, this.getHttpOptions()).pipe(
+    return this.http.get<SocialGroup[]>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
