@@ -1,13 +1,46 @@
 img.event {
   width: 400px;
   border-radius: 10px;
+  border-color: #67af31;
+  border-style: solid;
+  border-width: medium;
 }
 
 img.group {
   width: 200px;
   border-radius: 10px;
+  border-color: #67af31;
+  border-style: solid;
+  border-width: medium;
+}
+
+.card {
+  border-radius: 10px;
+  border-color: #F1642E;
+  border-style: solid;
+  border-width: medium;
 }
 
 label {
   font-weight: bold;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #196fa5;
+}
+
+.btn-warning {
+  color: #000;
+  background-color: #F5B024;
+}
+
+.btn-success {
+  color: #000;
+  background-color: #67af31;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #E72628;
 }

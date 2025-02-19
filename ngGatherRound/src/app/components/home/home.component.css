@@ -1,4 +1,35 @@
+img.thumbnail {
+  border-color: #67af31;
+  border-style: solid;
+  border-width: medium;
+  border-radius: 10px;
+}
+
 .card {
-  margin: 0 auto; /* Added */
-  float: none; /* Added */
+  border-radius: 10px;
+  border-color: #F1642E;
+  border-style: solid;
+  border-width: medium;
+  margin: 0 auto;
+  float: none;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #196fa5;
+}
+
+.btn-warning {
+  color: #000;
+  background-color: #F5B024;
+}
+
+.btn-success {
+  color: #000;
+  background-color: #67af31;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #E72628;
 }

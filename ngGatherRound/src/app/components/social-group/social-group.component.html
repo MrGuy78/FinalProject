@@ -22,7 +22,7 @@
 
 <!-- Display Social Group Details -->
 <br>
-<div class="container-fluid" style="text-align: center;" *ngIf="selectedGroup">
+<div class="container-fluid text-center" *ngIf="selectedGroup">
   <img class="group" [src]="selectedGroup.imageUrl"><br><br>
   <h1>{{selectedGroup.name}}</h1>
   <p><strong>Category: </strong>{{selectedGroup.category.name}}</p>
@@ -43,7 +43,7 @@
     <a href="http://maps.google.com/?q={{event.meetAddress.address}}{{event.meetAddress.city}},{{event.meetAddress.state}}{{event.meetAddress.zip}}" target="blank">
       {{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</a><br><br>
       <h3>Cost:</h3>
-    <p>${{event.cost}}</p><hr>
+    <p>${{event.cost}}.00</p><hr>
   </div>
   <button (click)="selectedGroup = null" class="btn btn-primary">Back to Social Groups</button><br><br>
 
