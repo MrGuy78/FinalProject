@@ -25,8 +25,8 @@
 <div class="container-fluid text-center" *ngIf="selectedGroup">
   <img class="group" [src]="selectedGroup.imageUrl"><br><br>
   <h1>{{selectedGroup.name}}</h1>
-  <button class="btn btn-primary me-5" [routerLink]="['/social-group', selectedGroup.id, 'members']">Group Members</button>
   <p><strong>Category: </strong>{{selectedGroup.category.name}}</p>
+  <button class="btn btn-primary" [routerLink]="['/social-group', selectedGroup.id, 'members']">View Members</button><br><br>
   <!-- <h3>{{selectedGroupUser.leader}}</h3> // FIX ME -->
    <h4>Description:</h4>
   <blockquote>{{selectedGroup.description}}</blockquote>
