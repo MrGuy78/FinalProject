@@ -49,8 +49,8 @@ public create(socialEvent: SocialEvent, groupId: number): Observable<SocialEvent
   );
 }
 
-public update(socialEvent: SocialEvent, groupId: number, eventId: number): Observable<SocialEvent> {
-  return this.http.put<SocialEvent>(this.url + '/' + groupId + '/' + 'events' + '/' + eventId, socialEvent, this.getHttpOptions()).pipe(
+public update(socialEvent: SocialEvent, groupId: number): Observable<SocialEvent> {
+  return this.http.put<SocialEvent>(this.url + '/' + groupId + '/' + 'events' + '/' + socialEvent.id, socialEvent, this.getHttpOptions()).pipe(
     catchError((error: any) => {
       console.log(error);
       return throwError(

@@ -25,13 +25,18 @@ import { Address } from '../../models/address';
 export class SocialGroupComponent implements OnInit {
 
   groups: SocialGroup[] = [];
-  events: SocialEvent[] = [];
-  newSocialEvent: SocialEvent = new SocialEvent();
   socialGroup: SocialGroup = new SocialGroup();
   selectedGroup: SocialGroup | null = null;
+  isEditingGroup: SocialGroup | null = null;
+
+  events: SocialEvent[] = [];
+  newSocialEvent: SocialEvent = new SocialEvent();
+  selectedEvent: SocialEvent | null = null;
+  editEvent: SocialEvent | null = null;
+
   loggedInUser: User | null = null;
   selectedGroupUser: GroupUser | null = null;
-  selectedEvent: SocialEvent = new SocialEvent();
+
 
   // ADDRESS FIELDS
   addresses: Address [] = [];
@@ -134,10 +139,11 @@ export class SocialGroupComponent implements OnInit {
     });
 
   }
-  updateSocialEvent(socialEvent : SocialEvent, groupId: number, eventId: number) {
-    this.socialEventService.update(socialEvent, groupId, eventId).subscribe({
+  updateSocialEvent(socialEvent : SocialEvent, groupId: number) {
+    this.socialEventService.update(socialEvent, groupId).subscribe({
       next: (socialEvent) => {
         this.displayGroupSocialEvents(groupId);
+        this.editEvent = null;
       },
       error: (error) => {
         console.error('SocialGroupComponent.updateSocialEvent: Error Updating Event')
@@ -145,6 +151,13 @@ export class SocialGroupComponent implements OnInit {
       }
     });
   }
+
+  setEditEvent(socialEvent : SocialEvent){
+    this.editEvent = Object.assign({}, this.selectedEvent);
+  }
+  cancelEditEvent() {
+    this.editEvent = null;
+   }
 
   loadGroupUser(groupId: number) {
     this.groupUserService.show(groupId).subscribe({
