@@ -33,3 +33,9 @@ img.thumbnail {
   color: #fff;
   background-color: #E72628;
 }
+
+blockquote {
+  font-style: italic;
+}
+
+
