@@ -8,11 +8,12 @@
       <div class="card text-dark bg-light mb-5">
         <div class="card-body">
           <h1 class="text-center">{{loggedInUser.username}}</h1><br>
-          <button *ngIf="!isSendingMessage" (click)="sendDirectMessage()" (click)="cancelViewMessages()" class="btn btn-send">Send Direct Message</button>
+          <button *ngIf="!isSendingMessage" (click)="sendDirectMessage()" (click)="cancelViewMessages()" class="btn btn-pink">Send Direct Message</button>
           <button *ngIf="isSendingMessage" (click)="cancelDirectMessage()" class="btn btn-warning">Cancel Direct Message</button>&nbsp;&nbsp;
           <button *ngIf="!isViewingMessages" (click)="viewMessages()" (click)="cancelDirectMessage()" class="btn btn-success">View My Messages</button>
           <button *ngIf="isViewingMessages" (click)="cancelViewMessages()" class="btn btn-warning">Close Messages</button>
             <div class="col-8 offset-md-2">
+
             <!-- SENDING MESSAGE -->
             <div *ngIf="isSendingMessage && !isViewingMessages" class="text-center"><br>
             <textarea type="text" cols="50" rows="7" class="form-control text-center"></textarea><br>
@@ -173,4 +174,4 @@
       </div>
     </div>
   </div>
-</div><br><br>
+</div><br>

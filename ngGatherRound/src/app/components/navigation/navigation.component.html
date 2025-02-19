@@ -1,9 +1,9 @@
 <nav class="navbar sticky-top">
-<button class="btn btn-primary me-5" [routerLink]="['/home']">Home</button>
-<button class="btn btn-primary me-5" [routerLink]="['/social-group']">Groups</button>
-<button class="btn btn-primary me-5"> Upcoming Events </button>
-<button class="btn btn-warning me-5" *ngIf="!loggedIn()"[routerLink]="['/register']">Register</button>
-<button class="btn btn-success me-5" *ngIf="loggedIn()"[routerLink]="['/account']">My Account</button>
-<button class="btn btn-success me-5" *ngIf="!loggedIn()" [routerLink]="['/login']">Log In</button>
-<button class="btn btn-danger me-5" *ngIf="loggedIn()" (click)="logout()">Logout</button>
+<button class="btn btn-primary mx-4" [routerLink]="['/home']">Home</button>
+<button class="btn btn-danger me-4" [routerLink]="['/social-group']">Explore Groups</button>
+<button class="btn btn-pink me-auto"> Events Near Me </button>
+<button class="btn btn-warning me-4" *ngIf="!loggedIn()"[routerLink]="['/register']">Register</button>
+<button class="btn btn-success me-4" *ngIf="loggedIn()"[routerLink]="['/account']">My Account</button>
+<button class="btn btn-success me-4" *ngIf="!loggedIn()" [routerLink]="['/login']">Log In</button>
+<button class="btn btn-warning me-4" *ngIf="loggedIn()" (click)="logout()">Logout</button>
 </nav>
