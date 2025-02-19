@@ -5,8 +5,38 @@ label {
 img.group {
   width: 150px;
   border-radius: 10px;
+  border-color: #67af31;
+  border-style: solid;
+  border-width: medium;
+}
+
+img.profile {
+  border-color: #D53F98;
+  border-style: solid;
+  border-width: thick;
+  border-radius: 80%;
 }
 
 p.title {
   font-weight: bold;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #196fa5;
+}
+
+.btn-warning {
+  color: #000;
+  background-color: #F5B024;
+}
+
+.btn-success {
+  color: #000;
+  background-color: #67af31;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #E72628;
 }

@@ -2,7 +2,27 @@ nav {
   padding: 1%;
   padding-left: 4%;
   padding-right: 4%;
+  background-color: #F1642E;
+}
 
+.btn-primary {
+  color: #fff;
+  background-color: #196fa5;
+}
+
+.btn-warning {
+  color: #000;
+  background-color: #F5B024;
+}
+
+.btn-success {
+  color: #000;
+  background-color: #67af31;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #E72628;
 }
 
 
