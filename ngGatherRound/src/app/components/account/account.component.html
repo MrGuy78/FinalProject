@@ -8,12 +8,48 @@
       <div class="card text-dark bg-light mb-5">
         <div class="card-body">
           <h1 class="text-center">{{loggedInUser.username}}</h1>
-          <button class="btn btn-success">Send Direct Message</button>
-            <hr>
+          <button *ngIf="!isSendingMessage" (click)="sendDirectMessage()" (click)="cancelViewMessages()" class="btn btn-success">Send Direct Message</button>
+          <button *ngIf="isSendingMessage" (click)="cancelDirectMessage()" class="btn btn-danger">Cancel Direct Message</button>&nbsp;&nbsp;
+
+          <button *ngIf="!isViewingMessages" (click)="viewMessages()" (click)="cancelDirectMessage()" class="btn btn-success">View Messages</button>
+          <button *ngIf="isViewingMessages" (click)="cancelViewMessages()" class="btn btn-warning">Close Messages</button>
+
+          <div class="col-8 offset-md-2">
+
+            <!-- SENDING MESSAGE -->
+            <div *ngIf="isSendingMessage && !isViewingMessages" class="text-center"><br>
+            <textarea type="text" cols="50" rows="7" class="form-control text-center"></textarea><br>
+            <button class="btn btn-success">Send Message</button>
+              </div>
+
+            <!-- VIEWING MESSAGEs -->
+            <div *ngIf="isViewingMessages" class="text-center"><br>
+              <h3>Messages: </h3>
+              <div class="card px-4"><br>
+              <blockquote class="text-center">Hey Greg! I will be there at the next Settlers of Catan Event. I had a lot of fun at the last one. Thanks!</blockquote>
+              <p><strong>- memberTyler</strong></p>
+            </div><br>
+            <button class="btn btn-primary">Reply</button><br><br>
+
+            <div class="card px-4"><br>
+              <blockquote class="text-center">I just joined your Board Gamers group! I'm excited to meet everyone and play some games!</blockquote>
+              <p><strong>- memberSusie</strong></p>
+            </div><br>
+            <button class="btn btn-primary">Reply</button><br><br>
+
+            <div class="card px-4"><br>
+              <blockquote class="text-center">Greg, Chris here. I am wondering if we can start playing recent winners of Game of the Year. I am willing to host it at my shop and I already have a few games. Let me know!</blockquote>
+              <p><strong>- memberChris</strong></p>
+            </div><br>
+            <button class="btn btn-primary">Reply</button><br><br>
+
+            <!-- USER INFO -->
+          </div>
+          </div><hr>
           <h4>Name: {{loggedInUser.firstName}} {{loggedInUser.lastName}}</h4>
           <h5><a href= "mailto:{{loggedInUser.email}}">Send Email</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=“tel:{{loggedInUser.phone}}”>Call or Text</a></h5><br>
           <h4>Bio:</h4>
-          <div class="card col-8 offset-md-2 text-dark bg-light mb-4 ">
+          <div class="card col-10 offset-md-1 text-dark bg-light mb-4 ">
             <div class="card-body">
               <p>{{loggedInUser.biography}}</p>
             </div>
@@ -61,8 +97,8 @@
     <div class="col-8 offset-md-2">
       <div class="card text-dark bg-light mb-4">
         <div class="card-body">
-          <h2>Groups I Own</h2><br>
-          <button *ngIf="!showMyGroups" (click)="displayMyGroups()" class="btn btn-primary">My Groups</button>
+          <h2>My Groups</h2><br>
+          <button *ngIf="!showMyGroups" (click)="displayMyGroups()" class="btn btn-primary">View Groups</button>
           <button *ngIf="showMyGroups" (click)="hideMyGroups()" class="btn btn-danger">Hide Groups</button>
           <div *ngIf="showMyGroups"><br>
             <div *ngFor="let group of ownedGroups">

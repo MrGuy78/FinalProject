@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `city` VARCHAR(45) NOT NULL,
   `state` VARCHAR(45) NOT NULL,
   `zip` VARCHAR(12) NULL,
+  `enabled` TINYINT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -355,23 +356,23 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gatherrounddb`;
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (1, 'Spanish Fork Pickleball Courts', '701 W Park Dr', 'Spanish Fork', 'Utah', '84660');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (2, 'Peak Nights Dance Hall', '505 E 1860 S', 'Provo', 'Utah', '84606');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (3, 'Game Grid', '400 Millpond Dr #F', 'Lehi', 'Utah', '84043');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (4, 'WeWork', '1633 W Innovation Way 5th Floor', 'Lehi', 'Utah', '84043');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (5, 'Denver Community Recreation', '1849 Emerson St', 'Denver', 'Colorado', '80218');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (6, 'Scheels Sandy', '11282 S State St', 'Sandy', 'Utah', '84070');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (7, 'Denver City Park', '2001 Colorado Blvd', 'Denver', 'Colorado', '80205');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (8, 'Mandalay Bay', '3950 S Las Vegas Blvd', 'Las Vegas', 'Nevada', '89119');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (9, 'My Little Paintbrush', '102 W Main St', 'Lehi', 'Utah', '84043');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (10, 'Discovery Park', '1511 N 100 E', 'Pleasant Grove', 'Utah', '84062');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (11, 'Westminster Hills Off-Leash Area', '10499 Simms St', 'Westminster', 'Colorado', '80005');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (12, 'YogaSix Edgewater', '5471 W 20th Ave', 'Edgewater', 'Colorado', '80214');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (13, 'Dough Counter Pizza\n', '2466 S Colorado Blvd Unit 101', 'Denver', 'Colorado', '80222');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (14, 'Tabitha\'s Way Food Pantry', '45 E 100 N', 'Spanish Fork', 'Utah', '84660');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (15, 'Pikes Peak Library', '5550 N Union Blvd', 'Colorado Springs', 'Colorado', '80918');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (16, 'Strawberry Resovoir', '1555 Strawberry Bay Road', 'Heber City', 'Utah', '84032');
-INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`) VALUES (17, 'Utah Whitewater Gear', '7307 S State St', 'Midvale', 'Utah', '84047');
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (1, 'Spanish Fork Pickleball Courts', '701 W Park Dr', 'Spanish Fork', 'Utah', '84660', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (2, 'Peak Nights Dance Hall', '505 E 1860 S', 'Provo', 'Utah', '84606', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (3, 'Game Grid', '400 Millpond Dr #F', 'Lehi', 'Utah', '84043', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (4, 'WeWork', '1633 W Innovation Way 5th Floor', 'Lehi', 'Utah', '84043', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (5, 'Denver Community Recreation', '1849 Emerson St', 'Denver', 'Colorado', '80218', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (6, 'Scheels Sandy', '11282 S State St', 'Sandy', 'Utah', '84070', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (7, 'Denver City Park', '2001 Colorado Blvd', 'Denver', 'Colorado', '80205', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (8, 'Mandalay Bay', '3950 S Las Vegas Blvd', 'Las Vegas', 'Nevada', '89119', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (9, 'My Little Paintbrush', '102 W Main St', 'Lehi', 'Utah', '84043', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (10, 'Discovery Park', '1511 N 100 E', 'Pleasant Grove', 'Utah', '84062', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (11, 'Westminster Hills Off-Leash Area', '10499 Simms St', 'Westminster', 'Colorado', '80005', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (12, 'YogaSix Edgewater', '5471 W 20th Ave', 'Edgewater', 'Colorado', '80214', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (13, 'Dough Counter Pizza\n', '2466 S Colorado Blvd Unit 101', 'Denver', 'Colorado', '80222', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (14, 'Tabitha\'s Way Food Pantry', '45 E 100 N', 'Spanish Fork', 'Utah', '84660', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (15, 'Pikes Peak Library', '5550 N Union Blvd', 'Colorado Springs', 'Colorado', '80918', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (16, 'Strawberry Resovoir', '1555 Strawberry Bay Road', 'Heber City', 'Utah', '84032', 1);
+INSERT INTO `address` (`id`, `name`, `address`, `city`, `state`, `zip`, `enabled`) VALUES (17, 'Utah Whitewater Gear', '7307 S State St', 'Midvale', 'Utah', '84047', 1);
 
 COMMIT;
 
@@ -383,7 +384,7 @@ START TRANSACTION;
 USE `gatherrounddb`;
 INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `image_url`, `biography`, `role`, `enabled`, `create_date`, `last_update`, `address_id`) VALUES (1, 'pickleballPat', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Patrick', 'Johnstun', 'ben@email.com', '555-985-6482', 'https://leadershipcircle.com/wp-content/uploads/2022/07/Mark-Burrell.png', 'My name is Pat and I try to play pickleball at least twice a week. I would consider myself on the more skilled side.', NULL, 1, NULL, NULL, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `image_url`, `biography`, `role`, `enabled`, `create_date`, `last_update`, `address_id`) VALUES (2, 'dancingDeb', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Debra', 'Kramer', 'deb@email.com', '555-985-6251', 'https://leadershipcircle.com/wp-content/uploads/2025/01/Shawn-Snelgrove_2022.png', 'My name is Debra (call me Deb) and I love to dance, especially the disco because it takes me WAY back.', NULL, 1, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `image_url`, `biography`, `role`, `enabled`, `create_date`, `last_update`, `address_id`) VALUES (3, 'boardGameGreg', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Greg', 'MacArthur', 'greg@email.com', '555-265-1487', 'https://leadershipcircle.com/wp-content/uploads/2024/07/Gil-Jose-Manuel.png', 'My name is Greg and I am a board game nerd. I play all different kinds of games and like to have group games where 3-6 of us play.', NULL, 1, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `image_url`, `biography`, `role`, `enabled`, `create_date`, `last_update`, `address_id`) VALUES (3, 'boardGameGreg', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Greg', 'MacArthur', 'greg@email.com', '555-265-1487', 'https://leadershipcircle.com/wp-content/uploads/2024/07/Gil-Jose-Manuel.png', 'My name is Greg and I am a board game nerd. I play all different kinds of games and like to have group games where 3-6 of us play. I have started a few game groups on here so check them out and request to join the group and I will be happy to approve fellow gamers.', NULL, 1, NULL, NULL, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `image_url`, `biography`, `role`, `enabled`, `create_date`, `last_update`, `address_id`) VALUES (4, 'coderCory', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Cory', 'Hunt', 'cory@email.com', '555-958-7421', 'https://leadershipcircle.com/wp-content/uploads/2023/07/Matt-Ingersole-1b.png', 'Hi, I\'m Cory and I am a full-stack Java developer looking to meet up with other coders to learn and share ideas.', NULL, 1, NULL, NULL, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `image_url`, `biography`, `role`, `enabled`, `create_date`, `last_update`, `address_id`) VALUES (5, 'swimmerSara', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Sara', 'Burke', 'sara@email.com', '555-485-2584', 'https://leadershipcircle.com/wp-content/uploads/2022/07/Betsy-Leatherman-8.png', 'Hello, my name is Sara and I love to swim. It would be great to find some friends on here who also enjoy swimming.', NULL, 1, NULL, NULL, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone`, `image_url`, `biography`, `role`, `enabled`, `create_date`, `last_update`, `address_id`) VALUES (6, 'hikingHenry', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'Henry', 'Clyde', 'henry@email.com', '555-695-3284', 'https://leadershipcircle.com/wp-content/uploads/2025/01/Franklin-Bobga-Headshot.png', 'Hello, I\'m Henry and I have hiked Everest, Kilimanjaro, and Mt. Whitney. I would like to meet other hikers and go explore nature. ', NULL, 1, NULL, NULL, NULL);

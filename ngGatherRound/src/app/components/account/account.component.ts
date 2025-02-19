@@ -27,6 +27,8 @@ export class AccountComponent implements OnInit{
   // USER FIELDS
   loggedInUser: User = new User();
   user: User | null = null;
+  isSendingMessage: any;
+  isViewingMessages: any;
   isEditing: any;
 
   // GROUP FIELDS
@@ -78,6 +80,23 @@ export class AccountComponent implements OnInit{
       }
     })
   }
+
+  sendDirectMessage() {
+    this.isSendingMessage = true;
+  }
+  cancelDirectMessage() {
+    this.isSendingMessage = false;
+  }
+
+  viewMessages() {
+    this.isViewingMessages = true;
+  }
+  cancelViewMessages() {
+    this.isViewingMessages = false;
+  }
+
+
+
 
   editProfile() {
     this.isEditing = true;
