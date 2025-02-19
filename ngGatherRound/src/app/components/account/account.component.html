@@ -4,7 +4,7 @@
 <div class="container-fluid text-center">
   <div class="row">
     <div class="col-6 offset-md-3">
-      <p><img src="{{loggedInUser.imageUrl}}"></p><br>
+      <p><img class="profile" src="{{loggedInUser.imageUrl}}"></p><br>
       <div class="card text-dark bg-light mb-5">
         <div class="card-body">
           <h1 class="text-center">{{loggedInUser.username}}</h1>
@@ -44,7 +44,7 @@
             <label>Bio:</label>
             <textarea type="text" cols="50" rows="7" [(ngModel)]="loggedInUser.biography" class="form-control text-center"></textarea><br>
 
-            <label>Profile Image:</label>
+            <label>Profile Image URL:</label>
             <input type="text" [(ngModel)]="loggedInUser.imageUrl" class="form-control text-center" /><br>
 
             <button (click)="saveEdits()" (click)="updateUser(loggedInUser)" class="btn btn-success">Save Profile Edits</button>

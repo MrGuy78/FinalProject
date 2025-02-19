@@ -1,7 +1,6 @@
 package com.skilldistillery.gatherround.services;
 
 import java.util.List;
-import java.util.Locale.Category;
 
 import com.skilldistillery.gatherround.entities.GroupCategory;
 import com.skilldistillery.gatherround.entities.SocialGroup;

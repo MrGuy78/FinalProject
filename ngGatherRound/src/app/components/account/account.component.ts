@@ -111,7 +111,7 @@ export class AccountComponent implements OnInit{
         this.groups = SocialGroups;
       } ,
       error: (failure) => {
-        console.error('SocialGroupComponent.reload: failed to reload groups');
+        console.error('AccountComponent.reloadSocialGroups: failed to reload groups');
         console.error(failure);
       }
     });
@@ -123,7 +123,7 @@ export class AccountComponent implements OnInit{
         this.ownedGroups = socialGroups;
       } ,
       error: (failure) => {
-        console.error('OwnedGroupsComponent.reload: failed to reload groups');
+        console.error('AccountComponent.reloadOwnedGroups: failed to reload groups');
         console.error(failure);
       }
     });
@@ -146,7 +146,7 @@ export class AccountComponent implements OnInit{
           this.showNewGroupForm = false;
         } ,
         error: (failure) => {
-          console.error('SocialGroupComponent.reload: failed to create a group');
+          console.error('AccountComponent.createNewGroup: failed to create a group');
           console.error(failure);
         }
       });
@@ -194,7 +194,7 @@ export class AccountComponent implements OnInit{
         this.categories = categories;
       } ,
       error: (failure) => {
-        console.error('GroupCategoryComponent.reload: failed to reload categories');
+        console.error('AccountComponent.reloadGroupCategories: failed to reload categories');
         console.error(failure);
       }
     });

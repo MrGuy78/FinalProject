@@ -22,7 +22,7 @@
 
 <!-- Display Social Group Details -->
 <br>
-<div class="container-fluid" style="text-align: center;" *ngIf="selectedGroup">
+<div class="container-fluid text-center" *ngIf="selectedGroup">
   <img class="group" [src]="selectedGroup.imageUrl"><br><br>
   <h1>{{selectedGroup.name}}</h1>
   <p><strong>Category: </strong>{{selectedGroup.category.name}}</p>
@@ -43,7 +43,7 @@
     <a href="http://maps.google.com/?q={{event.meetAddress.address}}{{event.meetAddress.city}},{{event.meetAddress.state}}{{event.meetAddress.zip}}" target="blank">
       {{event.meetAddress.address}} {{event.meetAddress.city}}, {{event.meetAddress.state}} {{event.meetAddress.zip}}</a><br><br>
       <h3>Cost:</h3>
-    <p>${{event.cost}}</p><hr>
+    <p>${{event.cost}}.00</p><hr>
   </div>
   <button (click)="selectedGroup = null" class="btn btn-primary">Back to Social Groups</button><br><br>
 
@@ -99,3 +99,54 @@
   <button class="btn btn-success" (click)="createSocialEvent(newSocialEvent, selectedGroup.id)" >Create New Event</button><br><br>
   </form></div></div><br><br>
 </div></div></div>
+
+<!--UPDATE SOCIAL EVENT FORM-->
+<form *ngIf="selectedGroup" class="form-control form-label form-group form-check form-inline"><br>
+  <h2>Update Event</h2><br>
+  <label for="title">Event Title:</label><br>
+  <input type="text" name="title" size="50" [(ngModel)]="selectedEvent.title"><br><br>
+
+  <label for="description">Event Description:</label><br>
+  <textarea type="text" name="description" cols="50" rows="5" [(ngModel)]="selectedEvent.description"></textarea><br><br>
+
+  <label for="imageUrl">Event Image URL:</label><br>
+  <input type="text" name="imageUrl" size="50" [(ngModel)]="selectedEvent.imageUrl"><br><br>
+
+  <label for="eventDate">Event Date:</label><br>
+  <input type="date" name="eventDate" size="50" [(ngModel)]="selectedEvent.eventDate"><br><br>
+
+  <label for="startTime">Event Start Time:</label><br>
+  <input type="time" name="startTime" size="50" [(ngModel)]="selectedEvent.startTime"><br><br>
+
+  <label for="endTime">Event End Time:</label><br>
+  <input type="time" name="endTime" size="50" [(ngModel)]="selectedEvent.endTime"><br><br>
+
+  <label for="cost">Event Cost:</label><br>
+  <input type="number" name="cost" [(ngModel)]="selectedEvent.cost"><br><br>
+
+  <div *ngIf="!showNewAddressForm">
+  <label>Choose An Existing MeetAddress:</label><br>
+    <select type="select" name="address" [(ngModel)]="selectedEvent.meetAddress.id" class="form-control text-center">
+      <option *ngFor="let address of addresses" value="{{address.id}}">{{address.name}}</option>
+    </select><br></div>
+    <button *ngIf="!showNewAddressForm" (click)="toggleNewAddress()" class="btn btn-primary">Create New Address</button>
+        <button *ngIf="showNewAddressForm" (click)="cancelNewAddress()" class="btn btn-danger">Cancel New Address</button><br><br>
+        <div *ngIf="showNewAddressForm"><div class="col-6 offset-md-3">
+  <label for="meetAddress.name">Meet Address Name:</label><br>
+  <input type="text" id="meetAddress.name" name="meetAddress.name" [(ngModel)]="selectedEvent.meetAddress.name"><br><br>
+
+  <label for="meetAddress.address">Meet Address:</label><br>
+  <input type="text" id="meetAddress.address" name="meetAddress.address" [(ngModel)]="selectedEvent.meetAddress.address"><br><br>
+
+  <label for="meetAddress.city">Meet Address City:</label><br>
+  <input type="text" id="meetAddress.city" name="meetAddress.city" [(ngModel)]="selectedEvent.meetAddress.city"><br><br>
+
+  <label for="meetAddress.state">Meet Address State:</label><br>
+  <input type="text" id="meetAddress.state" name="meetAddress.state" [(ngModel)]="selectedEvent.meetAddress.state"><br><br>
+
+  <label for="meetAddress.zip">Meet Address Zip:</label><br>
+  <input type="text" id="meetAddress.zip" name="meetAddress.zip" [(ngModel)]="selectedEvent.meetAddress.zip"><br><br>
+</div></div>
+
+<button class="btn btn-success" (click)="updateSocialEvent(selectedEvent, selectedGroup.id, selectedEvent.id)" >Update New Event</button><br><br>
+</form>

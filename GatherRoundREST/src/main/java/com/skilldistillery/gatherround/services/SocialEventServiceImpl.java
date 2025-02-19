@@ -18,13 +18,13 @@ public class SocialEventServiceImpl implements SocialEventService {
 
 	@Autowired
 	private SocialEventRepository eventRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private SocialGroupRepository socialGroupRepository;
-	
+
 	@Autowired
 	private AddressRepository addressRepo;
 
@@ -34,7 +34,9 @@ public class SocialEventServiceImpl implements SocialEventService {
 
 	@Override
 	public SocialEvent create(String username, SocialEvent event, int groupId) {
-		User managedUser = userRepository.findByUsernameAndSocialGroups_IdOrUsernameAndGroupUsers_SocialGroup_IdAndGroupUsers_LeaderIsTrue(username, groupId, username, groupId);
+		User managedUser = userRepository
+				.findByUsernameAndSocialGroups_IdOrUsernameAndGroupUsers_SocialGroup_IdAndGroupUsers_LeaderIsTrue(
+						username, groupId, username, groupId);
 		SocialGroup group = socialGroupRepository.findById(groupId).orElse(null);
 		if (managedUser == null || group == null) {
 			return null;
@@ -42,7 +44,7 @@ public class SocialEventServiceImpl implements SocialEventService {
 		event.setUser(managedUser);
 		event.setGroup(group);
 		event.setEnabled(true);
-		if(event.getMeetAddress() != null) {
+		if (event.getMeetAddress() != null) {
 			addressRepo.saveAndFlush(event.getMeetAddress());
 		}
 		return eventRepository.saveAndFlush(event);
@@ -55,12 +57,13 @@ public class SocialEventServiceImpl implements SocialEventService {
 
 	@Override
 	public SocialEvent update(String username, int eventId, SocialEvent event, int groupId) {
-		User managedUser = userRepository.
-				findByUsernameAndSocialGroups_IdOrUsernameAndGroupUsers_SocialGroup_IdAndGroupUsers_LeaderIsTrue(username, groupId, username, groupId);
+		User managedUser = userRepository
+				.findByUsernameAndSocialGroups_IdOrUsernameAndGroupUsers_SocialGroup_IdAndGroupUsers_LeaderIsTrue(
+						username, groupId, username, groupId);
 		if (managedUser == null) {
 			return null;
 		}
-		SocialEvent managedSocialEvent = eventRepository.findById(eventId).orElse(null );
+		SocialEvent managedSocialEvent = eventRepository.findById(eventId).orElse(null);
 		if (managedSocialEvent != null) {
 			managedSocialEvent.setTitle(event.getTitle());
 			managedSocialEvent.setDescription(event.getDescription());
@@ -72,10 +75,10 @@ public class SocialEventServiceImpl implements SocialEventService {
 			managedSocialEvent.setMemberOnly(event.isMemberOnly());
 			managedSocialEvent.setMeetAddress(event.getMeetAddress());
 			managedSocialEvent.setEventAddress(event.getEventAddress());
-			
+
 			eventRepository.saveAndFlush(managedSocialEvent);
 
 		}
 		return managedSocialEvent;
 	}
-	}
+}
