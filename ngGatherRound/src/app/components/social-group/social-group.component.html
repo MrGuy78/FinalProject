@@ -33,10 +33,11 @@
   <button (click)="selectedGroup = null" class="btn btn-danger">Back to Social Groups</button>
   </div><br><hr><br>
 
-<!-- REQUEST TO JOIN THIS GROUP -->
+<!-- REQUEST TO JOIN/LEAVE THIS GROUP -->
   <div class="container-fluid text-center" *ngIf="selectedGroup">
-    <div *ngIf="loggedInUser && !isGroupMember(selectedGroup)">
-      <button class="btn btn-success" (click)=" addGroupMember(selectedGroup.id)">Join This Group</button><br><br>
+    <div>
+      <button  *ngIf="loggedInUser && !isGroupMember(selectedGroup)" class="btn btn-success" (click)=" addGroupMember(selectedGroup.id)">Join This Group</button><br><br>
+      <button  *ngIf="loggedInUser && isGroupMember(selectedGroup)"class="btn btn-danger">Leave Group</button>
     </div>
 
 <!-- DISPLAY SOCIAL GROUP DETAILS -->

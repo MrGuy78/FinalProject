@@ -11,4 +11,7 @@ public interface GroupUserService {
 	List<GroupUser> findBySocialGroupId (int groupId);
 	
 	GroupUser addGroupMember (String username, int groupId);
+	
+	
 }
+

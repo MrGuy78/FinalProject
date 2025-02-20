@@ -48,6 +48,7 @@ export class SocialGroupComponent implements OnInit {
   newGroupUser: GroupUser = new GroupUser();
 
 
+
   // ADDRESS FIELDS
   addresses: Address [] = [];
   newAddress: Address = new Address();
@@ -244,6 +245,7 @@ export class SocialGroupComponent implements OnInit {
       next: (newGroupUser) => {
         this.newGroupUser = newGroupUser;
         this.displayGroupSocialEvents(groupId);
+        this.loadGroupMembers(groupId);
       },
       error: (error) => {
         console.error('SocialGroupComponent.addGroupMember: Error adding Group User')
@@ -251,6 +253,8 @@ export class SocialGroupComponent implements OnInit {
       }
     });
   }
+
+
 
 // ADDRESS METHODS
 createAddress(groupId: number, eventId: number, address: Address) {
@@ -311,6 +315,7 @@ cancelNewAddress() {
       error: (err) => console.error('Error loading groups', err)
   });
   }
+
 
 
 
