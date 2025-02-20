@@ -35,7 +35,7 @@
 <!-- REQUEST TO JOIN THIS GROUP -->
   <div class="container-fluid text-center" *ngIf="selectedGroup">
     <div *ngIf="loggedInUser && !isGroupMember(selectedGroup)">
-      <button class="btn btn-success">Join This Group</button><br><br>
+      <button class="btn btn-success" (click)=" addGroupMember(selectedGroup.id)">Join This Group</button><br><br>
     </div>
 
 <!-- DISPLAY SOCIAL GROUP DETAILS -->

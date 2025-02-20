@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
+import { GroupUser } from '../models/group-user';
 
 @Injectable({
   providedIn: 'root'
@@ -82,5 +83,17 @@ export class SocialGroupService {
       })
     );
   }
+
+  newMember(groupId: number) : Observable<GroupUser> {
+    return this.http.post<GroupUser>(this.url +'/' + groupId + '/members', null, this.getHttpOptions()).pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return throwError(
+          () => new Error ('SocialGroupService.newMember(): error adding groupMember: ' + error.message)
+        );
+      })
+    );
+  }
+
  }
 

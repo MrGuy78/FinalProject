@@ -42,6 +42,7 @@ export class SocialGroupComponent implements OnInit {
   loggedInUser: User | null = null;
   selectedGroupUser: GroupUser | null = null;
   selectedGroupMembers: GroupUser[] = [];
+  newGroupUser: GroupUser = new GroupUser();
 
 
   // ADDRESS FIELDS
@@ -219,6 +220,19 @@ export class SocialGroupComponent implements OnInit {
       },
       error: (error) => {
         console.error('SocialGroupComponent.loadGroupUser: Error Loading Group User')
+        console.error(error);
+      }
+    });
+  }
+
+  addGroupMember(groupId: number){
+    this.socialGroupService.newMember(groupId).subscribe({
+      next: (newGroupUser) => {
+        this.newGroupUser = newGroupUser;
+        this.displayGroupSocialEvents(groupId);
+      },
+      error: (error) => {
+        console.error('SocialGroupComponent.addGroupMember: Error adding Group User')
         console.error(error);
       }
     });
