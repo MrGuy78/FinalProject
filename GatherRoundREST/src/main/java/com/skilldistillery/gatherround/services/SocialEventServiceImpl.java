@@ -29,8 +29,10 @@ public class SocialEventServiceImpl implements SocialEventService {
 	private AddressRepository addressRepo;
 
 	public List<SocialEvent> findByGroup(int groupId) {
-		return eventRepository.findByGroup_Id(groupId);
+		return eventRepository.findBySocialGroup_Id(groupId);
 	}
+	
+	
 
 	@Override
 	public SocialEvent create(String username, SocialEvent event, int groupId) {
@@ -42,7 +44,7 @@ public class SocialEventServiceImpl implements SocialEventService {
 			return null;
 		}
 		event.setUser(managedUser);
-		event.setGroup(group);
+		event.setSocialGroup(group);
 		event.setEnabled(true);
 		if (event.getMeetAddress() != null) {
 			addressRepo.saveAndFlush(event.getMeetAddress());
@@ -85,5 +87,10 @@ public class SocialEventServiceImpl implements SocialEventService {
 
 		}
 		return managedSocialEvent;
+	}
+
+	@Override
+	public List<SocialEvent> findVisibleEvents(int groupId, String username) {
+		return eventRepository.findBySocialGroup_IdAndSocialGroup_GroupUsers_User_UsernameAndSocialGroup_GroupUsers_ApprovedTrueAndEnabledTrueOrSocialGroup_IdAndMemberOnlyFalseAndEnabledTrue(groupId, username, groupId);
 	}
 }

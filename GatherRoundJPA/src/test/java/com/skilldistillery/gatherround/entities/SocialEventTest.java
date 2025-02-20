@@ -58,7 +58,7 @@ class SocialEventTest {
 	
 	@Test
 	void test_SocialEvent_ManyToOne_SocialGroup_Mapping() {
-		assertEquals("Pickleball", socialEvent.getGroup().getName());
+		assertEquals("Pickleball", socialEvent.getSocialGroup().getName());
 	}
 	
 	// ******  Need to add data into Event User table   ****** 

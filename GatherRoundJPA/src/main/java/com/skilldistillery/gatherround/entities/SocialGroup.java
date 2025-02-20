@@ -61,7 +61,7 @@ public class SocialGroup {
 	private List<GroupComment> comments;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "group")
+	@OneToMany(mappedBy = "socialGroup")
 	private List<SocialEvent> events;
 
 	public SocialGroup() {

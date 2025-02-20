@@ -56,7 +56,7 @@ public class AddressServiceImpl implements AddressService {
 		if (!socialGroupRepository.existsById(groupId)) {
 			return null;
 		}
-		return addressRepo.findByEvents_Group_Id(groupId);
+		return addressRepo.findByEvents_SocialGroup_Id(groupId);
 	}
 
 }
