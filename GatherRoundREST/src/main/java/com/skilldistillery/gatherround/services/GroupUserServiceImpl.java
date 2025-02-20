@@ -54,15 +54,5 @@ public class GroupUserServiceImpl implements GroupUserService {
 		}
 		return newMember;
 	}
-	
-	@Override
-	public boolean removeGroupMember(String username, int groupId) {
-		boolean wasRemoved = false;
-		if (groupUserRepository.existsById(groupId)) {
-			groupUserRepository.deleteById(null);
-			wasRemoved = true;
-		}
-		return wasRemoved;
-	}
 
 }

@@ -13,5 +13,5 @@ public interface GroupUserRepository extends JpaRepository<GroupUser, GroupUserI
 	
 	List<GroupUser> findBySocialGroup_Id (int groupId);
 
-	boolean existsById(int groupId);
+
 }

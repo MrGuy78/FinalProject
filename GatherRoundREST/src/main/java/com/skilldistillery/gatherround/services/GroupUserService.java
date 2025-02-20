@@ -12,8 +12,7 @@ public interface GroupUserService {
 	
 	GroupUser addGroupMember (String username, int groupId);
 
-	boolean removeGroupMember(String username, int groupId);
-	
+//	boolean removeGroupMember(String username, int groupId);
 	
 }
 
