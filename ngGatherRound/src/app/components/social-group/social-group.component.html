@@ -36,8 +36,8 @@
 <!-- REQUEST TO JOIN/LEAVE THIS GROUP -->
   <div class="container-fluid text-center" *ngIf="selectedGroup">
     <div>
-      <button  *ngIf="loggedInUser && !isGroupMember(selectedGroup)" class="btn btn-success" (click)=" addGroupMember(selectedGroup.id)">Join This Group</button><br><br>
-      <button  *ngIf="loggedInUser && isGroupMember(selectedGroup)"class="btn btn-danger">Leave Group</button>
+      <button  *ngIf="loggedInUser && !isGroupMember(selectedGroup)" class="btn btn-success" (click)=" addGroupMember(selectedGroup.id)">Join This Group</button>
+      <button  *ngIf="loggedInUser && isGroupMember(selectedGroup)"class="btn btn-danger">Leave Group</button><br><br>
     </div>
 
 <!-- DISPLAY SOCIAL GROUP DETAILS -->
