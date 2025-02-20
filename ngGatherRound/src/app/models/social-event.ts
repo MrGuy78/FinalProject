@@ -18,7 +18,7 @@ export class SocialEvent {
   memeberOnly: boolean;
   user: User;
   meetAddress: Address;
-  group: SocialGroup;
+  socialGroup: SocialGroup;
 
   constructor(
     id: number = 0,
@@ -35,7 +35,7 @@ export class SocialEvent {
     memeberOnly: boolean = false,
     user: User = new User(),
     meetAddress: Address = new Address(),
-    group: SocialGroup = new SocialGroup(),
+    socialGroup: SocialGroup = new SocialGroup(),
 
   ){
     this.id = id;
@@ -52,7 +52,7 @@ export class SocialEvent {
     this.memeberOnly = memeberOnly;
     this.user = user;
     this.meetAddress = meetAddress;
-    this.group = group;
+    this.socialGroup = socialGroup;
   }
 
 

@@ -8,6 +8,6 @@ import com.skilldistillery.gatherround.entities.Address;
 
 public interface AddressRepository extends JpaRepository<Address, Integer> {
 
-	List<Address> findByEvents_Group_Id(int groupId);
+	List<Address> findByEvents_SocialGroup_Id(int groupId);
 
 }

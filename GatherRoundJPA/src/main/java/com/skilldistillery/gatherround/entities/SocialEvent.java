@@ -78,7 +78,7 @@ public class SocialEvent {
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "social_group_id")
-	private SocialGroup group;
+	private SocialGroup socialGroup;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "event")
@@ -208,12 +208,12 @@ public class SocialEvent {
 		this.meetAddress = address;
 	}
 
-	public SocialGroup getGroup() {
-		return group;
+	public SocialGroup getSocialGroup() {
+		return socialGroup;
 	}
 
-	public void setGroup(SocialGroup group) {
-		this.group = group;
+	public void setSocialGroup(SocialGroup group) {
+		this.socialGroup = group;
 	}
 
 	public List<EventUser> getEventUsers() {

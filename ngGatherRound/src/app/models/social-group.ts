@@ -1,6 +1,7 @@
 import { last } from "rxjs";
 import { User } from "./user";
 import { Category } from "./category";
+import { GroupUser } from "./group-user";
 
 export class SocialGroup {
   id: number;
@@ -10,8 +11,9 @@ export class SocialGroup {
   createDate: string;
   lastUpdate: string;
   enabled: boolean;
-  ownerId: User;
+  owner: User;
   category: Category;
+  groupUsers: GroupUser[];
 
   constructor (
     id: number = 0,
@@ -21,8 +23,9 @@ export class SocialGroup {
     createDate: string = '',
     lastUpdate: string = '',
     enabled: boolean = false,
-    ownerId: User = new User(),
+    owner: User = new User(),
     category: Category = new Category(),
+    groupUsers: GroupUser[] = [],
 
   ) {
     this.id = id;
@@ -32,7 +35,8 @@ export class SocialGroup {
     this.createDate = createDate;
     this.lastUpdate = lastUpdate;
     this.enabled = enabled;
-    this.ownerId = ownerId;
+    this.owner = owner;
     this.category = category;
+    this.groupUsers = groupUsers;
   }
 }

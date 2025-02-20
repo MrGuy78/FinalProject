@@ -27,10 +27,21 @@ public class SocialEventController {
 	@Autowired
 	private SocialEventService eventService;
 
+//	@GetMapping("groups/{groupId}/events")
+//	public List<SocialEvent> index(@PathVariable("groupId") int groupId, HttpServletResponse response,
+//			HttpServletRequest request) {
+//		List<SocialEvent> events = eventService.findByGroup(groupId);
+//		if (events == null) {
+//			response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 400
+//		}
+//		response.setStatus(HttpServletResponse.SC_OK); // 200
+//		return events;
+//	}
+	
 	@GetMapping("groups/{groupId}/events")
-	public List<SocialEvent> index(@PathVariable("groupId") int groupId, HttpServletResponse response,
-			HttpServletRequest request) {
-		List<SocialEvent> events = eventService.findByGroup(groupId);
+	public List<SocialEvent> findVisibleEvents(@PathVariable("groupId") int groupId, HttpServletResponse response,
+			HttpServletRequest request, Principal principal) {
+		List<SocialEvent> events = eventService.findVisibleEvents(groupId, principal.getName());
 		if (events == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 400
 		}
@@ -77,7 +88,8 @@ public class SocialEventController {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
 		}
 		return socialEvent;
-
 	}
+	
+	
 
 }
