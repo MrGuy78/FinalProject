@@ -9,10 +9,11 @@ import com.skilldistillery.gatherround.entities.SocialGroup;
 public interface SocialGroupRepository extends JpaRepository<SocialGroup, Integer> {
 
 	SocialGroup findGroupById(int groupId);
+
+	SocialGroup findByIdAndOwner_Username(int groupId, String username);
 	
 	List<SocialGroup> findByOwner_Username(String username);
 	
-	SocialGroup findByIdAndOwner_Username(int groupId, String username);
-	
-	
+	List<SocialGroup> findByUser_IdAndUser_Username(String username);
+		
 }

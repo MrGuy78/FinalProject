@@ -38,4 +38,20 @@ blockquote {
   font-style: italic;
 }
 
+p.stars {
+  font-size: 30px;
+  color: orange;
+}
+
+p {
+  font-weight: bold;
+}
+
+img.featured {
+  width: 150px;
+  border-color: #D53F98;
+  border-style: solid;
+  border-width: medium;
+  border-radius: 10px;
+}
 

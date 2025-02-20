@@ -50,8 +50,13 @@ public class SocialGroupServiceImpl implements SocialGroupService {
 	}
 
 	@Override
-	public List<SocialGroup> loggedInUserGroups(String username) {
+	public List<SocialGroup> loggedInOwnerGroups(String username) {
 		return groupRepository.findByOwner_Username(username);
+	}
+	
+	@Override
+	public List<SocialGroup> loggedInMemberGroups(String username) {
+		return groupRepository.findByUser_IdAndUser_Username(username);
 	}
 
 	@Override
@@ -63,7 +68,6 @@ public class SocialGroupServiceImpl implements SocialGroupService {
 			managedSocialGroup.setImageUrl(socialGroup.getImageUrl());
 			managedSocialGroup.setCategory(socialGroup.getCategory());
 			groupRepository.saveAndFlush(managedSocialGroup);
-
 		}
 		return managedSocialGroup;
 

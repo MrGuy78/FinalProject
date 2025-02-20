@@ -39,8 +39,13 @@ public class SocialGroupController {
 	}
 
 	@GetMapping("groups/owned")
-	public List<SocialGroup> findCurrentUserGroups(Principal principal) {
-		return socialGroupService.loggedInUserGroups(principal.getName());
+	public List<SocialGroup> findCurrentOwnerGroups(Principal principal) {
+		return socialGroupService.loggedInOwnerGroups(principal.getName());
+	}
+	
+	@GetMapping("groups/joined")
+	public List<SocialGroup> findCurrentMemberGroups(Principal principal) {
+		return socialGroupService.loggedInMemberGroups(principal.getName());
 	}
 
 	@GetMapping("groups/{groupId}")
