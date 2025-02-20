@@ -5,6 +5,13 @@
       <div class="card text-dark bg-light mb-4">
         <div class="card-body">
   <h1>Activity Groups</h1><hr>
+  <div class="form-group">
+    <label for="categoryFilter">Filter by Category:</label>
+            <select id="categoryFilter" class="form-control" [(ngModel)]="selectedCategoryId" (change)="filterGroups()">
+              <option [ngValue]="null">All Categories</option>
+              <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+            </select>
+  </div>
   </div>
 <!-- Display all social groups -->
 <div class="container-fluid text-center">
