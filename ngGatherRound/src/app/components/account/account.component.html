@@ -106,7 +106,7 @@
               <p><strong>Category: </strong>{{group.category.name}}</p>
 
                 <button class="btn btn-warning" [routerLink]="['/social-group', group.id]">View Group Details</button><br><br>
-<hr><br></div></div></div></div></div></div></div>
+<hr><br></div></div></div></div></div></div></div><br>
 
 
 <!-- GROUPS I OWN -->
@@ -121,9 +121,9 @@
           <hr><div *ngIf="showMyOwnedGroups"><br>
             <div *ngFor="let group of ownedGroups">
               <img class="group" [src]="group.imageUrl"><br>
-              <h3> {{group.name}}</h3>
+              <h3>{{group.name}}</h3>
               <p><strong>Category: </strong>{{group.category.name}}</p>
-                             <button class="btn btn-warning" [routerLink]="['/social-group', group.id]">View Group Details</button><br><br>
+                <button class="btn btn-warning" [routerLink]="['/social-group', group.id]">View Group Details</button><br><br>
 
 
                 <!-- EDIT MY GROUP -->
@@ -151,7 +151,7 @@
               </div><hr>
             </div>
           </div>
-        </div><br>
+        </div>
       </div>
     </div>
   </div>
@@ -165,7 +165,7 @@
         <div class="card-body">
           <h2>Create New Group</h2>
           <button *ngIf="!showNewGroupForm" (click)="toggleNewGroup()" class="btn btn-primary">Create New Group</button>
-          <button *ngIf="showNewGroupForm" (click)="cancelNewGroup()" class="btn btn-danger">Cancel New Group</button><br><br>
+          <button *ngIf="showNewGroupForm" (click)="cancelNewGroup()" class="btn btn-danger">Cancel New Group</button><br>
           <hr><div *ngIf="showNewGroupForm">
             <div class="col-6 offset-md-3">
 
