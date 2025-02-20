@@ -22,7 +22,7 @@ public class GroupUser {
 
 	private boolean approved;
 
-	private boolean enabled;
+//	private boolean enabled;
 
 	@CreationTimestamp
 	@Column(name = "create_date")
@@ -63,13 +63,13 @@ public class GroupUser {
 		this.approved = approved;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+//	public boolean isEnabled() {
+//		return enabled;
+//	}
+//
+//	public void setEnabled(boolean enabled) {
+//		this.enabled = enabled;
+//	}
 
 	public LocalDateTime getCreateDate() {
 		return createDate;
@@ -130,7 +130,7 @@ public class GroupUser {
 
 	@Override
 	public String toString() {
-		return "GroupUser [id=" + id + ", approved=" + approved + ", enabled=" + enabled + ", createDate=" + createDate
+		return "GroupUser [id=" + id + ", approved=" + approved +  ", createDate=" + createDate
 				+ ", approvedDate=" + approvedDate + ", leader=" + leader + ", user=" + user + ", socialGroup="
 				+ socialGroup + "]";
 	}
