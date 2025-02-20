@@ -1,27 +1,35 @@
-<h1>{{group!.name}} Members</h1>
-<button (click)="showLeaders = !showLeaders">View {{showLeaders ? "Members" : "Leaders"}}</button>
-
-<!-- <ul>
-  <li *ngFor="let member of groupMembers | groupRole:showLeaders">{{member.user.firstName}}</li>
-</ul> -->
-
+<br><br>
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col-10 offset-md-1">
+      <div class="card text-dark bg-light mb-4">
+        <div class="card-body">
+<h1>Members of the {{group!.name}} Group</h1><br>
+<button class="btn btn-success" (click)="showLeaders = !showLeaders">View Group {{showLeaders ? "Members" : "Leaders"}}</button>
+<br><br>
 <div class="container">
   <div class="row">
     <div class="col-md-6" *ngFor="let member of groupMembers | groupRole:showLeaders">
       <div class="card mb-3">
         <div class="card-body">
-          <h5 class="card-title">{{member.user.firstName}} <img class="profile" src="{{member.user.imageUrl}}"></h5>
-          <p class="card-text">
-            <strong>Username:</strong> {{member.user.username}}<br>
-            <strong>Email:</strong> {{member.user.email}}<br>
-            <strong>phone:</strong> {{member.user.phone}}<br>
-          </p>
-          <p class="card-text"></p><small class="text-muted">Contact Info</small>
-
+          <div class="row">
+            <div class="col"><p class="card-text">
+              <strong>Name:</strong> {{member.user.firstName}} {{member.user.lastName}}<br>
+              <p>{{member.user.biography}}</p>
+              <h5><a href= "mailto:{{member.user.email}}" class="btn btn-warning bi bi-envelope-arrow-up">Send Email</a><br><br>
+                <a class="btn btn-primary" href=“tel:{{member.user.phone}}”>Call or Text</a></h5>
+            </div>
+            <div class="col"><br>
+              <h5 class="card-title"><img class="profile" src="{{member.user.imageUrl}}">{{member.user.username}} </h5>
+            </div>
+          </div>
         </div>
-      </div>
+      </div><br>
     </div>
-
   </div>
+</div>
+</div>
+</div>
+</div>
 </div>
 

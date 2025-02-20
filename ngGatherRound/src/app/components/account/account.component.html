@@ -48,7 +48,7 @@
           <h5><a href= "mailto:{{loggedInUser.email}}" class="btn btn-warning bi bi-envelope-arrow-up">Send Email</a>&nbsp;&nbsp;
             <a class="btn btn-primary" href=“tel:{{loggedInUser.phone}}”>Call or Text</a></h5><br>
           <h4>Bio:</h4>
-          <div class="card col-10 offset-md-1 text-dark bg-light mb-4 ">
+          <div class="card col-10 offset-md-1 text-dark bg-light mb-4">
             <div class="card-body">
               <p>{{loggedInUser.biography}}</p>
             </div>
@@ -107,9 +107,10 @@
               <h3>Description: </h3>
                 <div class="card col-8 offset-md-2 text-dark bg-light mb-4 ">
                   <div class="card-body">
-                    <blockquote>{{group.description}}</blockquote>
+                    <blockquote>{{group.description}}</blockquote><br>
                   </div>
                 </div>
+                <p>VIEW GROUP DETAILS</p>
 
                 <!-- EDIT MY GROUP -->
                 <button *ngIf="isEditingGroup?.id !== group.id" (click)="editMyGroup(group)" class="btn btn-primary">Edit This Group</button>

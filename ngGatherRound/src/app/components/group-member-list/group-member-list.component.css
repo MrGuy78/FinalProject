@@ -1,3 +1,34 @@
 img.profile{
   width: 200px;
 }
+
+.card {
+  border-radius: 10px;
+  border-color: #F1642E;
+  border-style: solid;
+  border-width: medium;
+}
+
+label {
+  font-weight: bold;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #196fa5;
+}
+
+.btn-warning {
+  color: #000;
+  background-color: #F5B024;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #67af31;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #E72628;
+}
