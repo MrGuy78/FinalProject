@@ -12,13 +12,11 @@ public interface SocialGroupRepository extends JpaRepository<SocialGroup, Intege
 
 	SocialGroup findByIdAndOwner_Username(int groupId, String username);
 	
-<<<<<<< HEAD
 	List<SocialGroup> findByOwner_Username(String username);
-=======
+	
+	List<SocialGroup> findByGroupUsers_User_UsernameAndGroupUsers_ApprovedTrueAndGroupUsers_LeaderFalseAndEnabledTrue(String username);
+			
 	List<SocialGroup> findByCategory_Id(int categoryId);
-	
->>>>>>> c7abd5cd8f0b342c6ec6ead095921e35976b4448
-	
-	List<SocialGroup> findByUser_IdAndUser_Username(String username);
-		
 }
+
+

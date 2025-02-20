@@ -90,27 +90,40 @@
   </div>
 </div>
 
-<!-- MY GROUP LIST -->
+<!-- GROUPS I AM MEMBER OF -->
 <div class="container-fluid text-center">
   <div class="row">
     <div class="col-8 offset-md-2">
       <div class="card text-dark bg-light mb-4">
         <div class="card-body">
-          <h2>My Groups</h2><br>
-          <button *ngIf="!showMyGroups" (click)="displayMyGroups()" class="btn btn-primary">View Groups</button>
-          <button *ngIf="showMyGroups" (click)="hideMyGroups()" class="btn btn-danger">Hide Groups</button>
-          <div *ngIf="showMyGroups"><br>
+          <h2>Joined Groups</h2>
+          <button *ngIf="!showMyJoinedGroups" (click)="displayMyJoinedGroups()" class="btn btn-primary">View Groups</button>
+          <button *ngIf="showMyJoinedGroups" (click)="hideMyJoinedGroups()" class="btn btn-danger">Hide Groups</button>
+          <hr><div *ngIf="showMyJoinedGroups"><br>
+            <div *ngFor="let group of joinedGroups">
+              <img class="group" [src]="group.imageUrl"><br><br>
+              <h3> {{group.name}}</h3>
+              <p><strong>Category: </strong>{{group.category.name}}</p>
+
+                <button class="btn btn-warning" [routerLink]="['/social-group', group.id]">View Group Details</button><br><br>
+<hr><br></div></div></div></div></div></div></div>
+
+
+<!-- GROUPS I OWN -->
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col-8 offset-md-2">
+      <div class="card text-dark bg-light mb-4">
+        <div class="card-body">
+          <h2>Groups I Own</h2>
+          <button *ngIf="!showMyOwnedGroups" (click)="displayMyOwnedGroups()" class="btn btn-primary">View Groups</button>
+          <button *ngIf="showMyOwnedGroups" (click)="hideMyOwnedGroups()" class="btn btn-danger">Hide Groups</button>
+          <hr><div *ngIf="showMyOwnedGroups"><br>
             <div *ngFor="let group of ownedGroups">
               <img class="group" [src]="group.imageUrl"><br>
               <h3> {{group.name}}</h3>
               <p><strong>Category: </strong>{{group.category.name}}</p>
-              <h3>Description: </h3>
-                <div class="card col-8 offset-md-2 text-dark bg-light mb-4 ">
-                  <div class="card-body">
-                    <blockquote>{{group.description}}</blockquote><br>
-                  </div>
-                </div>
-                <button class="btn btn-warning" [routerLink]="['/social-group', group.id]">View Group Details</button><br><br>
+                             <button class="btn btn-warning" [routerLink]="['/social-group', group.id]">View Group Details</button><br><br>
 
 
                 <!-- EDIT MY GROUP -->
@@ -150,10 +163,10 @@
     <div class="col-8 offset-md-2">
       <div class="card text-dark bg-light mb-4">
         <div class="card-body">
-          <h2>Create New Group</h2><br>
+          <h2>Create New Group</h2>
           <button *ngIf="!showNewGroupForm" (click)="toggleNewGroup()" class="btn btn-primary">Create New Group</button>
           <button *ngIf="showNewGroupForm" (click)="cancelNewGroup()" class="btn btn-danger">Cancel New Group</button><br><br>
-          <div *ngIf="showNewGroupForm">
+          <hr><div *ngIf="showNewGroupForm">
             <div class="col-6 offset-md-3">
 
             <label>Name:</label>

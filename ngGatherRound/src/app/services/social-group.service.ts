@@ -40,6 +40,17 @@ export class SocialGroupService {
     );
   }
 
+  joinedGroups(): Observable<SocialGroup[]> {
+    return this.http.get<SocialGroup[]>(this.url  + '/joined' , this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('GroupService.index(): error retrieving group: ' + err)
+        );
+      })
+    );
+  }
+
   getHttpOptions() {
     let options = {
       headers: {
@@ -84,8 +95,6 @@ export class SocialGroupService {
     );
   }
 
-<<<<<<< HEAD
-=======
   newMember(groupId: number) : Observable<GroupUser> {
     return this.http.post<GroupUser>(this.url +'/' + groupId + '/members', null, this.getHttpOptions()).pipe(
       catchError((error: any) => {
@@ -109,6 +118,5 @@ export class SocialGroupService {
   }
 
 
->>>>>>> c7abd5cd8f0b342c6ec6ead095921e35976b4448
  }
 

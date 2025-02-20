@@ -39,9 +39,11 @@ export class AccountComponent implements OnInit{
   socialGroup: SocialGroup = new SocialGroup();
   isEditingGroup: SocialGroup | null = null;
   selectedGroup: SocialGroup | null = null;
-  showMyGroups: any;
+  showMyOwnedGroups: any;
+  showMyJoinedGroups: any;
   toggleMyGroups: boolean = false;
   ownedGroups: SocialGroup [] = [];
+  joinedGroups: SocialGroup[] = [];
   showNewGroupForm: any;
   selectedGroupUser: GroupUser | null = null;
   selectedGroupMembers: GroupUser[] = [];
@@ -69,6 +71,7 @@ export class AccountComponent implements OnInit{
       this.getUser();
       this.reloadGroupCategories();
       this.reloadOwnedGroups();
+      this.reloadJoinedGroups();
     }
    else{
     this.router.navigateByUrl('/home');
@@ -151,6 +154,18 @@ export class AccountComponent implements OnInit{
     });
   }
 
+  reloadJoinedGroups() {
+    this.socialGroupService.joinedGroups().subscribe({
+      next: (socialGroups) => {
+        this.joinedGroups = socialGroups;
+      } ,
+      error: (failure) => {
+        console.error('AccountComponent.reloadJoinedGroups: failed to reload groups');
+        console.error(failure);
+      }
+    });
+  }
+
   toggleNewGroup() {
     this.showNewGroupForm = true;
   }
@@ -218,14 +233,23 @@ export class AccountComponent implements OnInit{
       })
     }
 
-  displayMyGroups() {
-      console.log('Display Groups by Leader');
-      this.showMyGroups = this.groups.filter(group => group.id === this.loggedInUser.id);
+  displayMyOwnedGroups() {
+      console.log('Display Groups');
+      this.showMyOwnedGroups = this.groups.filter(group => group.id === this.loggedInUser.id);
     }
 
-  hideMyGroups() {
-    this.showMyGroups = false;
+  hideMyOwnedGroups() {
+    this.showMyOwnedGroups = false;
   }
+
+  displayMyJoinedGroups() {
+    console.log('Display Groups');
+    this.showMyJoinedGroups = this.groups.filter(group => group.id === this.loggedInUser.id);
+  }
+
+  hideMyJoinedGroups() {
+  this.showMyJoinedGroups = false;
+}
 
   editMyGroup(socialGroup: SocialGroup){
     this.isEditingGroup = {...socialGroup};

@@ -56,7 +56,7 @@ public class SocialGroupServiceImpl implements SocialGroupService {
 	
 	@Override
 	public List<SocialGroup> loggedInMemberGroups(String username) {
-		return groupRepository.findByUser_IdAndUser_Username(username);
+		return groupRepository.findByGroupUsers_User_UsernameAndGroupUsers_ApprovedTrueAndGroupUsers_LeaderFalseAndEnabledTrue(username);
 	}
 
 	@Override

@@ -84,7 +84,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `social_group` ;
 
 CREATE TABLE IF NOT EXISTS `social_group` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   `description` TEXT NULL,
   `image_url` VARCHAR(2000) NULL,
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `social_group` (
   `last_update` DATETIME NULL,
   `enabled` TINYINT NULL,
   `owner_id` INT NOT NULL,
-  `group_category_id` INT NOT NULL AUTO_INCREMENT,
+  `group_category_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
   INDEX `fk_social_group_user1_idx` (`owner_id` ASC) VISIBLE,
