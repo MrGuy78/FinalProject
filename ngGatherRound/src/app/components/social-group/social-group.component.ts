@@ -1,3 +1,4 @@
+import { GroupUserId } from './../../models/group-user-id';
 import { CategoryService } from './../../services/category.service';
 import { GroupUserService } from './../../services/group-user.service';
 import { SocialEventService } from './../../services/social-event.service';
@@ -83,6 +84,27 @@ export class SocialGroupComponent implements OnInit {
   }
 
   // GROUP METHODS
+  isGroupMember(group: SocialGroup): boolean {
+    if(this.selectedGroup && this.selectedGroupMembers && this.loggedInUser) {
+    return this.selectedGroupMembers.some((member) => {
+    return member.id.userId === this.loggedInUser?.id;
+    })
+    }
+    return false;
+  }
+
+  isGroupLeader(group: SocialGroup): boolean {
+    if(this.selectedGroup && this.selectedGroupMembers && this.loggedInUser) {
+      if(this.selectedGroup.owner.id === this.loggedInUser.id) {
+        return true;
+      }
+      return this.selectedGroupMembers.some((member) => {
+        return member.id.userId === this.loggedInUser?.id && member.leader;
+      })
+      }
+      return false;
+  }
+
   reloadSocialGroups() {
     this.socialGroupService.index().subscribe({
       next: (SocialGroups) => {
@@ -202,10 +224,6 @@ export class SocialGroupComponent implements OnInit {
     });
   }
 
-
-
-
-
 // ADDRESS METHODS
 createAddress(groupId: number, eventId: number, address: Address) {
   this.addressService.createAddressForEvent(groupId, eventId, address).subscribe({
@@ -243,16 +261,7 @@ cancelNewAddress() {
   this.showNewAddressForm = false;
 }
 
-  // isMember(): number {
-  //   let className = "bg-";
-  //   let membership = this.isMember();
-  //   if (membership = 2) {
-  //     className += "danger";
-  //   } else {
-  //     className += "success";
-  //   }
-  //   return className;
-  // }
+  // isMember(): number {}
 
   loadCategories() {
     this.categoryService.index().subscribe({

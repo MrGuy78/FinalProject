@@ -1,4 +1,4 @@
-import { Router} from '@angular/router';
+import { Router, RouterLink} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
@@ -11,10 +11,13 @@ import { SocialGroupService } from '../../services/social-group.service';
 import { UserService } from '../../services/user.service';
 import { Address } from '../../models/address';
 import { AddressService } from '../../services/address.service';
+import { GroupUserService } from '../../services/group-user.service';
+import { GroupUser } from '../../models/group-user';
 
 @Component({
   selector: 'app-account',
   imports: [
+    RouterLink,
     CommonModule,
     FormsModule,
 
@@ -40,6 +43,8 @@ export class AccountComponent implements OnInit{
   toggleMyGroups: boolean = false;
   ownedGroups: SocialGroup [] = [];
   showNewGroupForm: any;
+  selectedGroupUser: GroupUser | null = null;
+  selectedGroupMembers: GroupUser[] = [];
 
   // GROUP CATEGORY FIELDS
   categories: Category [] = [];
@@ -53,6 +58,7 @@ export class AccountComponent implements OnInit{
     private socialGroupService: SocialGroupService,
     private categoryService: CategoryService,
     private addressService: AddressService,
+    private groupUserService: GroupUserService,
     private userService: UserService,
   ){
   }
@@ -166,6 +172,50 @@ export class AccountComponent implements OnInit{
           console.error(failure);
         }
       });
+    }
+
+    displayGroup(socialGroup : SocialGroup){
+      this.selectedGroup = socialGroup;
+      this.loadGroupUser(socialGroup.id);
+      this.reloadAddresses(socialGroup.id);
+      this.loadGroupMembers(socialGroup.id);
+    }
+
+    loadGroupUser(groupId: number) {
+      this.groupUserService.show(groupId).subscribe({
+        next: (groupUser) => {
+          this.selectedGroupUser = groupUser;
+          console.log(this.selectedGroupUser);
+        },
+        error: (error) => {
+          console.error('SocialGroupComponent.loadGroupUser: Error Loading Group User')
+          console.error(error);
+        }
+      });
+    }
+
+    reloadAddresses(groupId: number) {
+      this.addressService.index(groupId).subscribe({
+        next: (addresses) => {
+          this.addresses = addresses;
+        } ,
+        error: (error) => {
+          console.error('AddressComponent.reload: failed to reload addresses');
+          console.error(error);
+        }
+      });
+    }
+
+    loadGroupMembers(groupId: number){
+      this.groupUserService.showAllUsers(groupId).subscribe({
+        next: (members) => {
+          this.selectedGroupMembers = members;
+        } ,
+        error: (failure) => {
+          console.error('SocialGroupComponent.loadGroupMembers: failed to reload group users');
+          console.error(failure);
+        }
+      })
     }
 
   displayMyGroups() {

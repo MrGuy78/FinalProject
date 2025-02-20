@@ -110,7 +110,8 @@
                     <blockquote>{{group.description}}</blockquote><br>
                   </div>
                 </div>
-                <p>VIEW GROUP DETAILS</p>
+                <button class="btn btn-warning" [routerLink]="['/social-group', group.id]">View Group Details</button><br><br>
+
 
                 <!-- EDIT MY GROUP -->
                 <button *ngIf="isEditingGroup?.id !== group.id" (click)="editMyGroup(group)" class="btn btn-primary">Edit This Group</button>

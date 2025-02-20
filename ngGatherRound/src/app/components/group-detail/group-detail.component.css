@@ -1,4 +1,62 @@
+label {
+  font-weight: bold;
+}
+
+.card {
+  border-radius: 10px;
+  border-color: #F1642E;
+  border-style: solid;
+  border-width: medium;
+}
+
 img.group {
   width: 150px;
   border-radius: 10px;
+  border-color: #67af31;
+  border-style: solid;
+  border-width: medium;
+}
+
+img.profile {
+  border-color: #D53F98;
+  border-style: solid;
+  border-width: thick;
+  border-radius: 80%;
+}
+
+img.event {
+  width: 400px;
+  border-radius: 10px;
+  border-color: #67af31;
+  border-style: solid;
+  border-width: medium;
+}
+
+p.title {
+  font-weight: bold;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #196fa5;
+}
+
+.btn-warning {
+  color: #000;
+  background-color: #F5B024;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #67af31;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #E72628;
+}
+
+.btn-pink {
+  color: #fff;
+  background-color: #D53F98;
 }

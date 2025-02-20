@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.gatherround.entities.GroupCategory;
+import com.skilldistillery.gatherround.entities.GroupUser;
 import com.skilldistillery.gatherround.entities.SocialGroup;
+import com.skilldistillery.gatherround.services.GroupUserService;
 import com.skilldistillery.gatherround.services.SocialGroupService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,6 +30,9 @@ public class SocialGroupController {
 	@Autowired
 	private SocialGroupService socialGroupService;
 
+	@Autowired
+	private GroupUserService groupUserService;
+	
 	@GetMapping("groups")
 	public List<SocialGroup> findAllGroups() {
 		return socialGroupService.index();
@@ -50,8 +55,10 @@ public class SocialGroupController {
 	}
 
 	@PutMapping("groups/{groupId}")
-	public SocialGroup editGroup(@PathVariable("groupId") int groupId, @RequestBody SocialGroup socialGroup,
-			Principal principal, HttpServletRequest request, HttpServletResponse response) {
+	public SocialGroup editGroup(@PathVariable("groupId") int groupId, 
+			@RequestBody SocialGroup socialGroup,
+			Principal principal, HttpServletRequest request, 
+			HttpServletResponse response) {
 		try {
 			socialGroup = socialGroupService.update(socialGroup, principal.getName(), groupId);
 			response.setStatus(HttpServletResponse.SC_OK); // 200
@@ -79,5 +86,25 @@ public class SocialGroupController {
 		}
 		return createdGroup;
 	}
+	
+	@PostMapping("groups/{groupId}/members")
+	public GroupUser addGroupMember(@PathVariable("groupId") int groupId,
+			Principal principal, HttpServletRequest request, 
+			HttpServletResponse response) {
+		GroupUser createdGroupUser = null;
+		try {
+			createdGroupUser = groupUserService.addGroupMember(principal.getName(), groupId);
+			if(createdGroupUser != null) {
+				response.setStatus(HttpServletResponse.SC_CREATED); // 201
+			} else {
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
+		}
+		return createdGroupUser;
+	}
+
 
 }

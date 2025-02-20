@@ -5,7 +5,7 @@
       <div class="card text-dark bg-light mb-4">
         <div class="card-body">
   <h1>Activity Groups</h1><hr>
-  <div class="form-group">
+  <div *ngIf="!selectedGroup" class="form-group">
     <label for="categoryFilter">Filter by Category:</label>
             <select id="categoryFilter" class="form-control" [(ngModel)]="selectedCategoryId" (change)="filterGroups()">
               <option [ngValue]="null">All Categories</option>
@@ -27,9 +27,18 @@
 </div>
 </div>
 
-<!-- Display Social Group Details -->
-<br>
-<div class="container-fluid text-center" *ngIf="selectedGroup">
+<!-- GO BACK -->
+<div class="col-6 offset-md-3">
+  <button (click)="selectedGroup = null" class="btn btn-danger">Back to Social Groups</button>
+  </div><br><hr><br>
+
+<!-- REQUEST TO JOIN THIS GROUP -->
+  <div class="container-fluid text-center" *ngIf="selectedGroup">
+    <div *ngIf="loggedInUser && !isGroupMember(selectedGroup)">
+      <button class="btn btn-success">Join This Group</button><br><br>
+    </div>
+
+<!-- DISPLAY SOCIAL GROUP DETAILS -->
   <img class="group" [src]="selectedGroup.imageUrl"><br><br>
   <h1>{{selectedGroup.name}}</h1>
   <p><strong>Category: </strong>{{selectedGroup.category.name}}</p>
@@ -43,12 +52,19 @@
     <h4>To View Events for This Group You MUST Be A Member</h4><br>
     <button class="btn btn-warning" [routerLink]="['/register']">Register Now</button><br><br>
   </div>
-  <div *ngIf="loggedInUser">
+  <div *ngIf="loggedInUser && isGroupMember(selectedGroup)">
   <button class="btn btn-warning" [routerLink]="['/social-group', selectedGroup.id, 'members']">View Members & Group Leaders</button><br><br>
-  <hr>
-  </div>
+</div>
+
 <!-- Events of Group -->
-<div *ngIf="loggedInUser">
+<div *ngIf="loggedInUser && !isGroupMember(selectedGroup)">
+  <hr>
+  <h1>Events for this Group May Be Member-Only</h1><br>
+  <h3>Submit a Request to Join the Group to See All Events</h3><br>
+</div>
+
+<div *ngIf="loggedInUser && isGroupMember(selectedGroup)">
+  <hr>
 <h1>Events for the {{selectedGroup.name}} Group</h1><br>
 </div>
 <div class="container-fluid text-center;" *ngFor="let event of events">
@@ -72,7 +88,7 @@
     <p>${{event.cost}}.00</p>
 
   <!--UPDATE SOCIAL EVENT FORM-->
-
+<div *ngIf="isGroupLeader(selectedGroup)">
 <button *ngIf="editEvent?.id !== event.id" (click)="setEditEvent(event)" class="btn btn-primary">Edit This Event</button>
 <button *ngIf="editEvent?.id === event.id" (click)="cancelEditEvent()" class="btn btn-danger">Cancel Edit Event</button><br><br>
 <div *ngIf="editEvent && editEvent.id === event.id" >
@@ -128,9 +144,6 @@
 <button class="btn btn-success" (click)="updateSocialEvent(editEvent, selectedGroup.id)" >Update Event</button><br><br>
 </form>
 </div></div></div></div></div></div>
-<hr>
-<button (click)="selectedGroup = null" class="btn btn-danger">Back to Social Groups</button><br><br>
-
 
 <!-- NEW EVENT FORM -->
 <div class="container-fluid text-center" *ngIf="selectedGroupUser && selectedGroupUser.leader">
@@ -187,6 +200,6 @@
       </select><br></div>
 
   <button class="btn btn-success" (click)="createSocialEvent(newSocialEvent, selectedGroup.id)">Create New Event</button><br><br>
-  </form></div></div>
+  </form></div></div></div>
 </div></div></div></div></div></div></div></div>
 <br>
