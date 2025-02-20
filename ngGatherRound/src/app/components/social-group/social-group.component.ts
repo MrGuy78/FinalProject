@@ -65,12 +65,9 @@ export class SocialGroupComponent implements OnInit {
   ngOnInit(): void {
     this.reloadSocialGroups();
     this.getLoggedInUser();
-<<<<<<< HEAD
-
-=======
     this.loadCategories();
     this.loadGroups();
->>>>>>> 862d7d633aa2b80ae9fc195ad5eeff9a78fb9cca
+
   }
 
   getLoggedInUser() {
