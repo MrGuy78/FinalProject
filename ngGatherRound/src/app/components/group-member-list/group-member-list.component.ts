@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { SocialGroupService } from './../../services/social-group.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -21,6 +22,7 @@ export class GroupMemberListComponent implements OnInit{
   showLeaders: boolean = false;
 
 constructor(
+  private authService: AuthService,
   private socialGroupService: SocialGroupService,
   private groupUserService: GroupUserService,
   private router: Router,
