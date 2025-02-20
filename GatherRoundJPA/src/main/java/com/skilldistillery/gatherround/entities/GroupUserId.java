@@ -20,6 +20,13 @@ public class GroupUserId implements Serializable {
 		super();
 	}
 
+	
+	public GroupUserId(int userId, int groupId) {
+		super();
+		this.userId = userId;
+		this.groupId = groupId;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
