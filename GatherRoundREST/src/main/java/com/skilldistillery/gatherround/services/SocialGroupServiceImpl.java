@@ -68,4 +68,9 @@ public class SocialGroupServiceImpl implements SocialGroupService {
 		return managedSocialGroup;
 
 	}
+
+	@Override
+	public List<SocialGroup> findGroupByCategory(int categoryId) {
+		return groupRepository.findByCategory_Id(categoryId);
+	}
 }

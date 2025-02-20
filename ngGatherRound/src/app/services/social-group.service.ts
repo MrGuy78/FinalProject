@@ -95,5 +95,17 @@ export class SocialGroupService {
     );
   }
 
+  filterGroupsByCategory(categoryId: number): Observable<SocialGroup[]> {
+    return this.http.get<SocialGroup[]>(this.url +'/categories/' + categoryId).pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return throwError(
+          () => new Error ('SocialGroupService.filterGroupsByCategory(): error filtering by category: ' + error.message)
+        );
+      })
+    );
+  }
+
+
  }
 

@@ -14,5 +14,7 @@ public interface SocialGroupRepository extends JpaRepository<SocialGroup, Intege
 	
 	SocialGroup findByIdAndOwner_Username(int groupId, String username);
 	
+	List<SocialGroup> findByCategory_Id(int categoryId);
+	
 	
 }

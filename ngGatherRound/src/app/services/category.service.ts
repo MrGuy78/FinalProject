@@ -18,7 +18,7 @@ constructor(
   ) { }
 
   index(): Observable<Category[]> {
-      return this.http.get<Category[]>(this.url, this.getHttpOptions()).pipe(
+      return this.http.get<Category[]>(this.url).pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError(
