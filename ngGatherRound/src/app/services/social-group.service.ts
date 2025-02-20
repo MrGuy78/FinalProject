@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
+import { GroupUser } from '../models/group-user';
 
 @Injectable({
   providedIn: 'root'
@@ -83,5 +84,31 @@ export class SocialGroupService {
     );
   }
 
+<<<<<<< HEAD
+=======
+  newMember(groupId: number) : Observable<GroupUser> {
+    return this.http.post<GroupUser>(this.url +'/' + groupId + '/members', null, this.getHttpOptions()).pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return throwError(
+          () => new Error ('SocialGroupService.newMember(): error adding groupMember: ' + error.message)
+        );
+      })
+    );
+  }
+
+  filterGroupsByCategory(categoryId: number): Observable<SocialGroup[]> {
+    return this.http.get<SocialGroup[]>(this.url +'/categories/' + categoryId).pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return throwError(
+          () => new Error ('SocialGroupService.filterGroupsByCategory(): error filtering by category: ' + error.message)
+        );
+      })
+    );
+  }
+
+
+>>>>>>> c7abd5cd8f0b342c6ec6ead095921e35976b4448
  }
 

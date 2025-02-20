@@ -58,6 +58,17 @@ public class SocialGroupController {
 	public List<GroupCategory> findAllCategories() {
 		return socialGroupService.showAllCategories();
 	}
+	
+	@GetMapping("groups/categories/{categoryId}")
+	public List<SocialGroup> findGroupByCategory(@PathVariable("categoryId") int categoryId, HttpServletResponse response ){
+		List<SocialGroup> groupsByCategory = socialGroupService.findGroupByCategory(categoryId);
+		if(groupsByCategory == null) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
+		}
+		response.setStatus(HttpServletResponse.SC_OK); // 200
+		return groupsByCategory;
+	
+	}
 
 	@PutMapping("groups/{groupId}")
 	public SocialGroup editGroup(@PathVariable("groupId") int groupId, 

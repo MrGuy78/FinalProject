@@ -11,6 +11,8 @@ public interface SocialGroupService {
 	
 	public List<GroupCategory> showAllCategories();
 	
+	public List<SocialGroup> findGroupByCategory(int categoryId);
+	
 	public SocialGroup show(int groupId);
 
 	public SocialGroup create(SocialGroup socialGroup, String username);

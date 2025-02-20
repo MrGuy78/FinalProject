@@ -15,6 +15,7 @@ import { GroupUser } from '../../models/group-user';
 import { AddressService } from '../../services/address.service';
 import { Address } from '../../models/address';
 import { Category } from '../../models/category';
+import { GroupCategoryPipe } from '../../pipes/group-category.pipe';
 
 
 @Component({
@@ -23,6 +24,7 @@ import { Category } from '../../models/category';
     RouterLink,
     CommonModule,
     FormsModule,
+    GroupCategoryPipe,
   ],
   templateUrl: './social-group.component.html',
   styleUrl: './social-group.component.css'
@@ -33,6 +35,7 @@ export class SocialGroupComponent implements OnInit {
   socialGroup: SocialGroup = new SocialGroup();
   selectedGroup: SocialGroup | null = null;
   isEditingGroup: SocialGroup | null = null;
+  groupsByCategory: SocialGroup[] = [];
 
   events: SocialEvent[] = [];
   newSocialEvent: SocialEvent = new SocialEvent();
@@ -42,6 +45,7 @@ export class SocialGroupComponent implements OnInit {
   loggedInUser: User | null = null;
   selectedGroupUser: GroupUser | null = null;
   selectedGroupMembers: GroupUser[] = [];
+  newGroupUser: GroupUser = new GroupUser();
 
 
   // ADDRESS FIELDS
@@ -50,7 +54,7 @@ export class SocialGroupComponent implements OnInit {
   showNewAddressForm: any;
 
   categories: Category [] = [];
-  selectedCategoryId: number | null = null;;
+  selectedCategoryName: string = 'all';
   filteredGroups: SocialGroup[] = [];
 
   constructor (
@@ -68,7 +72,6 @@ export class SocialGroupComponent implements OnInit {
     this.getLoggedInUser();
     this.loadCategories();
     this.loadGroups();
-
   }
 
   getLoggedInUser() {
@@ -155,7 +158,19 @@ export class SocialGroupComponent implements OnInit {
       } ,
       error: (failure) => {
         this.router.navigateByUrl('Group' + groupId + ' not found')
-        console.error('GroupDetailComponent.reload: failed to reload groups');
+        console.error('SocialGroupComponent.reload: failed to reload groups');
+        console.error(failure);
+      }
+    });
+  }
+
+  filterGroupByCategory(categoryId: number){
+    this.socialGroupService.filterGroupsByCategory(categoryId).subscribe({
+      next: (groupsByCategory) => {
+        this.groups = groupsByCategory;
+      } ,
+      error: (failure) => {
+        console.error('SocialGroupComponent.filterGroupByCategory: failed to filter groups');
         console.error(failure);
       }
     });
@@ -224,6 +239,19 @@ export class SocialGroupComponent implements OnInit {
     });
   }
 
+  addGroupMember(groupId: number){
+    this.socialGroupService.newMember(groupId).subscribe({
+      next: (newGroupUser) => {
+        this.newGroupUser = newGroupUser;
+        this.displayGroupSocialEvents(groupId);
+      },
+      error: (error) => {
+        console.error('SocialGroupComponent.addGroupMember: Error adding Group User')
+        console.error(error);
+      }
+    });
+  }
+
 // ADDRESS METHODS
 createAddress(groupId: number, eventId: number, address: Address) {
   this.addressService.createAddressForEvent(groupId, eventId, address).subscribe({
@@ -275,22 +303,16 @@ cancelNewAddress() {
   }
 
   loadGroups() {
-    this.socialGroupService.index().subscribe(
-      groups => {
+    this.socialGroupService.index().subscribe({
+     next: (groups) => {
         this.groups = groups;
-        this.filterGroups();
+
       },
-      err => console.error('Error loading groups', err)
-    );
+      error: (err) => console.error('Error loading groups', err)
+  });
   }
 
-  filterGroups() {
-    if (this.selectedCategoryId) {
-      this.filteredGroups = this.groups.filter(group => group.category.id === this.selectedCategoryId);
-    } else {
-      this.filteredGroups = this.groups;
-    }
-  }
+
 
 
 
