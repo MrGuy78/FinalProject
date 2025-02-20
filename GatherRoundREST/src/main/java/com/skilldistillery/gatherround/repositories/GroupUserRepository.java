@@ -12,4 +12,9 @@ public interface GroupUserRepository extends JpaRepository<GroupUser, GroupUserI
 	GroupUser findByUserUsernameAndSocialGroup_Id(String username, int groupId);
 	
 	List<GroupUser> findBySocialGroup_Id (int groupId);
+	
+	boolean existsByIdAndUsername (String username, int groupId);
+	
+	
+	
 }
