@@ -32,6 +32,10 @@
   <blockquote>{{selectedGroup.description}}</blockquote>
   </div>
   </div>
+  <div *ngIf="!loggedInUser">
+    <h4>To View Events for This Group You MUST Be A Member</h4><br>
+    <button class="btn btn-warning" [routerLink]="['/register']">Register Now</button><br><br>
+  </div>
   <div *ngIf="loggedInUser">
   <button class="btn btn-warning" [routerLink]="['/social-group', selectedGroup.id, 'members']">View Members & Group Leaders</button><br><br>
   <hr>
