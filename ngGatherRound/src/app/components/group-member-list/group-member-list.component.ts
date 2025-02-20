@@ -24,10 +24,9 @@ constructor(
   private socialGroupService: SocialGroupService,
   private groupUserService: GroupUserService,
   private router: Router,
-  private activatedRoute: ActivatedRoute,){
-}
+  private activatedRoute: ActivatedRoute,
+){}
 // social-group/:groupId/members
-
 
   ngOnInit(): void {
     this.getRouteParams();

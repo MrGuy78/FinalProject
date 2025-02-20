@@ -1,5 +1,9 @@
-img.profile{
+img.profile {
   width: 200px;
+  border-color: #D53F98;
+  border-style: solid;
+  border-width: thick;
+  border-radius: 80%;
 }
 
 .card {
