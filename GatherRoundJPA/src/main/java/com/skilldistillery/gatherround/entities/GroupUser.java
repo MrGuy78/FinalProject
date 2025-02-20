@@ -16,36 +16,37 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "group_user")
 public class GroupUser {
-	
+
 	@EmbeddedId
 	private GroupUserId id;
 
 	private boolean approved;
 
+	private boolean enabled;
+
 	@CreationTimestamp
-	@Column(name = "create_date") 
+	@Column(name = "create_date")
 	private LocalDateTime createDate;
-	
+
 	@Column(name = "approved_date")
 	private LocalDateTime approvedDate;
-	
+
 	private boolean leader;
-	
+
 	@ManyToOne
-	@JoinColumn(name= "user_id")
+	@JoinColumn(name = "user_id")
 	@MapsId(value = "userId")
 	private User user;
-	
+
 	@ManyToOne
-	@JoinColumn(name= "group_id")
+	@JoinColumn(name = "group_id")
 	@MapsId(value = "groupId")
 	private SocialGroup socialGroup;
-	
 
 	public GroupUser() {
 		super();
 	}
-	
+
 	public GroupUserId getId() {
 		return id;
 	}
@@ -60,6 +61,14 @@ public class GroupUser {
 
 	public void setApproved(boolean approved) {
 		this.approved = approved;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public LocalDateTime getCreateDate() {
@@ -104,7 +113,7 @@ public class GroupUser {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(approved, approvedDate, createDate, id, leader);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -116,17 +125,14 @@ public class GroupUser {
 		if (getClass() != obj.getClass())
 			return false;
 		GroupUser other = (GroupUser) obj;
-		return approved == other.approved && Objects.equals(approvedDate, other.approvedDate)
-				&& Objects.equals(createDate, other.createDate) && Objects.equals(id, other.id)
-				&& leader == other.leader;
+		return Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
-		return "GroupUser [id=" + id + ", approved=" + approved + ", createDate=" + createDate + ", approvedDate="
-				+ approvedDate + ", leader=" + leader + "]";
+		return "GroupUser [id=" + id + ", approved=" + approved + ", enabled=" + enabled + ", createDate=" + createDate
+				+ ", approvedDate=" + approvedDate + ", leader=" + leader + ", user=" + user + ", socialGroup="
+				+ socialGroup + "]";
 	}
-	
-	
 
 }
