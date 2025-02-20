@@ -1,3 +1,4 @@
+import { CategoryService } from './../../services/category.service';
 import { GroupUserService } from './../../services/group-user.service';
 import { SocialEventService } from './../../services/social-event.service';
 import { SocialEvent } from './../../models/social-event';
@@ -12,6 +13,8 @@ import { User } from '../../models/user';
 import { GroupUser } from '../../models/group-user';
 import { AddressService } from '../../services/address.service';
 import { Address } from '../../models/address';
+import { Category } from '../../models/category';
+
 
 @Component({
   selector: 'app-social-group',
@@ -45,6 +48,10 @@ export class SocialGroupComponent implements OnInit {
   newAddress: Address = new Address();
   showNewAddressForm: any;
 
+  categories: Category [] = [];
+  selectedCategoryId: number | null = null;;
+  filteredGroups: SocialGroup[] = [];
+
   constructor (
     private socialGroupService: SocialGroupService,
     private socialEventService: SocialEventService,
@@ -52,11 +59,14 @@ export class SocialGroupComponent implements OnInit {
     private addressService: AddressService,
     private authService: AuthService,
     private router: Router,
+    private categoryService: CategoryService,
   ) {}
 
   ngOnInit(): void {
     this.reloadSocialGroups();
     this.getLoggedInUser();
+    this.loadCategories();
+    this.loadGroups();
   }
 
   getLoggedInUser() {
@@ -242,5 +252,36 @@ cancelNewAddress() {
   //   }
   //   return className;
   // }
+
+  loadCategories() {
+    this.categoryService.index().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+      },
+      error: (error) => {
+        console.error('Error loading categories:', error);
+      }
+    });
+  }
+
+  loadGroups() {
+    this.socialGroupService.index().subscribe(
+      groups => {
+        this.groups = groups;
+        this.filterGroups();
+      },
+      err => console.error('Error loading groups', err)
+    );
+  }
+
+  filterGroups() {
+    if (this.selectedCategoryId) {
+      this.filteredGroups = this.groups.filter(group => group.category.id === this.selectedCategoryId);
+    } else {
+      this.filteredGroups = this.groups;
+    }
+  }
+
+
 
 }
