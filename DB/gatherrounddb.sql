@@ -169,6 +169,7 @@ CREATE TABLE IF NOT EXISTS `group_user` (
   `user_id` INT NOT NULL,
   `group_id` INT NOT NULL,
   `approved` TINYINT NULL,
+  `enabled` TINYINT NULL,
   `create_date` DATETIME NULL,
   `approved_date` DATETIME NULL,
   `leader` TINYINT NULL,
@@ -558,44 +559,44 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `gatherrounddb`;
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (1, 1, 1, '2025-1-23', '2025-1-24', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (2, 2, 1, '2025-2-3', '2025-2-3', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (3, 3, 1, '2025-2-5', '2025-2-5', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (4, 4, 1, '2025-2-8', '2025-2-8', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (5, 5, 1, '2025-2-11', '2025-2-12', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (6, 6, 1, '2025-2-12', '2025-2-12', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (7, 7, 1, '2025-2-12', '2025-2-13', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (8, 8, 1, '2025-2-13', '2025-2-13', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (9, 9, 1, '2025-2-13', '2025-2-14', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (10, 10, 1, '2025-2-15', '2025-2-15', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (11, 11, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (12, 12, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (13, 13, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (14, 14, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (15, 15, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (16, 16, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (17, 17, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (18, 3, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (19, 9, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (20, 1, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (21, 7, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (22, 15, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (23, 16, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (24, 14, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (25, 7, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (26, 1, 1, '2025-2-15', '2025-2-20', 1);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (27, 1, 1, '2025-2-15', '2025-2-20', 0);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (28, 1, 1, '2025-2-15', '2025-2-20', 0);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (29, 1, 1, '2025-2-15', '2025-2-20', 0);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (30, 1, 1, '2025-2-15', '2025-2-20', 0);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (31, 1, 1, '2025-2-15', '2025-2-20', 0);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (32, 1, 1, '2025-2-15', '2025-2-20', 0);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (33, 3, 1, '2025-2-15', '2025-2-20', 0);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (34, 3, 1, '2025-2-15', '2025-2-20', 0);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (35, 3, 1, '2025-2-15', '2025-2-20', 0);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (36, 3, 1, '2025-2-15', '2025-2-20', 0);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (37, 3, 1, '2025-2-15', '2025-2-20', 0);
-INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `create_date`, `approved_date`, `leader`) VALUES (36, 1, 1, '2025-2-15', '2025-2-15', 0);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (1, 1, 1, 1, '2025-1-23', '2025-1-24', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (2, 2, 1, 1, '2025-2-3', '2025-2-3', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (3, 3, 1, 1, '2025-2-5', '2025-2-5', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (4, 4, 1, 1, '2025-2-8', '2025-2-8', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (5, 5, 1, 1, '2025-2-11', '2025-2-12', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (6, 6, 1, 1, '2025-2-12', '2025-2-12', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (7, 7, 1, 1, '2025-2-12', '2025-2-13', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (8, 8, 1, 1, '2025-2-13', '2025-2-13', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (9, 9, 1, 1, '2025-2-13', '2025-2-14', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (10, 10, 1, 1, '2025-2-15', '2025-2-15', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (11, 11, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (12, 12, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (13, 13, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (14, 14, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (15, 15, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (16, 16, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (17, 17, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (18, 3, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (19, 9, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (20, 1, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (21, 7, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (22, 15, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (23, 16, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (24, 14, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (25, 7, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (26, 1, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (27, 1, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (28, 1, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (29, 1, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (30, 1, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (31, 1, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (32, 1, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (33, 3, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (34, 3, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (35, 3, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (36, 3, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (37, 3, 1, 1, '2025-2-15', '2025-2-20', 1);
+INSERT INTO `group_user` (`user_id`, `group_id`, `approved`, `enabled`, `create_date`, `approved_date`, `leader`) VALUES (36, 1, 1, NULL, '2025-2-15', '2025-2-15', 1);
 
 COMMIT;
 
