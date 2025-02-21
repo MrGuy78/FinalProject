@@ -4,16 +4,25 @@
     <div class="col-10 offset-md-1">
       <div class="card text-dark bg-light mb-4">
         <div class="card-body">
+          <h1>Group Details</h1><hr>
+          <br>
+          <button class="btn btn-success" [routerLink]="['/account']">Back to My Account</button><br><br>
+          <hr>
+          <br>
+<!-- REQUEST TO JOIN/LEAVE THIS GROUP -->
+<div class="container-fluid text-center" *ngIf="selectedGroup">
+  <div>
+    <button  *ngIf="loggedInUser && !isGroupMember(selectedGroup)" class="btn btn-success" (click)=" addGroupMember(selectedGroup.id)">Join This Group</button>
+    <button  *ngIf="loggedInUser && isGroupMember(selectedGroup)"class="btn btn-danger">Leave Group</button><br><br>
+  </div>
 <!-- Display Social Group Details -->
-<br>
-<button class="btn btn-danger" [routerLink]="['/account']">Back to My Account</button><br><br>
-<hr>
-<br>
+
 <div class="container-fluid text-center" *ngIf="selectedGroup">
   <img class="group" [src]="selectedGroup.imageUrl"><br><br>
   <h1>{{selectedGroup.name}}</h1>
-  <p><strong>Category: </strong>{{selectedGroup.name}}</p>
-  <div class="card col-6 offset-md-3 text-dark bg-light mb-4 ">
+  <h4>Members&nbsp;&nbsp;<span class="badge text-bg-primary">6</span></h4>
+  <p><strong>Category: </strong>{{selectedGroup.category.name}}</p>
+  <div class="card col-4 offset-md-4 text-dark bg-light mb-4 ">
     <div class="card-body">
   <h4>Description:</h4>
   <blockquote>{{selectedGroup.description}}</blockquote>
@@ -24,24 +33,40 @@
     <button class="btn btn-warning" [routerLink]="['/register']">Register Now</button><br><br>
   </div>
   <div *ngIf="loggedInUser">
-  <button class="btn btn-warning" [routerLink]="['/social-group', socialGroup.id, 'members']">View Members & Group Leaders</button><br><br>
-  <hr>
+  <button class="btn btn-warning" (click)="loadGroupMembers(selectedGroup.id)" [routerLink]="['/social-group', selectedGroup.id, 'members']">View Members & Group Leaders</button><br><br>
   </div>
 <!-- Events of Group -->
-<div *ngIf="loggedInUser">
-<h1>Events for the {{socialGroup.name}} Group</h1><br>
+<div *ngIf="loggedInUser && !isGroupMember(selectedGroup)">
+  <hr>
+  <h2><span class="badge text-bg-info">Events for this Group May Be Member-Only</span></h2>
+  <h3><span class="badge text-bg-info">Join the Group to See All Events</span></h3>
+</div>
+<div class="container-fluid text-center" *ngIf="selectedGroup">
+  <div>
+    <button  *ngIf="loggedInUser && !isGroupMember(selectedGroup)" class="btn btn-success" (click)=" addGroupMember(selectedGroup.id)">Join This Group</button>
+    <button  *ngIf="loggedInUser && isGroupMember(selectedGroup)"class="btn btn-danger">Leave Group</button><br>
+  </div>
+<hr>
+<h1>Events for the {{selectedGroup.name}} Group:</h1><br>
+<div *ngIf="loggedInUser && isGroupMember(selectedGroup)">
 </div>
 <div class="container-fluid text-center;" *ngFor="let event of events">
   <div class="row">
     <div class="col-10 offset-md-1">
       <div class="card text-dark bg-light mb-4">
         <div class="card-body">
-
     <h2>{{event.title}} </h2>
+    <h4 *ngIf="event.memberOnly">✴️✴️&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge text-bg-danger">This Event Is For Members ONLY</span>&nbsp;&nbsp;&nbsp;&nbsp;✴️✴️</h4>
+    <h4 *ngIf="!event.memberOnly">📣📣&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge text-bg-warning">This Event Is Open to Anyone</span>&nbsp;&nbsp;&nbsp;&nbsp;📣📣</h4><br>
     <img class="event" [src]="event.imageUrl"><br><br>
-    <p>{{event.description}}</p>
+    <h4>Event Description:</h4>
+    <div class="card col-6 offset-md-3 text-dark bg-light mb-4">
+            <div class="card-body">
+              <p>{{event.description}}</p>
+            </div>
+          </div>
     <h3>Event Date:</h3>
-    <p>{{event.eventDate | date: 'MMMM d,yyyy'}}</p>
+    <p>{{event.eventDate | date: 'MMMM d, yyyy'}}</p>
     <h3>Start Time:</h3>
     <p>{{event.startTime}}</p>
     <h3>Meeting Address:</h3>

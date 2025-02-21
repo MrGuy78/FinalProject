@@ -11,8 +11,7 @@
               <option value="all"> All Categories</option>
               <option *ngFor="let category of categories" [ngValue]="category.name">{{category.name}}</option>
             </select>
-  </div>
-  </div>
+  </div><br>
 <!-- Display all social groups -->
 <div class="container-fluid text-center">
   <div class="row align-items-start">
@@ -30,7 +29,7 @@
 
 <!-- GO BACK -->
 <div class="col-6 offset-md-3">
-  <button (click)="selectedGroup = null" class="btn btn-danger">Back to Social Groups</button>
+  <button (click)="selectedGroup = null" class="btn btn-success">Back to Social Groups</button>
   </div><br><hr><br>
 
 <!-- REQUEST TO JOIN/LEAVE THIS GROUP -->
@@ -43,41 +42,52 @@
 <!-- DISPLAY SOCIAL GROUP DETAILS -->
   <img class="group" [src]="selectedGroup.imageUrl"><br><br>
   <h1>{{selectedGroup.name}}</h1>
+  <h4>Members&nbsp;&nbsp;<span class="badge text-bg-primary">6</span></h4>
   <p><strong>Category: </strong>{{selectedGroup.category.name}}</p>
-  <div class="card col-6 offset-md-3 text-dark bg-light mb-4 ">
+  <div class="card col-4 offset-md-4 text-dark bg-light mb-4 ">
     <div class="card-body">
   <h4>Description:</h4>
   <blockquote>{{selectedGroup.description}}</blockquote>
   </div>
   </div>
   <div *ngIf="!loggedInUser">
-    <h4>To View Events for This Group You MUST Be A Member</h4><br>
-    <button class="btn btn-warning" [routerLink]="['/register']">Register Now</button><br><br>
+    <h2><span class="badge text-bg-success">To View Events for This Group You MUST Be A Member</span></h2><br>
+    <button class="btn btn-warning" [routerLink]="['/register']">Register Now To View Group Events</button><br><br>
   </div>
   <div *ngIf="loggedInUser && isGroupMember(selectedGroup)">
-  <button class="btn btn-warning" [routerLink]="['/social-group', selectedGroup.id, 'members']">View Members & Group Leaders</button><br><br>
+  <button class="btn btn-warning" (click)="loadGroupMembers(selectedGroup.id)" [routerLink]="['/social-group', selectedGroup.id, 'members']">View Members & Group Leaders</button><br><br>
 </div>
 
 <!-- Events of Group -->
 <div *ngIf="loggedInUser && !isGroupMember(selectedGroup)">
   <hr>
-  <h1>Events for this Group May Be Member-Only</h1><br>
-  <h3>Submit a Request to Join the Group to See All Events</h3><br>
+  <h2><span class="badge text-bg-info">Events for this Group May Be Member-Only</span></h2>
+  <h3><span class="badge text-bg-info">Join the Group to See All Events</span></h3>
 </div>
-
+<div class="container-fluid text-center" *ngIf="selectedGroup">
+  <div>
+    <button  *ngIf="loggedInUser && !isGroupMember(selectedGroup)" class="btn btn-success" (click)=" addGroupMember(selectedGroup.id)">Join This Group</button>
+    <button  *ngIf="loggedInUser && isGroupMember(selectedGroup)"class="btn btn-danger">Leave Group</button><br>
+  </div>
+<hr>
+<h1>Events for the {{selectedGroup.name}} Group&nbsp;<span class="badge text-bg-success">3</span></h1><br>
 <div *ngIf="loggedInUser && isGroupMember(selectedGroup)">
-  <hr>
-<h1>Events for the {{selectedGroup.name}} Group</h1><br>
 </div>
 <div class="container-fluid text-center;" *ngFor="let event of events">
   <div class="row">
     <div class="col-10 offset-md-1">
       <div class="card text-dark bg-light mb-4">
         <div class="card-body">
-
     <h2>{{event.title}} </h2>
+    <h4 *ngIf="event.memberOnly">✴️✴️&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge text-bg-danger">This Event Is For Members ONLY</span>&nbsp;&nbsp;&nbsp;&nbsp;✴️✴️</h4>
+    <h4 *ngIf="!event.memberOnly">📣📣&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge text-bg-warning">This Event Is Open to Anyone</span>&nbsp;&nbsp;&nbsp;&nbsp;📣📣</h4><br>
     <img class="event" [src]="event.imageUrl"><br><br>
-    <p>{{event.description}}</p>
+    <h4>Event Description:</h4>
+    <div class="card col-6 offset-md-3 text-dark bg-light mb-4">
+            <div class="card-body">
+              <p>{{event.description}}</p>
+            </div>
+          </div>
     <h3>Event Date:</h3>
     <p>{{event.eventDate | date: 'MMMM d, yyyy'}}</p>
     <h3>Start Time:</h3>
@@ -145,7 +155,7 @@
 
 <button class="btn btn-success" (click)="updateSocialEvent(editEvent, selectedGroup.id)" >Update Event</button><br><br>
 </form>
-</div></div></div></div></div></div>
+</div></div></div></div></div></div></div></div>
 
 <!-- NEW EVENT FORM -->
 <div class="container-fluid text-center" *ngIf="selectedGroupUser && selectedGroupUser.leader">
@@ -202,6 +212,6 @@
       </select><br></div>
 
   <button class="btn btn-success" (click)="createSocialEvent(newSocialEvent, selectedGroup.id)">Create New Event</button><br><br>
-  </form></div></div></div>
-</div></div></div></div></div></div></div></div>
+  </form></div></div>
+</div></div></div></div></div></div>
 <br>

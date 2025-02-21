@@ -3,6 +3,7 @@ package com.skilldistillery.gatherround.services;
 import java.util.List;
 
 import com.skilldistillery.gatherround.entities.GroupCategory;
+import com.skilldistillery.gatherround.entities.GroupUser;
 import com.skilldistillery.gatherround.entities.SocialGroup;
 
 public interface SocialGroupService {

@@ -15,7 +15,7 @@ export class SocialEvent {
   lastUpdate: string;
   cost: number;
   enabled: boolean;
-  memeberOnly: boolean;
+  memberOnly: boolean;
   user: User;
   meetAddress: Address;
   socialGroup: SocialGroup;
@@ -32,7 +32,7 @@ export class SocialEvent {
     lastUpdate: string = '',
     cost: number = 0,
     enabled: boolean = false,
-    memeberOnly: boolean = false,
+    memberOnly: boolean = false,
     user: User = new User(),
     meetAddress: Address = new Address(),
     socialGroup: SocialGroup = new SocialGroup(),
@@ -49,7 +49,7 @@ export class SocialEvent {
     this.lastUpdate = lastUpdate;
     this.cost = cost;
     this.enabled = enabled;
-    this.memeberOnly = memeberOnly;
+    this.memberOnly = memberOnly;
     this.user = user;
     this.meetAddress = meetAddress;
     this.socialGroup = socialGroup;

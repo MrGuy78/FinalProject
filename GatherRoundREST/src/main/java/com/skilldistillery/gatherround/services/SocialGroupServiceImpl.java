@@ -39,6 +39,7 @@ public class SocialGroupServiceImpl implements SocialGroupService {
 		User creatingUser = userRepository.findByUsername(username);
 		if (creatingUser != null) {
 			socialGroup.setOwner(creatingUser);
+//			groupUser.setLeader FIX ME
 			return groupRepository.saveAndFlush(socialGroup);
 		}
 		return null;

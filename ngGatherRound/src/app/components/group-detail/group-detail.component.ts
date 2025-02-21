@@ -34,6 +34,7 @@ export class GroupDetailComponent {
   socialGroup: SocialGroup = new SocialGroup();
   selectedGroup: SocialGroup | null = null;
   isEditingGroup: SocialGroup | null = null;
+  newGroupUser: GroupUser = new GroupUser();
 
   events: SocialEvent[] = [];
   newSocialEvent: SocialEvent = new SocialEvent();
@@ -50,7 +51,8 @@ export class GroupDetailComponent {
   showNewAddressForm: any;
 
   categories: Category [] = [];
-  selectedCategoryId: number | null = null;;
+  selectedCategoryId: number | null = null;
+;
   filteredGroups: SocialGroup[] = [];
 
   constructor (
@@ -91,9 +93,9 @@ export class GroupDetailComponent {
     this.groupUserService.showAllUsers(groupId).subscribe({
       next: (members) => {
         this.selectedGroupMembers = members;
-      } ,
+      },
       error: (failure) => {
-        console.error('SocialGroupComponent.loadGroupMembers: failed to reload group users');
+        console.error('SocialGroupComponent.loadGroupMembers: failed to reload group members');
         console.error(failure);
       }
     })
@@ -173,6 +175,29 @@ export class GroupDetailComponent {
         console.error(error);
       }
     });
+  }
+
+  addGroupMember(groupId: number){
+    this.socialGroupService.newMember(groupId).subscribe({
+      next: (newGroupUser) => {
+        this.newGroupUser = newGroupUser;
+        this.displayGroupSocialEvents(groupId);
+        this.loadGroupMembers(groupId);
+      },
+      error: (error) => {
+        console.error('SocialGroupComponent.addGroupMember: Error adding Group User')
+        console.error(error);
+      }
+    });
+  }
+
+  isGroupMember(group: SocialGroup): boolean {
+    if(this.selectedGroup && this.selectedGroupMembers && this.loggedInUser) {
+    return this.selectedGroupMembers.some((member) => {
+    return member.id.userId === this.loggedInUser?.id;
+    })
+    }
+    return false;
   }
 
 // ADDRESS METHODS

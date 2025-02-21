@@ -96,7 +96,7 @@
     <div class="col-8 offset-md-2">
       <div class="card text-dark bg-light mb-4">
         <div class="card-body">
-          <h2>Joined Groups</h2>
+          <h2>Joined Groups&nbsp;&nbsp;<span class="badge text-bg-warning">0</span></h2>
           <button *ngIf="!showMyJoinedGroups" (click)="displayMyJoinedGroups()" class="btn btn-primary">View Groups</button>
           <button *ngIf="showMyJoinedGroups" (click)="hideMyJoinedGroups()" class="btn btn-danger">Hide Groups</button>
           <hr><div *ngIf="showMyJoinedGroups"><br>
@@ -115,7 +115,8 @@
     <div class="col-8 offset-md-2">
       <div class="card text-dark bg-light mb-4">
         <div class="card-body">
-          <h2>Groups I Own</h2>
+          <h2>Groups I Own&nbsp;&nbsp;<span class="badge text-bg-success">2</span></h2>
+
           <button *ngIf="!showMyOwnedGroups" (click)="displayMyOwnedGroups()" class="btn btn-primary">View Groups</button>
           <button *ngIf="showMyOwnedGroups" (click)="hideMyOwnedGroups()" class="btn btn-danger">Hide Groups</button>
           <hr><div *ngIf="showMyOwnedGroups"><br>
