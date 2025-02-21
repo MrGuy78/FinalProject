@@ -14,36 +14,36 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="event_user")
+@Table(name = "event_user")
 public class EventUser {
-	
+
 	@EmbeddedId
 	private EventUserId id;
 
 	private boolean attending;
 
 	@CreationTimestamp
-	@Column(name = "create_date") 
+	@Column(name = "create_date")
 	private LocalDateTime createDate;
-	
+
 	private int rating;
-	
+
 	private String remarks;
-	
+
 	@ManyToOne
-	@JoinColumn(name= "user_id")
+	@JoinColumn(name = "user_id")
 	@MapsId(value = "userId")
 	private User user;
-	
+
 	@ManyToOne
-	@JoinColumn(name= "event_id")
+	@JoinColumn(name = "event_id")
 	@MapsId(value = "eventId")
 	private SocialEvent event;
 
 	public EventUser() {
 		super();
 	}
-	
+
 	public EventUserId getId() {
 		return id;
 	}
@@ -83,7 +83,7 @@ public class EventUser {
 	public void setRemarks(String text) {
 		this.remarks = text;
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -91,8 +91,6 @@ public class EventUser {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
 
 	public SocialEvent getEvent() {
 		return event;
@@ -104,7 +102,7 @@ public class EventUser {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(attending, createDate, id, rating, remarks);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -116,8 +114,7 @@ public class EventUser {
 		if (getClass() != obj.getClass())
 			return false;
 		EventUser other = (EventUser) obj;
-		return attending == other.attending && Objects.equals(createDate, other.createDate)
-				&& Objects.equals(id, other.id) && rating == other.rating && Objects.equals(remarks, other.remarks);
+		return Objects.equals(id, other.id);
 	}
 
 	@Override
@@ -125,6 +122,5 @@ public class EventUser {
 		return "EventUser [id=" + id + ", attending=" + attending + ", createDate=" + createDate + ", rating=" + rating
 				+ ", text=" + remarks + "]";
 	}
-	
-	
+
 }

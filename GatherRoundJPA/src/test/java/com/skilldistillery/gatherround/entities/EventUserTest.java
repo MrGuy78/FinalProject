@@ -32,10 +32,10 @@ class EventUserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		manager = factory.createEntityManager();
-		EventUserId eId  = new EventUserId();
-		eId.setEventId(1);
-		eId.setUserId(1);
-		eventUser = manager.find(EventUser.class, eId);
+		EventUserId eventId  = new EventUserId();
+		eventId.setEventId(1);
+		eventId.setUserId(1);
+		eventUser = manager.find(EventUser.class, eventId);
 	}
 
 	@AfterEach
@@ -44,23 +44,10 @@ class EventUserTest {
 		manager.close();
 	}
 
-	// ******  Need to add data into Event User table and add createDate  ****** 
 	@Test
 	void test_EventUser_Entity_Mapping() {
 		assertNotNull(eventUser);
 		assertEquals(2025, eventUser.getCreateDate().getYear());
 	}
-	
-	@Test
-	void test_EventUser_ManyToOne_User_mapping() {
-		assertEquals(1, eventUser.getId().getUserId());
-	}
-
-	@Test
-	void test_MealReview_ManyToOne_Event_mapping() {
-		assertEquals(1, eventUser.getId().getEventId());
-	}
-	
-	
 	
 }

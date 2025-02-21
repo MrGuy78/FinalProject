@@ -248,10 +248,11 @@ public class SocialEvent {
 		this.eventAddress = eventAddress;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(cost, createDate, description, enabled, endTime, eventDate, id, imageUrl, lastUpdate,
-				memberOnly, startTime, title);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -263,13 +264,7 @@ public class SocialEvent {
 		if (getClass() != obj.getClass())
 			return false;
 		SocialEvent other = (SocialEvent) obj;
-		return Double.doubleToLongBits(cost) == Double.doubleToLongBits(other.cost)
-				&& Objects.equals(createDate, other.createDate) && Objects.equals(description, other.description)
-				&& enabled == other.enabled && Objects.equals(endTime, other.endTime)
-				&& Objects.equals(eventDate, other.eventDate) && id == other.id
-				&& Objects.equals(imageUrl, other.imageUrl) && Objects.equals(lastUpdate, other.lastUpdate)
-				&& memberOnly == other.memberOnly && Objects.equals(startTime, other.startTime)
-				&& Objects.equals(title, other.title);
+		return id == other.id;
 	}
 
 	@Override

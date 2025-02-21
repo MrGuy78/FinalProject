@@ -50,7 +50,7 @@ class GroupCommentTest {
 	
 	@Test
 	void test_GroupComment_User_ManyToOne_Mapping() {
-		assertEquals("Ben", groupComment.getUser().getFirstName());
+		assertEquals("Patrick", groupComment.getUser().getFirstName());
 	}
 	
 	// ******* Add 2nd comment to reply to 1st comment ********

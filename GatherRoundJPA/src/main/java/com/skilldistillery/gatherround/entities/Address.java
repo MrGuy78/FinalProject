@@ -93,11 +93,10 @@ public class Address {
 	public void setEvents(List<SocialEvent> events) {
 		this.events = events;
 	}
-	
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, city, id, name, state, zip);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -109,9 +108,7 @@ public class Address {
 		if (getClass() != obj.getClass())
 			return false;
 		Address other = (Address) obj;
-		return Objects.equals(address, other.address) && Objects.equals(city, other.city) && id == other.id
-				&& Objects.equals(name, other.name) && Objects.equals(state, other.state)
-				&& Objects.equals(zip, other.zip);
+		return id == other.id;
 	}
 
 	@Override

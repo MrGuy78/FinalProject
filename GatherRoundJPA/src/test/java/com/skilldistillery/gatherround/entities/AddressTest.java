@@ -1,6 +1,7 @@
 package com.skilldistillery.gatherround.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
@@ -48,7 +49,8 @@ class AddressTest {
 	
 	@Test
 	void test_Address_SocialEvent_OneToMany_Mapping() {
-		assertTrue(address.getEvents().size()>0);
+		assertNotNull(address.getEvents());
+		assertEquals("2x2 Pickleball", address.getEvents().getFirst().getTitle());
 	}
 	
 
