@@ -130,8 +130,9 @@ public class GroupUser {
 
 	@Override
 	public String toString() {
-		return "GroupUser [id=" + id + ", approved=" + approved + ", createDate=" + createDate + ", approvedDate="
-				+ approvedDate + ", leader=" + leader + ", user=" + user + ", socialGroup=" + socialGroup + "]";
+		return "GroupUser [id=" + id + ", approved=" + approved +  ", createDate=" + createDate
+				+ ", approvedDate=" + approvedDate + ", leader=" + leader + ", user=" + user + ", socialGroup="
+				+ socialGroup + "]";
 	}
 
 }
