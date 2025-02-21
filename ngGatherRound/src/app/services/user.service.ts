@@ -6,16 +6,12 @@ import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  private url = environment.baseUrl + 'api/users';
 
-private url = environment.baseUrl + 'api/users';
-
-  constructor(
-    private http: HttpClient,
-    private auth: AuthService,
-  ) { }
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   getHttpOptions() {
     let options = {
@@ -27,15 +23,17 @@ private url = environment.baseUrl + 'api/users';
     return options;
   }
 
-  update(user: User) : Observable<User> {
-    return this.http.put<User>(this.url + '/' + user.id, user, this.getHttpOptions()).pipe(
-      catchError((error: any) => {
-        console.log(error);
-        return throwError(
-          () => new Error('UserService.index(): error updating user: ' + error)
-        );
-      })
-    );
+  update(user: User): Observable<User> {
+    return this.http
+      .put<User>(this.url + '/' + user.id, user, this.getHttpOptions())
+      .pipe(
+        catchError((error: any) => {
+          console.log(error);
+          return throwError(
+            () =>
+              new Error('UserService.index(): error updating user: ' + error)
+          );
+        })
+      );
   }
-
 }

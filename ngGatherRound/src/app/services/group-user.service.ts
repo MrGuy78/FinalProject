@@ -6,50 +6,56 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { GroupUser } from '../models/group-user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GroupUserService {
-
   private url = environment.baseUrl + 'api/groups';
 
-  constructor(
-    private http: HttpClient,
-    private auth: AuthService,
-  ) { }
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
-    getHttpOptions() {
-      let options = {
-        headers: {
-          Authorization: 'Basic ' + this.auth.getCredentials(),
-          'X-Requested-With': 'XMLHttpRequest',
-        },
-      };
-      return options;
-    }
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
 
-    show(groupId: number): Observable<GroupUser> {
-      return this.http.get<GroupUser>(this.url + "/" + groupId + "/groupUsers", this.getHttpOptions()).pipe(
+  show(groupId: number): Observable<GroupUser> {
+    return this.http
+      .get<GroupUser>(
+        this.url + '/' + groupId + '/groupUsers',
+        this.getHttpOptions()
+      )
+      .pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError(
-            () => new Error('GroupUser.show(): error retrieving group user:' + err)
+            () =>
+              new Error('GroupUser.show(): error retrieving group user:' + err)
           );
         })
       );
-    }
+  }
 
-    showAllUsers(groupId: number): Observable<GroupUser[]> {
-      return this.http.get<GroupUser[]>(this.url + "/" + groupId + "/groupUsers/all", this.getHttpOptions()).pipe(
+  showAllUsers(groupId: number): Observable<GroupUser[]> {
+    return this.http
+      .get<GroupUser[]>(
+        this.url + '/' + groupId + '/groupUsers/all',
+        this.getHttpOptions()
+      )
+      .pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError(
-            () => new Error('GroupUser.showAllUsers: error retrieving all groupusers:' + err)
+            () =>
+              new Error(
+                'GroupUser.showAllUsers: error retrieving all groupusers:' + err
+              )
           );
         })
       );
-    }
-
-
+  }
 }
-
-
