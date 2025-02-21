@@ -50,5 +50,15 @@ select {
   margin: 0 auto;
 }
 
+.badge.text-bg-success {
+  background-color: #67af31!important;
+  color: white!important;
+}
+
+.badge.text-bg-info {
+  background-color: #D53F98!important;
+  color: white!important;
+}
+
 
 

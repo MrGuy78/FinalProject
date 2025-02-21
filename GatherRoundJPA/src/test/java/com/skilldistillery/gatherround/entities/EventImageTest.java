@@ -47,7 +47,7 @@ class EventImageTest {
 	}
 	@Test
 	void test_EventImage_ManyToOne_User_Mapping() {
-		assertEquals("Ben", eventImage.getUser().getFirstName());
+		assertEquals("Patrick", eventImage.getUser().getFirstName());
 	}
 	
 	@Test

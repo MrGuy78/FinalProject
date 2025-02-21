@@ -4,13 +4,13 @@ label {
 
 .card {
   border-radius: 10px;
-  border-color: #F1642E;
+  border-color: #f1642e;
   border-style: solid;
   border-width: medium;
 }
 
 img.group {
-  width: 150px;
+  width: 200px;
   border-radius: 10px;
   border-color: #67af31;
   border-style: solid;
@@ -18,7 +18,7 @@ img.group {
 }
 
 img.profile {
-  border-color: #D53F98;
+  border-color: #d53f98;
   border-style: solid;
   border-width: thick;
   border-radius: 80%;
@@ -43,7 +43,7 @@ p.title {
 
 .btn-warning {
   color: #000;
-  background-color: #F5B024;
+  background-color: #f5b024;
 }
 
 .btn-success {
@@ -53,10 +53,10 @@ p.title {
 
 .btn-danger {
   color: #fff;
-  background-color: #E72628;
+  background-color: #e72628;
 }
 
 .btn-pink {
   color: #fff;
-  background-color: #D53F98;
+  background-color: #d53f98;
 }

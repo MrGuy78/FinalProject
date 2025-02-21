@@ -43,12 +43,12 @@ class SocialGroupTest {
 
 	@Test
 	void test_SocialGroup_Entity_Mapping() {
-		assertEquals("Pickleball", socialGroup.getName());
+		assertEquals("Pickleball Players", socialGroup.getName());
 		
 	}
 	@Test
 	void test_SocialGroup_User_ManyToOne_Mapping() {
-		assertEquals("Ben", socialGroup.getOwner().getFirstName());
+		assertEquals("Patrick", socialGroup.getOwner().getFirstName());
 		
 	}
 	

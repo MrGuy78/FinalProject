@@ -55,4 +55,10 @@ public class GroupUserServiceImpl implements GroupUserService {
 		return newMember;
 	}
 
+	@Override
+	public GroupUser findGroupLeader(String username, int groupId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

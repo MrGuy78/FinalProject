@@ -50,7 +50,7 @@ class EventCommentTest {
 	
 	@Test
 	void test_EventComment_ManyToOne_User_Mapping() {
-		assertEquals("Ben", eventComment.getUser().getFirstName());
+		assertEquals("Patrick", eventComment.getUser().getFirstName());
 	}
 	
 	@Test

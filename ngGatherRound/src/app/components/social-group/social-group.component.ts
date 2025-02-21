@@ -47,8 +47,6 @@ export class SocialGroupComponent implements OnInit {
   selectedGroupMembers: GroupUser[] = [];
   newGroupUser: GroupUser = new GroupUser();
 
-
-
   // ADDRESS FIELDS
   addresses: Address [] = [];
   newAddress: Address = new Address();
@@ -254,8 +252,6 @@ export class SocialGroupComponent implements OnInit {
     });
   }
 
-
-
 // ADDRESS METHODS
 createAddress(groupId: number, eventId: number, address: Address) {
   this.addressService.createAddressForEvent(groupId, eventId, address).subscribe({
@@ -315,10 +311,5 @@ cancelNewAddress() {
       error: (err) => console.error('Error loading groups', err)
   });
   }
-
-
-
-
-
 
 }

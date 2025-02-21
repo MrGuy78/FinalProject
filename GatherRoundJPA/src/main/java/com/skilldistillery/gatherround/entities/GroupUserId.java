@@ -9,10 +9,10 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class GroupUserId implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Column(name = "user_id")
 	private int userId;
-	
+
 	@Column(name = "group_id")
 	private int groupId;
 
@@ -20,7 +20,6 @@ public class GroupUserId implements Serializable {
 		super();
 	}
 
-	
 	public GroupUserId(int userId, int groupId) {
 		super();
 		this.userId = userId;
@@ -68,6 +67,5 @@ public class GroupUserId implements Serializable {
 	public String toString() {
 		return "GroupUserId [userId=" + userId + ", groupId=" + groupId + "]";
 	}
-	
-	
+
 }
