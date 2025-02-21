@@ -17,5 +17,4 @@ public class GatherRoundRestApplication {
 	protected PasswordEncoder configurePasswordEncoder() {
 	   return new BCryptPasswordEncoder();
 	}
-
 }
